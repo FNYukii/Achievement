@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Memory</string>
+    <string name="app_name">Achievement</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -7,4 +7,8 @@
     <string name="title_calendar">カレンダー</string>
     <string name="title_fusen">ふせん</string>
     <string name="title_setting">設定</string>
+    
+    <string name="title_achievement">アチーブメント</string>
+    <string name="title_search">検索</string>
+    <string name="title_library">ライブラリ</string>
 </resources>

@@ -5,9 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.y.bottomnav02.R
 
-class SettingFragment : Fragment() {
+class AchievementFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -15,7 +14,7 @@ class SettingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_setting, container, false)
+        return inflater.inflate(R.layout.fragment_achievement, container, false)
     }
 
 }

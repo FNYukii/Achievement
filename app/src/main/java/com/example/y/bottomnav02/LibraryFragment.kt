@@ -5,9 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.y.bottomnav02.R
 
-class FusenFragment : Fragment() {
+class LibraryFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -15,7 +14,7 @@ class FusenFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_fusen, container, false)
+        return inflater.inflate(R.layout.fragment_library, container, false)
     }
 
 }

@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_calendar"
-        android:icon="@drawable/ic_baseline_event_24"
-        android:title="@string/title_calendar" />
-
-    <item
-        android:id="@+id/navigation_fusen"
+        android:id="@+id/navigation_achievement"
         android:icon="@drawable/ic_baseline_bookmark_24"
-        android:title="@string/title_fusen" />
+        android:title="@string/title_achievement" />
 
     <item
-        android:id="@+id/navigation_setting"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="@string/title_setting" />
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/title_search" />
+
+    <item
+        android:id="@+id/navigation_library"
+        android:icon="@drawable/ic_baseline_auto_stories_24"
+        android:title="@string/title_library" />
 
 </menu>
