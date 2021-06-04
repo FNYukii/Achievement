@@ -9,5 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     
     <color name="translucentWhite">#7CFFFFFF</color>
-    
+    <color name="green">#A5D56E</color>
+    <color name="blue">#5869FF</color>
+    <color name="purple">#D07FED</color>
+    <color name="orange">#FFBE5E</color>
+    <color name="gold">#FFEE59</color>
+
+
+
 </resources>
