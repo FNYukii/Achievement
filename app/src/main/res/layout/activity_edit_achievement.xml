@@ -18,8 +18,8 @@
 
         <ImageButton
             android:id="@+id/backButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:background="@drawable/tool_button_background"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,9 +29,8 @@
 
         <ImageButton
             android:id="@+id/checkButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:background="@drawable/tool_button_background"
             app:layout_constraintEnd_toStartOf="@+id/colorButton"
             app:layout_constraintTop_toTopOf="@+id/backButton"
@@ -39,18 +38,17 @@
 
         <ImageButton
             android:id="@+id/colorButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:background="@drawable/tool_button_background"
-            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toStartOf="@+id/deleteButton"
             app:layout_constraintTop_toTopOf="@+id/checkButton"
             app:srcCompat="@drawable/ic_baseline_color_lens_24" />
 
         <ImageButton
             android:id="@+id/deleteButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:background="@drawable/tool_button_background"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/descriptionEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

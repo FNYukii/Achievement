@@ -1,5 +1,6 @@
 package com.example.y.bottomnav02
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,12 @@ class AchievementFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //Click floating button to go to edit achievement
+        floatingButton.setOnClickListener {
+            val intent = Intent(this.context, EditAchievementActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 

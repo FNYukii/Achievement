@@ -25,7 +25,8 @@ class CustomRecyclerViewAdapter(): RecyclerView.Adapter<ViewHolder>() {
         holder.titleText?.text = "The Forester"
         holder.descriptionText?.text = "The Forestの世界で100日生き延びる"
         holder.itemView.setOnClickListener {
-            //Todo: EditAchievementActivityへ遷移 putExtra付き
+            val intent = Intent(it.context, EditAchievementActivity::class.java)
+            it.context.startActivity(intent)
         }
     }
 
