@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
+import io.realm.Realm
+import io.realm.Sort
 import kotlinx.android.synthetic.main.fragment_achievement.*
 
 
@@ -16,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_achievement.*
 
 class AchievementFragment : Fragment() {
 
-
+    private lateinit var realm: Realm
     private lateinit var adapter: CustomRecyclerViewAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
@@ -43,18 +45,26 @@ class AchievementFragment : Fragment() {
             val intent = Intent(this.context, EditAchievementActivity::class.java)
             startActivity(intent)
         }
+
+        realm = Realm.getDefaultInstance()
+
     }
 
 
     override fun onStart() {
         super.onStart()
-        //Todo: Realmからデータを取得
+        val realmResults = realm.where(Achievement::class.java).findAll().sort("id", Sort.DESCENDING)
         layoutManager = GridLayoutManager(this.context, 2)
         recyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter()
+        adapter = CustomRecyclerViewAdapter(realmResults)
         recyclerView.adapter = this.adapter
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
 
 
 }

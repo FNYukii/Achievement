@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.RealmResults
 
-class CustomRecyclerViewAdapter(): RecyclerView.Adapter<ViewHolder>() {
+class CustomRecyclerViewAdapter(realmResults: RealmResults<Achievement>): RecyclerView.Adapter<ViewHolder>() {
 
-    //Todo: Realmを使用するため、rResultsを宣言
+
+    private val rResults: RealmResults<Achievement> = realmResults
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -17,17 +19,25 @@ class CustomRecyclerViewAdapter(): RecyclerView.Adapter<ViewHolder>() {
         return ViewHolder(view)
     }
 
+
     override fun getItemCount(): Int {
-        return 9
+        return rResults.size
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.titleText?.text = "The Forester"
-        holder.descriptionText?.text = "The Forestの世界で100日生き延びる"
+
+        //Realmからデータを取得して、TextViewにセット
+        val achievement = rResults[position]
+        holder.titleText?.text = "${achievement?.title.toString()}"
+        holder.descriptionText?.text = "${achievement?.description.toString()}"
+
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, EditAchievementActivity::class.java)
+            intent.putExtra("id", achievement?.id)
             it.context.startActivity(intent)
         }
+
     }
 
 
