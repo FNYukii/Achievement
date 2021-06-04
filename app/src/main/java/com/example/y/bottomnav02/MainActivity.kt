@@ -19,10 +19,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    override fun onStart() {
-        super.onStart()
-        Toast.makeText(applicationContext, "hello", Toast.LENGTH_SHORT).show()
-    }
+
 
 
 }

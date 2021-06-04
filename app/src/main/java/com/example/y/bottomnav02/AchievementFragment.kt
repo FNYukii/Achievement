@@ -11,12 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
+import kotlinx.android.synthetic.main.fragment_achievement.*
 
 
 class AchievementFragment : Fragment() {
 
 
-    private lateinit var adapter:CustomRecyclerViewAdapter
+    private lateinit var adapter: CustomRecyclerViewAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
 
@@ -42,9 +43,14 @@ class AchievementFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         //Todo: Realmからデータを取得
-        //Todo: RecyclerView表示
+        layoutManager = GridLayoutManager(this.context, 2)
+        recyclerView.layoutManager = layoutManager
+        adapter = CustomRecyclerViewAdapter()
+        recyclerView.adapter = this.adapter
     }
 
 
 
 }
+
+
