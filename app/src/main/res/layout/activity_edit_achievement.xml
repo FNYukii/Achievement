@@ -20,7 +20,7 @@
             android:id="@+id/backButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/tool_button_background"
+            android:background="@drawable/background_tool_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +30,7 @@
             android:id="@+id/checkButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/tool_button_background"
+            android:background="@drawable/background_tool_button"
             app:layout_constraintEnd_toStartOf="@+id/colorButton"
             app:layout_constraintTop_toTopOf="@+id/backButton"
             app:srcCompat="@drawable/ic_baseline_check_24" />
@@ -39,7 +39,7 @@
             android:id="@+id/colorButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/tool_button_background"
+            android:background="@drawable/background_tool_button"
             app:layout_constraintEnd_toStartOf="@+id/deleteButton"
             app:layout_constraintTop_toTopOf="@+id/checkButton"
             app:srcCompat="@drawable/ic_baseline_color_lens_24" />
@@ -48,7 +48,7 @@
             android:id="@+id/deleteButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/tool_button_background"
+            android:background="@drawable/background_tool_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/colorButton"
             app:srcCompat="@drawable/ic_baseline_delete_24" />
