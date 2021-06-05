@@ -10,25 +10,37 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:background="@drawable/background_header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <SearchView
-            android:id="@+id/searchBar"
-            android:theme="@style/CustomSearchView"
-            android:iconifiedByDefault="false"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/searchBarWrapper"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:queryHint="キーワードを入力"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_search_bar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <SearchView
+                android:id="@+id/searchBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:queryBackground="@color/transparent"
+                android:queryHint="アチーブメントを検索"
+                android:theme="@style/CustomSearchView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

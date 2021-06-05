@@ -43,7 +43,7 @@
 
     <!-- Search View -->
     <style name="CustomSearchView" parent="Theme.AppCompat">
-
+        <item name="android:background" tools:ignore="NewApi">@color/transparent</item>
     </style>
 
 
