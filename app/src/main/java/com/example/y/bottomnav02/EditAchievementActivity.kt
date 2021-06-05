@@ -1,9 +1,9 @@
 package com.example.y.bottomnav02
 
-import android.bluetooth.BluetoothA2dp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
 import io.realm.kotlin.createObject
@@ -38,7 +38,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
         }
 
         colorButton.setOnClickListener {
-            changeAchievementColor()
+            openColorDialog()
         }
 
         deleteButton.setOnClickListener {
@@ -53,10 +53,65 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
         if(achievementId != 0L){
             val achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()
             colorId = achievement?.colorId!!
+            setAchievementColor()
             titleEdit.setText(achievement?.title)
             descriptionEdit.setText(achievement?.description)
         }
 
+    }
+
+
+    private fun setAchievementColor(){
+        when (colorId){
+            0L -> {
+                backButton.setColorFilter(ContextCompat.getColor(this, R.color.white))
+                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.white))
+                colorButton.setColorFilter(ContextCompat.getColor(this, R.color.white))
+                deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.white))
+                titleEdit.setTextColor(ContextCompat.getColor(this, R.color.white))
+                descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.white))
+            }
+            1L -> {
+                backButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
+                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
+                colorButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
+                deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
+                titleEdit.setTextColor(ContextCompat.getColor(this, R.color.green))
+                descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.green))
+            }
+            2L -> {
+                backButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
+                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
+                colorButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
+                deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
+                titleEdit.setTextColor(ContextCompat.getColor(this, R.color.blue))
+                descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.blue))
+            }
+            3L -> {
+                backButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
+                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
+                colorButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
+                deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
+                titleEdit.setTextColor(ContextCompat.getColor(this, R.color.purple))
+                descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.purple))
+            }
+            4L -> {
+                backButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
+                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
+                colorButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
+                deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
+                titleEdit.setTextColor(ContextCompat.getColor(this, R.color.orange))
+                descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.orange))
+            }
+            5L -> {
+                backButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
+                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
+                colorButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
+                deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
+                titleEdit.setTextColor(ContextCompat.getColor(this, R.color.gold))
+                descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.gold))
+            }
+        }
     }
 
 
@@ -101,7 +156,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
     }
 
 
-    private fun changeAchievementColor() {
+    private fun openColorDialog() {
         //ColorDialogFragmentを表示
         val dialogFragment = ColorDialogFragment()
         dialogFragment.show(supportFragmentManager, "dialog")
@@ -110,6 +165,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
 
     override fun onDialogColorIdReceive(dialog: DialogFragment, id: Long) {
         this.colorId = id
+        setAchievementColor()
     }
 
 
