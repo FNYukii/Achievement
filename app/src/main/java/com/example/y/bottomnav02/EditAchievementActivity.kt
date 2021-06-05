@@ -1,6 +1,6 @@
 package com.example.y.bottomnav02
 
-import android.graphics.Color
+import android.bluetooth.BluetoothA2dp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -13,7 +13,7 @@ class EditAchievementActivity : AppCompatActivity() {
 
     private lateinit var realm: Realm
 
-    private var id: Long = 0L
+    private var achievementId: Long = 0L
 
 
 
@@ -47,9 +47,9 @@ class EditAchievementActivity : AppCompatActivity() {
         realm = Realm.getDefaultInstance()
 
         //もしAchievementFragmentからidが送られてきたなら、既存のアチーブメントを編集画面にする
-        id = intent.getLongExtra("id", 0L)
-        if(id != 0L){
-            val achievement = realm.where<Achievement>().equalTo("id", id).findFirst()
+        achievementId = intent.getLongExtra("achievementId", 0L)
+        if(achievementId != 0L){
+            val achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()
             titleEdit.setText(achievement?.title)
             descriptionEdit.setText(achievement?.description)
         }
@@ -60,7 +60,7 @@ class EditAchievementActivity : AppCompatActivity() {
     private fun saveAchievement() {
 
         //レコード追加
-        if(id == 0L){
+        if(achievementId == 0L){
             realm.executeTransaction {
                 //新レコードのidを決める
                 var latestId = realm.where<Achievement>().max("id")?.toLong()
@@ -77,9 +77,9 @@ class EditAchievementActivity : AppCompatActivity() {
         }
 
         //レコード更新
-        if(id != 0L){
+        if(achievementId != 0L){
             realm.executeTransaction {
-                val achievement = realm.where<Achievement>().equalTo("id", id)?.findFirst()
+                val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
                 achievement?.title = titleEdit.text.toString()
                 achievement?.description = descriptionEdit.text.toString()
             }
@@ -97,13 +97,21 @@ class EditAchievementActivity : AppCompatActivity() {
 
     private fun changeAchievementColor() {
         //Todo
+        val dialogFragment = ColorDialogFragment()
+        var args: Bundle = Bundle()
+        args.putLong("achievementId",achievementId)
+        dialogFragment.arguments = args
+        dialogFragment.show(supportFragmentManager, "dialog")
     }
 
 
+
+
+
     private fun deleteAchievement() {
-        if (id != 0L){
+        if (achievementId != 0L){
             realm.executeTransaction {
-                val achievement = realm.where<Achievement>().equalTo("id", id)?.findFirst()
+                val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
                 achievement?.deleteFromRealm()
             }
         }

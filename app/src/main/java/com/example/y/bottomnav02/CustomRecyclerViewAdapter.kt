@@ -44,7 +44,7 @@ class CustomRecyclerViewAdapter(realmResults: RealmResults<Achievement>): Recycl
 
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, EditAchievementActivity::class.java)
-            intent.putExtra("id", achievement?.id)
+            intent.putExtra("achievementId", achievement?.id)
             it.context.startActivity(intent)
         }
 
