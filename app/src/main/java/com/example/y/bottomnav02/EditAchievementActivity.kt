@@ -2,6 +2,7 @@ package com.example.y.bottomnav02
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
@@ -54,7 +55,8 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             titleEdit.setText(achievement.title)
             descriptionEdit.setText(achievement.description)
         }else{
-    }
+            deleteButton.visibility = View.INVISIBLE
+        }
 
     }
 
