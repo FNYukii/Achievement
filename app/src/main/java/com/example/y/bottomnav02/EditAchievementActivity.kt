@@ -22,7 +22,6 @@ class EditAchievementActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_achievement)
 
-        this.window.statusBarColor = Color.parseColor("#26394C")
 
         backButton.setOnClickListener {
             if(titleEdit.text.isNullOrEmpty() && descriptionEdit.text.isNullOrEmpty()){
