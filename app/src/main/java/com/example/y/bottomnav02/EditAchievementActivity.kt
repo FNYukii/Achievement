@@ -4,16 +4,18 @@ import android.bluetooth.BluetoothA2dp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit_achievement.*
 
-class EditAchievementActivity : AppCompatActivity() {
+class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
 
     private lateinit var realm: Realm
 
     private var achievementId: Long = 0L
+    private var colorId: Long = 0L
 
 
 
@@ -46,7 +48,7 @@ class EditAchievementActivity : AppCompatActivity() {
         //get Realm instance
         realm = Realm.getDefaultInstance()
 
-        //もしAchievementFragmentからidが送られてきたなら、既存のアチーブメントを編集画面にする
+        //もしAchievementFragmentからidが送られてきたなら、既存のアチーブメントを表示する
         achievementId = intent.getLongExtra("achievementId", 0L)
         if(achievementId != 0L){
             val achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()
@@ -92,16 +94,19 @@ class EditAchievementActivity : AppCompatActivity() {
 
     private fun checkAchievement() {
         //Todo
+        Toast.makeText(applicationContext, "ColorId is ${colorId}", Toast.LENGTH_SHORT).show()
     }
 
 
     private fun changeAchievementColor() {
-        //アチーブメントIDを渡して、ColorDialogFragmentを表示
+        //ColorDialogFragmentを表示
         val dialogFragment = ColorDialogFragment()
-        var args: Bundle = Bundle()
-        args.putLong("achievementId",achievementId)
-        dialogFragment.arguments = args
         dialogFragment.show(supportFragmentManager, "dialog")
+    }
+
+
+    override fun onDialogColorIdReceive(dialog: DialogFragment, id: Long) {
+        this.colorId = id
     }
 
 
