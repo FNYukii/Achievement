@@ -20,7 +20,7 @@ class ColorDialogFragment : DialogFragment() {
     //配列や変数を宣言
     private val colors = arrayOf("white", "green", "blue", "purple", "orange", "gold")
     private var achievementId: Long? = null
-    private var colorId: Long = 0L
+    private var colorId: Long? = null
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -33,11 +33,14 @@ class ColorDialogFragment : DialogFragment() {
                     .setSingleChoiceItems(colors, -1){ dialog, which ->
                         colorId = which.toLong()
                     }
-                    .setPositiveButton("Yes",
+                    .setPositiveButton("OK",
                             DialogInterface.OnClickListener { dialog, id ->
-                                listener?.onDialogColorIdReceive(this, colorId)
+                                //ラジオボタンで色が選択されていたら、ホストActivityへcolorIdを渡す
+                                if(colorId != null){
+                                    listener?.onDialogColorIdReceive(this, colorId!!)
+                                }
                             })
-                    .setNegativeButton("No",
+                    .setNegativeButton("キャンセル",
                             DialogInterface.OnClickListener { dialog, id ->
 
                             })
