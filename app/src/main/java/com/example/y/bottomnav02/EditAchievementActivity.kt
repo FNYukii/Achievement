@@ -3,6 +3,7 @@ package com.example.y.bottomnav02
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
@@ -55,7 +56,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             titleEdit.setText(achievement.title)
             descriptionEdit.setText(achievement.description)
         }else{
-            deleteButton.visibility = View.INVISIBLE
+            checkButton.visibility = View.INVISIBLE
         }
 
     }
@@ -151,6 +152,16 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
 
     private fun checkAchievement() {
         //Todo: Achieve achievement
+        realm.executeTransaction {
+            val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
+            if(achievement?.isAchieved == 0L){
+                achievement?.isAchieved = 1L
+                Toast.makeText(applicationContext, "達成しました!",Toast.LENGTH_SHORT).show()
+            }else{
+                achievement?.isAchieved = 0L
+                Toast.makeText(applicationContext, "まだ未達成",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
 

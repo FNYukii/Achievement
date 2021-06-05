@@ -19,7 +19,9 @@ class CustomRecyclerViewAdapter : RecyclerView.Adapter<ViewHolder>() {
     private var realm = Realm.getDefaultInstance()
 
     //achievementテーブルの全レコードを降順で取得
-    private var data: RealmResults<Achievement> = realm.where<Achievement>().findAll().sort("id", Sort.DESCENDING)
+    private var data: RealmResults<Achievement> = realm.where<Achievement>().equalTo("isAchieved", 0L).findAll().sort("id", Sort.DESCENDING)
+//    private var data: RealmResults<Achievement> = realm.where<Achievement>().findAll().sort("id", Sort.DESCENDING)
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
