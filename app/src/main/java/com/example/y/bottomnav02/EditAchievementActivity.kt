@@ -92,12 +92,12 @@ class EditAchievementActivity : AppCompatActivity() {
 
 
     private fun checkAchievement() {
-        TODO("Not yet implemented")
+        //Todo
     }
 
 
     private fun changeAchievementColor() {
-        TODO("Not yet implemented")
+        //Todo
     }
 
 
