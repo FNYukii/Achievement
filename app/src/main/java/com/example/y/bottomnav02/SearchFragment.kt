@@ -2,6 +2,7 @@ package com.example.y.bottomnav02
 
 import android.os.Bundle
 import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,24 +36,33 @@ class SearchFragment : Fragment() {
         //Realmのデフォルトインスタンスを取得
         realm = Realm.getDefaultInstance()
 
-        //エンターキーが押されたら検索
-        searchEdit.setOnKeyListener{ _, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_ENTER){
+        searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    searchText = newText
+                    search()
+                }
 
-                //キーボードを閉じる
-//                val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE)
-//                inputMethodManager.hideSoftInputFromWindow(v.windowToken, InputMethodManager.RESULT_UNCHANGED_SHOWN)
+                return false
+            }
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    searchText = query
+                    search()
+                }
+                return false
+            }
+        })
 
+    }
+
+
+    private fun search(){
                 //検索してRecyclerView表示
-                searchText = searchEdit.text.toString()
                 layoutManager = GridLayoutManager(this.context, 2)
                 searchRecyclerView.layoutManager = layoutManager
                 adapter = CustomRecyclerViewAdapter(true, searchText)
                 searchRecyclerView.adapter = this.adapter
-            }
-            false
-        }
-
     }
 
 
