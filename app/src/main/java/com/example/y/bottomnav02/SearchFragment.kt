@@ -36,19 +36,17 @@ class SearchFragment : Fragment() {
         //Realmのデフォルトインスタンスを取得
         realm = Realm.getDefaultInstance()
 
+        //検索バーの操作イベントに応じて、検索を行う
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText != null) {
-                    searchText = newText
-                }
+                searchText = newText!!
                 search()
                 return false
             }
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null) {
-                    searchText = query
-                }
+                searchText = query!!
                 search()
+                searchBar.clearFocus()
                 return false
             }
         })
