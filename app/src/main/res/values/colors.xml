@@ -10,11 +10,11 @@
 
     <color name="transparent">#00FFFFFF</color>
     <color name="translucentWhite">#7CFFFFFF</color>
-    <color name="green">#C2FF7E</color>
-    <color name="blue">#2196F3</color>
-    <color name="purple">#E8BCF8</color>
-    <color name="orange">#FFDCA7</color>
-    <color name="gold">#FFF6A7</color>
+    <color name="green">#95FF91</color>
+    <color name="blue">#5FB8FF</color>
+    <color name="purple">#ED83FF</color>
+    <color name="orange">#FF9B7B</color>
+    <color name="gold">#FFD24B</color>
 
     <color name="navy">#26394C</color>
     <color name="lightNavy">#406181</color>
