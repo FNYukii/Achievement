@@ -14,12 +14,13 @@
 
         <!-- Customize your theme here. -->
         <!-- Status Bar -->
-        <item name="android:windowLightStatusBar">true</item>
+<!--        <item name="android:windowLightStatusBar">true</item>-->
 
         <!-- App Bar -->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
 
+<!--        <item name="android:background">@color/gold</item>-->
 
     </style>
 </resources>

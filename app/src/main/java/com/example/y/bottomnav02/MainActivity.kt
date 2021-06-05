@@ -1,5 +1,7 @@
 package com.example.y.bottomnav02
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
+
+        this.window.statusBarColor = Color.parseColor("#161D33")
 
 
 

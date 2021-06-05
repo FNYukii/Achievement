@@ -21,9 +21,9 @@
         android:layout_height="70dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="80dp"
-        android:background="@drawable/background_tool_button"
+        android:background="@drawable/background_floating_button"
         android:elevation="5dp"
-        android:src="@drawable/ic_baseline_add_24"
+        android:src="@drawable/ic_baseline_add_30"
         app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

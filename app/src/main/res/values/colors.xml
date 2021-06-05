@@ -16,6 +16,12 @@
     <color name="orange">#FFDCA7</color>
     <color name="gold">#FFF6A7</color>
 
+    <color name="darkBlue">#161D33</color>
+    <color name="darkDarkBlue">#0C0E1C</color>
+    <color name="lightDarkBlue">#22305C</color>
+
+    <color name="gray">#AAAAAA</color>
+
 
 
 </resources>

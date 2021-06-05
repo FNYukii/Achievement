@@ -4,7 +4,7 @@
     <item android:state_pressed="false" android:state_focused="false">
         <shape android:shape="rectangle">
             <!-- ボタンの色 -->
-            <solid android:color="@color/darkBlue" />
+            <solid android:color="@color/darkDarkBlue" />
             <corners android:radius="100dp"/>
         </shape>
     </item>

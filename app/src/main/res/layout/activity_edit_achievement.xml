@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/darkBlue"
     tools:context=".EditAchievementActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/white"
         android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +61,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@color/transparent"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
         android:ems="10"
         android:hint="タイトル"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -74,6 +76,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
         android:ems="10"
         android:gravity="start|top"
         android:hint="説明"
