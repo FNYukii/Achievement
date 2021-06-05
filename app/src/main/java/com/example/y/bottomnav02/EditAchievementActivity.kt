@@ -151,7 +151,6 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
 
 
     private fun checkAchievement() {
-        //Todo: Achieve achievement
         realm.executeTransaction {
             val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
             if(achievement?.isAchieved == 0L){
@@ -162,6 +161,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
                 Toast.makeText(applicationContext, "まだ未達成",Toast.LENGTH_SHORT).show()
             }
         }
+        finish()
     }
 
 

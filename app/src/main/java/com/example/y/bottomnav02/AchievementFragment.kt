@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_achievement.*
 
 class AchievementFragment : Fragment() {
 
+
     //RealmとかRecyclerViewとか宣言
     private lateinit var realm: Realm
     private lateinit var adapter: CustomRecyclerViewAdapter
@@ -49,13 +50,15 @@ class AchievementFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
         //Realmでレコードを検索
         val realmResults = realm.where(Achievement::class.java).findAll().sort("id", Sort.DESCENDING)
+
         //RecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
-        recyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter()
-        recyclerView.adapter = this.adapter
+        homeRecyclerView.layoutManager = layoutManager
+        adapter = CustomRecyclerViewAdapter(false, "")
+        homeRecyclerView.adapter = this.adapter
     }
 
 
