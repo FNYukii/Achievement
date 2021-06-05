@@ -96,7 +96,7 @@ class EditAchievementActivity : AppCompatActivity() {
 
 
     private fun changeAchievementColor() {
-        //Todo
+        //アチーブメントIDを渡して、ColorDialogFragmentを表示
         val dialogFragment = ColorDialogFragment()
         var args: Bundle = Bundle()
         args.putLong("achievementId",achievementId)

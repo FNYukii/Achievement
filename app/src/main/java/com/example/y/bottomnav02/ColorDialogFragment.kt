@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 
 class ColorDialogFragment : DialogFragment() {
 
+    //配列や変数を宣言
     private val colors = arrayOf("white", "green", "blue", "purple", "orange", "gold")
     private var colorId: Int? = null
     private var achievementId: Long? = null
@@ -17,8 +18,10 @@ class ColorDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
+        //EditAchievementActivityからアチーブメントIDを受け取る
         achievementId = arguments?.getLong("achievementId", 10L)
 
+        //dialogを作る
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             builder.setTitle("色を選択${achievementId}")
