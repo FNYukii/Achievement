@@ -21,12 +21,16 @@ class ColorDialogFragment : DialogFragment() {
     private var colorId: Long? = null
 
 
+
+
+
+
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-
-        //dialogを作る
+        //dialogをセッティング
         return activity?.let {
-            val builder = AlertDialog.Builder(it)
+            val builder = AlertDialog.Builder(it, R.style.CustomDialog)
             builder.setTitle("色を選択")
                     .setSingleChoiceItems(colors, -1){ _, which ->
                         colorId = which.toLong()
@@ -39,7 +43,7 @@ class ColorDialogFragment : DialogFragment() {
                         }
                     }
                 .setNegativeButton("キャンセル"
-                ) { dialog, id ->
+                ) { _, _ ->
 
                 }
             // Create the AlertDialog object and return it
