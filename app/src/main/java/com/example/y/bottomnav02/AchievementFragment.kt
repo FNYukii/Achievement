@@ -54,7 +54,7 @@ class AchievementFragment : Fragment() {
         //RecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
         recyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(realmResults)
+        adapter = CustomRecyclerViewAdapter()
         recyclerView.adapter = this.adapter
     }
 

@@ -1,33 +1,36 @@
 package com.example.y.bottomnav02
 
 import android.annotation.SuppressLint
-import android.app.ActionBar
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
+import io.realm.Realm
 import io.realm.RealmResults
+import io.realm.Sort
+import io.realm.kotlin.where
 
-class CustomRecyclerViewAdapter(realmResults: RealmResults<Achievement>): RecyclerView.Adapter<ViewHolder>() {
+class CustomRecyclerViewAdapter : RecyclerView.Adapter<ViewHolder>() {
 
 
-    private val rResults: RealmResults<Achievement> = realmResults
+    //Realmのインスタンス作成
+    private var realm = Realm.getDefaultInstance()
+
+    //achievementテーブルの全レコードを降順で取得
+    private var data: RealmResults<Achievement> = realm.where<Achievement>().findAll().sort("id", Sort.DESCENDING)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.one_achievement, parent, false)
-
         return ViewHolder(view)
     }
 
 
     override fun getItemCount(): Int {
-        return rResults.size
+        return data.size
     }
 
 
@@ -38,7 +41,7 @@ class CustomRecyclerViewAdapter(realmResults: RealmResults<Achievement>): Recycl
         val context: Context = holder.itemView.context
 
         //Realmからデータを取得して、TextViewにセット
-        val achievement = rResults[position]
+        val achievement = data[position]
         holder.titleText?.text = achievement?.title.toString()
         holder.descriptionText?.text = achievement?.description.toString()
 
