@@ -27,6 +27,9 @@
     <!-- bottom navigation item -->
     <color name="gray">#AAAAAA</color>
 
+    <!-- searchEdit -->
+    <color name="darkNavy">#141E29</color>
+
 
 
 
