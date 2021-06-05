@@ -53,7 +53,8 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             setAchievementColor()
             titleEdit.setText(achievement.title)
             descriptionEdit.setText(achievement.description)
-        }
+        }else{
+    }
 
     }
 
