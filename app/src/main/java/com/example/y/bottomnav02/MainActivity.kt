@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
 
-        this.window.statusBarColor = Color.parseColor("#161D33")
+        this.window.statusBarColor = Color.parseColor("#26394C")
 
 
 
