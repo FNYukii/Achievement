@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_achievement.*
 
 class AchievementFragment : Fragment() {
 
+    //RealmとかRecyclerViewとか宣言
     private lateinit var realm: Realm
     private lateinit var adapter: CustomRecyclerViewAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
@@ -41,20 +42,22 @@ class AchievementFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Click floating button to go to edit achievement
+        //フローティングボタン
         floatingButton.setOnClickListener {
             val intent = Intent(this.context, EditAchievementActivity::class.java)
             startActivity(intent)
         }
 
+        //Realmのデフォルトインスタンスを取得
         realm = Realm.getDefaultInstance()
-
     }
 
 
     override fun onStart() {
         super.onStart()
+        //Realmでレコードを検索
         val realmResults = realm.where(Achievement::class.java).findAll().sort("id", Sort.DESCENDING)
+        //RecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
         recyclerView.layoutManager = layoutManager
         adapter = CustomRecyclerViewAdapter(realmResults)
@@ -64,7 +67,7 @@ class AchievementFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-
+        realm.close()
     }
 
 
