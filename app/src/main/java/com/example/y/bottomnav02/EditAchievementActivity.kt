@@ -48,10 +48,11 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
         //get Realm instance
         realm = Realm.getDefaultInstance()
 
-        //もしAchievementFragmentからidが送られてきたなら、既存のアチーブメントを表示する
+        //もしAchievementFragmentからidが送られてきたなら、既存のアチーブメントを検索する
         achievementId = intent.getLongExtra("achievementId", 0L)
         if(achievementId != 0L){
             val achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()
+            colorId = achievement?.colorId!!
             titleEdit.setText(achievement?.title)
             descriptionEdit.setText(achievement?.description)
         }
@@ -73,6 +74,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
                 //newIdを主キーとする新レコードを作成
                 val achievement = realm.createObject<Achievement>(newId)
                 //データ更新
+                achievement.colorId = colorId
                 achievement.title = titleEdit.text.toString()
                 achievement.description = descriptionEdit.text.toString()
             }
@@ -82,6 +84,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
         if(achievementId != 0L){
             realm.executeTransaction {
                 val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
+                achievement?.colorId = colorId
                 achievement?.title = titleEdit.text.toString()
                 achievement?.description = descriptionEdit.text.toString()
             }
