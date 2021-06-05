@@ -40,16 +40,15 @@ class SearchFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
                     searchText = newText
-                    search()
                 }
-
+                search()
                 return false
             }
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
                     searchText = query
-                    search()
                 }
+                search()
                 return false
             }
         })
