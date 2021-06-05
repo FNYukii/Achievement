@@ -17,8 +17,8 @@ class SearchFragment : Fragment() {
     private lateinit var adapter: CustomRecyclerViewAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
+    //検索文字列
     private var searchText: String = ""
-
 
 
     override fun onCreateView(
