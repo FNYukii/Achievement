@@ -9,6 +9,7 @@ open class Achievement : RealmObject() {
     var id: Long = 0L
     var datetime: Date = Date()
     var isAchieved: Long = 0L
+    var colorId: Long = 0L
     var title: String = ""
     var description: String = ""
 }
