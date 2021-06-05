@@ -3,7 +3,6 @@ package com.example.y.bottomnav02
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -38,12 +37,11 @@ class CustomRecyclerViewAdapter(realmResults: RealmResults<Achievement>): Recycl
 
         //Realmからデータを取得して、TextViewにセット
         val achievement = rResults[position]
-        holder.titleText?.text = "${achievement?.title.toString()}"
-        holder.descriptionText?.text = "${achievement?.description.toString()}"
+        holder.titleText?.text = achievement?.title.toString()
+        holder.descriptionText?.text = achievement?.description.toString()
 
         //colorIdに応じて色を変更する。0:white, 1:green, 2:blue, 3:purple, 4:orange, 5:gold
-        val colorId = achievement?.colorId
-        when (colorId) {
+        when (achievement?.colorId) {
             1L -> {
                 holder.constraintLayout?.setBackgroundResource(R.drawable.background_achievement_green)
                 holder.titleText?.setTextColor(ContextCompat.getColor(context, R.color.green))

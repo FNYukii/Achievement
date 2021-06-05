@@ -2,7 +2,6 @@ package com.example.y.bottomnav02
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
@@ -54,8 +53,8 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             val achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()
             colorId = achievement?.colorId!!
             setAchievementColor()
-            titleEdit.setText(achievement?.title)
-            descriptionEdit.setText(achievement?.description)
+            titleEdit.setText(achievement.title)
+            descriptionEdit.setText(achievement.description)
         }
 
     }
@@ -64,10 +63,10 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
     private fun setAchievementColor(){
         when (colorId){
             0L -> {
-                backButton.setColorFilter(ContextCompat.getColor(this, R.color.white))
-                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.white))
-                colorButton.setColorFilter(ContextCompat.getColor(this, R.color.white))
-                deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.white))
+                backButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
+                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
+                colorButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
+                deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.white))
                 descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.white))
             }
@@ -152,7 +151,6 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
 
     private fun checkAchievement() {
         //Todo
-        Toast.makeText(applicationContext, "ColorId is ${colorId}", Toast.LENGTH_SHORT).show()
     }
 
 
@@ -163,13 +161,10 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
     }
 
 
-    override fun onDialogColorIdReceive(dialog: DialogFragment, id: Long) {
-        this.colorId = id
+    override fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Long) {
+        this.colorId = colorId
         setAchievementColor()
     }
-
-
-
 
 
     private fun deleteAchievement() {
