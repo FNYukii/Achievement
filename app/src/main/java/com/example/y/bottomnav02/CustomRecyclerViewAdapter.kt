@@ -15,7 +15,6 @@ class CustomRecyclerViewAdapter(realmResults: RealmResults<Achievement>): Recycl
     private val rResults: RealmResults<Achievement> = realmResults
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.one_achievement, parent, false)
@@ -69,9 +68,7 @@ class CustomRecyclerViewAdapter(realmResults: RealmResults<Achievement>): Recycl
             }
         }
 
-
-
-
+        //EditAchievementActivityへ遷移するクリックリスナーをセット
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, EditAchievementActivity::class.java)
             intent.putExtra("achievementId", achievement?.id)

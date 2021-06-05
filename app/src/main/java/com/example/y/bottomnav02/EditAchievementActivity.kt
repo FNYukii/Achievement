@@ -11,18 +11,16 @@ import kotlinx.android.synthetic.main.activity_edit_achievement.*
 
 class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
 
+
     private lateinit var realm: Realm
 
     private var achievementId: Long = 0L
     private var colorId: Long = 0L
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_achievement)
-
 
         backButton.setOnClickListener {
             if(titleEdit.text.isNullOrEmpty() && descriptionEdit.text.isNullOrEmpty()){
@@ -145,12 +143,11 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
         }
 
         finish()
-
     }
 
 
     private fun checkAchievement() {
-        //Todo
+        //Todo: Achieve achievement
     }
 
 

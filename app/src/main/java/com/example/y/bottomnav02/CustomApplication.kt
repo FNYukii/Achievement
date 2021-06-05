@@ -15,8 +15,5 @@ class CustomApplication : Application() {
                 .build()
         Realm.setDefaultConfiguration(config)
 
-
-
-
     }
 }

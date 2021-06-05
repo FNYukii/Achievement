@@ -15,5 +15,4 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         titleText = itemView.titleText
         descriptionText = itemView.descriptionText
     }
-
 }
