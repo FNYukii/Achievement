@@ -27,7 +27,7 @@ class CustomRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.one_achievement, parent, false)
+            .inflate(R.layout.one_card, parent, false)
         return ViewHolder(view)
     }
 
@@ -69,43 +69,43 @@ class CustomRecyclerViewAdapter(
 
         //Realmからデータを取得して、TextViewにセット
         val achievement = data[position]
-        holder.titleText?.text = achievement?.title.toString()
-        holder.descriptionText?.text = achievement?.description.toString()
+        holder.cardTitleText?.text = achievement?.title.toString()
+        holder.cardDetailText?.text = achievement?.description.toString()
 
-        //もしtitleが空なら、titleTextは非表示。marginBottomも0dpにする。
-        if(holder.titleText?.text.isNullOrBlank()){
-            holder.titleText?.height = 0
-            val param = holder.titleText?.layoutParams as ViewGroup.MarginLayoutParams
+        //もしtitleが空なら、titleTextは非表示。detailTextのmarginTopも0dpにする。
+        if(holder.cardTitleText?.text.isNullOrBlank()){
+            holder.cardTitleText?.height = 0
+            val param = holder.cardDetailText?.layoutParams as ViewGroup.MarginLayoutParams
             param.setMargins(0,0,0,0)
-            holder.titleText?.layoutParams = param
+            holder.cardDetailText?.layoutParams = param
         }
 
         //colorIdに応じて色を変更する。0:white, 1:green, 2:blue, 3:purple, 4:orange, 5:gold
         when (achievement?.colorId) {
             1 -> {
-                holder.linearLayout?.setBackgroundResource(R.drawable.background_achievement_green)
-                holder.titleText?.setTextColor(ContextCompat.getColor(context, R.color.green))
-                holder.descriptionText?.setTextColor(ContextCompat.getColor(context, R.color.green))
+                holder.cardBackground?.setBackgroundResource(R.drawable.background_card_green)
+                holder.cardTitleText?.setTextColor(ContextCompat.getColor(context, R.color.green))
+                holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.green))
             }
             2 -> {
-                holder.linearLayout?.setBackgroundResource(R.drawable.background_achievement_blue)
-                holder.titleText?.setTextColor(ContextCompat.getColor(context, R.color.blue))
-                holder.descriptionText?.setTextColor(ContextCompat.getColor(context, R.color.blue))
+                holder.cardBackground?.setBackgroundResource(R.drawable.background_card_blue)
+                holder.cardTitleText?.setTextColor(ContextCompat.getColor(context, R.color.blue))
+                holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.blue))
             }
             3 -> {
-                holder.linearLayout?.setBackgroundResource(R.drawable.background_achievement_purple)
-                holder.titleText?.setTextColor(ContextCompat.getColor(context, R.color.purple))
-                holder.descriptionText?.setTextColor(ContextCompat.getColor(context, R.color.purple))
+                holder.cardBackground?.setBackgroundResource(R.drawable.background_card_purple)
+                holder.cardTitleText?.setTextColor(ContextCompat.getColor(context, R.color.purple))
+                holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.purple))
             }
             4 -> {
-                holder.linearLayout?.setBackgroundResource(R.drawable.background_achievement_orange)
-                holder.titleText?.setTextColor(ContextCompat.getColor(context, R.color.orange))
-                holder.descriptionText?.setTextColor(ContextCompat.getColor(context, R.color.orange))
+                holder.cardBackground?.setBackgroundResource(R.drawable.background_card_orange)
+                holder.cardTitleText?.setTextColor(ContextCompat.getColor(context, R.color.orange))
+                holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.orange))
             }
             5 -> {
-                holder.linearLayout?.setBackgroundResource(R.drawable.background_achievement_gold)
-                holder.titleText?.setTextColor(ContextCompat.getColor(context, R.color.gold))
-                holder.descriptionText?.setTextColor(ContextCompat.getColor(context, R.color.gold))
+                holder.cardBackground?.setBackgroundResource(R.drawable.background_card_gold)
+                holder.cardTitleText?.setTextColor(ContextCompat.getColor(context, R.color.gold))
+                holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.gold))
             }
         }
 

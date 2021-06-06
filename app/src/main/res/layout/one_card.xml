@@ -5,39 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardBackground"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:orientation="vertical"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/background_achievement_white"
         android:padding="8dp"
+        android:background="@drawable/background_card_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/titleText"
+            android:id="@+id/cardTitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:text="XDマスター"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/cardDetailText"
+            app:layout_constraintEnd_toEndOf="@+id/cardDetailText"
+            app:layout_constraintStart_toStartOf="@+id/cardDetailText"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/descriptionText"
-            android:layout_width="match_parent"
+            android:id="@+id/cardDetailText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Adobe XDを使って、ワイヤーフレームを5つ作成する"
             android:textColor="@color/white"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardTitleText" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
