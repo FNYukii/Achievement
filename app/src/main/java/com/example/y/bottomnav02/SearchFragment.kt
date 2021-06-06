@@ -75,7 +75,7 @@ class SearchFragment : Fragment() {
     private fun search(){
         layoutManager = GridLayoutManager(this.context, 2)
         searchRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(true, queryString)
+        adapter = CustomRecyclerViewAdapter(true, queryString, false)
         searchRecyclerView.adapter = this.adapter
     }
 
