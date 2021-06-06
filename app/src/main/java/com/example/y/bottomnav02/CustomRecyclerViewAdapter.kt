@@ -32,7 +32,7 @@ class CustomRecyclerViewAdapter(
 
     override fun getItemCount(): Int {
 
-        //Type-1 ピン止めされたアチーブメントのみを取得
+        //Type-1 ピン止めされた未達成アチーブメントを取得
         if(filterType == 1){
             data = realm.where<Achievement>()
                 .equalTo("isAchieved", false)
@@ -42,7 +42,7 @@ class CustomRecyclerViewAdapter(
                 .sort("id", Sort.DESCENDING)
         }
 
-        //Type-2 ピン止めされていないアチーブメントのみを取得
+        //Type-2 ピン止めされていない未達成アチーブメントを取得
         if(filterType == 2){
             data = realm.where<Achievement>()
                 .equalTo("isAchieved", false)

@@ -73,7 +73,7 @@ class AchievementFragment : Fragment() {
             if(pinRecyclerView.height == 0){
                 param.topMargin = 0
             }else{
-                param.topMargin = 48
+                param.topMargin = 64
             }
             mainRecyclerView.layoutParams = param
         }

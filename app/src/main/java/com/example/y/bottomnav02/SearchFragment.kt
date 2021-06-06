@@ -80,6 +80,12 @@ class SearchFragment : Fragment() {
     }
 
 
+    override fun onStop() {
+        super.onStop()
+        searchView.clearFocus()
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         realm.close()

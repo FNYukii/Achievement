@@ -7,13 +7,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
 
-    <!-- achievement rarity -->
+    <!-- achievement -->
     <color name="white">#FFFFFF</color>
     <color name="green">#95FF91</color>
     <color name="blue">#5FB8FF</color>
     <color name="purple">#ED83FF</color>
     <color name="orange">#FF9B7B</color>
     <color name="gold">#FFD24B</color>
+
+    <!-- achievement card icon background -->
+    <color name="translucentNavy">#AA26394C</color>
 
     <!-- background, floating button, tool button -->
     <color name="transparent">#00FFFFFF</color>
