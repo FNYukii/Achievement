@@ -13,9 +13,8 @@ import io.realm.Sort
 import io.realm.kotlin.where
 
 class CustomRecyclerViewAdapter(
-    private val isSearched: Boolean,
-    private val queryString: String,
-    private val isGetPinnedOne: Boolean
+    private val filterType: Int, //1:ピン止めのみ, 2:ピン止め以外, 3:文字列で曖昧検索
+    private val queryString: String
     ) : RecyclerView.Adapter<ViewHolder>() {
 
 
@@ -33,18 +32,8 @@ class CustomRecyclerViewAdapter(
 
     override fun getItemCount(): Int {
 
-        //全レコードを取得
-        if(!isSearched && !isGetPinnedOne){
-            data = realm.where<Achievement>()
-                .equalTo("isAchieved", false)
-                .and()
-                .equalTo("isPinned", false)
-                .findAll()
-                .sort("id", Sort.DESCENDING)
-        }
-
-        //isOnlyPinnedがtrueなら、isPinnedがtrueのレコードのみ取得
-        if(isGetPinnedOne){
+        //Type-1 ピン止めされたアチーブメントのみを取得
+        if(filterType == 1){
             data = realm.where<Achievement>()
                 .equalTo("isAchieved", false)
                 .and()
@@ -53,8 +42,18 @@ class CustomRecyclerViewAdapter(
                 .sort("id", Sort.DESCENDING)
         }
 
-        //isSearchedがtrueなら、queryStringであいまい検索
-        if(isSearched){
+        //Type-2 ピン止めされていないアチーブメントのみを取得
+        if(filterType == 2){
+            data = realm.where<Achievement>()
+                .equalTo("isAchieved", false)
+                .and()
+                .equalTo("isPinned", false)
+                .findAll()
+                .sort("id", Sort.DESCENDING)
+        }
+
+        //Type-3 queryStringで曖昧検索
+        if(filterType == 3){
             if(queryString.isEmpty()){
                 return 0
             }
@@ -63,7 +62,7 @@ class CustomRecyclerViewAdapter(
                 .or()
                 .contains("description", queryString)
                 .findAll()
-                .sort("id", Sort.DESCENDING)
+                .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
         }
 
         //レコード数を返す

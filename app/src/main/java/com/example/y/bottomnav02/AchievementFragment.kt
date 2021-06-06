@@ -57,14 +57,14 @@ class AchievementFragment : Fragment() {
         //pinRecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
         pinRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(false, "", true)
+        adapter = CustomRecyclerViewAdapter(1, "")
         pinRecyclerView.adapter = this.adapter
 
         //mainRecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
 //        layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL) //今後使うかも
         mainRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(false, "", false)
+        adapter = CustomRecyclerViewAdapter(2, "")
         mainRecyclerView.adapter = this.adapter
 
         //もしピン止めされたアチーブメントが無いなら、mainRecyclerViewのmarginTopを0にする
