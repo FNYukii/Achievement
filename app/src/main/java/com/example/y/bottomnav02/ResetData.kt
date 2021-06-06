@@ -4,7 +4,7 @@ import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 
-class CustomizeData {
+class ResetData {
 
     //Realmのインスタンスを取得
     private var realm: Realm = Realm.getDefaultInstance()
