@@ -36,7 +36,11 @@
 
 
     <!-- ColorDialog -->
-    <style name="CustomDialog" parent="Theme.AppCompat.Light.Dialog">
+    <style name="CustomDialog" parent="Theme.AppCompat.DayNight.Dialog">
+
+        <!-- background -->
+        <item name="android:background">@color/navy</item>
+
         <!-- title text -->
         <item name="android:textColor">@color/white</item>
 
