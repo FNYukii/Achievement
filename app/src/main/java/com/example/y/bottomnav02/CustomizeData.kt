@@ -26,8 +26,12 @@ class CustomizeData {
         "優等生", "全ての課題を提出する"
     )
 
-    //お好みのデータを追加
+
+    //全レコードを削除&お好みのデータを追加
     init {
+        realm.executeTransaction {
+            realm.where<Achievement>().findAll()?.deleteAllFromRealm()
+        }
         for (i in contents.indices step 2) {
             realm.executeTransaction {
                 var maxId = realm.where<Achievement>().max("id")?.toInt()
