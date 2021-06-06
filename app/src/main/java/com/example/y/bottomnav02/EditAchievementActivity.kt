@@ -152,14 +152,10 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
         //レコード追加
         if(achievementId == 0){
             realm.executeTransaction {
-                //新レコードのidを決める
+                //新しいレコードを追加
                 var maxId = realm.where<Achievement>().max("id")?.toInt()
-                if(maxId == null){
-                    maxId = 0
-                }
-                val newId = maxId + 1
-                //newIdを主キーとする新レコードを作成
-                val achievement = realm.createObject<Achievement>(newId)
+                if (maxId == null) maxId = 0
+                val achievement = realm.createObject<Achievement>(maxId + 1)
                 //データ更新
                 achievement.isPinned = isPinned
                 achievement.colorId = colorId
