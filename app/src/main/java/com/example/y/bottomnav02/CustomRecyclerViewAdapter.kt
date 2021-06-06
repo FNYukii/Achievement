@@ -34,7 +34,7 @@ class CustomRecyclerViewAdapter(
 
     override fun getItemCount(): Int {
 
-        //isSearchedがfalseなら、全レコードを取得
+        //isSearchedがfalseなら、ピン止めされたものから先に全レコードを取得
         if(!isSearched){
             data = realm.where<Achievement>()
                 .equalTo("isAchieved", false)
