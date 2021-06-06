@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -67,8 +68,15 @@ class CustomRecyclerViewAdapter(
         //contextを取得する
         val context: Context = holder.itemView.context
 
-        //Realmからデータを取得して、TextViewにセット
+        //レコードを取得
         val achievement = data[position]
+
+        //もしピン止めされたアチーブメントなら、ピンアイコンを表示
+        if(achievement?.isPinned == true){
+            holder.cardPinImage?.visibility = View.VISIBLE
+        }
+
+        //タイトルと説明をセット
         holder.cardTitleText?.text = achievement?.title.toString()
         holder.cardDetailText?.text = achievement?.description.toString()
 
@@ -84,26 +92,31 @@ class CustomRecyclerViewAdapter(
         when (achievement?.colorId) {
             1 -> {
                 holder.cardBackground?.setBackgroundResource(R.drawable.background_card_green)
+                holder.cardPinImage?.setColorFilter(ContextCompat.getColor(context, R.color.green))
                 holder.cardTitleText?.setTextColor(ContextCompat.getColor(context, R.color.green))
                 holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.green))
             }
             2 -> {
                 holder.cardBackground?.setBackgroundResource(R.drawable.background_card_blue)
+                holder.cardPinImage?.setColorFilter(ContextCompat.getColor(context, R.color.blue))
                 holder.cardTitleText?.setTextColor(ContextCompat.getColor(context, R.color.blue))
                 holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.blue))
             }
             3 -> {
                 holder.cardBackground?.setBackgroundResource(R.drawable.background_card_purple)
+                holder.cardPinImage?.setColorFilter(ContextCompat.getColor(context, R.color.purple))
                 holder.cardTitleText?.setTextColor(ContextCompat.getColor(context, R.color.purple))
                 holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.purple))
             }
             4 -> {
                 holder.cardBackground?.setBackgroundResource(R.drawable.background_card_orange)
+                holder.cardPinImage?.setColorFilter(ContextCompat.getColor(context, R.color.orange))
                 holder.cardTitleText?.setTextColor(ContextCompat.getColor(context, R.color.orange))
                 holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.orange))
             }
             5 -> {
                 holder.cardBackground?.setBackgroundResource(R.drawable.background_card_gold)
+                holder.cardPinImage?.setColorFilter(ContextCompat.getColor(context, R.color.gold))
                 holder.cardTitleText?.setTextColor(ContextCompat.getColor(context, R.color.gold))
                 holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.gold))
             }

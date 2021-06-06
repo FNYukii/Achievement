@@ -22,14 +22,13 @@
 
         <TextView
             android:id="@+id/cardTitleText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="XDマスター"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/cardDetailText"
-            app:layout_constraintEnd_toEndOf="@+id/cardDetailText"
+            app:layout_constraintEnd_toStartOf="@+id/cardPinImage"
             app:layout_constraintStart_toStartOf="@+id/cardDetailText"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,6 +42,15 @@
             android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardTitleText" />
+
+        <ImageView
+            android:id="@+id/cardPinImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_push_pin_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
