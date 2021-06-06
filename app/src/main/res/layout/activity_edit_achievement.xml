@@ -65,22 +65,25 @@
 
     <EditText
         android:id="@+id/titleEdit"
-        android:layout_width="wrap_content"
+        android:theme="@style/CustomEditText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/transparent"
         android:textColor="@color/white"
         android:textColorHint="@color/gray"
-        android:ems="10"
         android:hint="タイトル"
         android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
     <EditText
         android:id="@+id/detailEdit"
+        android:theme="@style/CustomEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

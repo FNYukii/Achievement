@@ -23,10 +23,19 @@
         <item name="android:navigationBarColor">@color/navy</item>
 
         <!-- App background -->
-        <item name="android:background">@color/navy</item>
+        <item name="android:windowBackground">@color/navy</item>
 
     </style>
 
+
+    <!-- EditText -->
+    <style name="CustomEditText" parent="Theme.AppCompat.DayNight">
+        <item name="colorControlActivated">@color/white</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+
+    <!-- ColorDialog -->
     <style name="CustomDialog" parent="Theme.AppCompat.Light.Dialog">
         <!-- title text -->
         <item name="android:textColor">@color/white</item>
@@ -37,6 +46,12 @@
         <!-- single choice items radio button -->
         <item name="colorControlNormal">@color/gray</item>
         <item name="colorControlActivated">@color/white</item>
+    </style>
+
+
+    <!-- Search View -->
+    <style name="CustomSearchView" parent="Theme.AppCompat">
+        <item name="android:background" tools:ignore="NewApi">@color/transparent</item>
     </style>
 
 

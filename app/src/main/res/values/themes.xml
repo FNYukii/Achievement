@@ -23,7 +23,15 @@
         <item name="android:navigationBarColor">@color/navy</item>
 
         <!-- App background -->
-        <item name="android:background">@color/navy</item>
+        <item name="android:windowBackground">@color/navy</item>
+
+    </style>
+
+
+    <!-- EditText -->
+    <style name="CustomEditText" parent="Theme.AppCompat.DayNight">
+        <item name="colorControlActivated">@color/white</item>
+        <item name="android:background">@color/transparent</item>
     </style>
 
 
@@ -45,7 +53,6 @@
     <style name="CustomSearchView" parent="Theme.AppCompat">
         <item name="android:background" tools:ignore="NewApi">@color/transparent</item>
     </style>
-
 
 
 </resources>
