@@ -18,12 +18,16 @@
     <!-- achievement card icon background -->
     <color name="translucentNavy">#AA26394C</color>
 
-    <!-- background, floating button, tool button -->
-    <color name="transparent">#00FFFFFF</color>
+    <!-- background -->
     <color name="navy">#26394C</color>
+
+    <!-- tool button -->
+    <color name="transparent">#00FFFFFF</color>
     <color name="lightNavy">#406181</color>
-    <color name="steelBlue">#56648F</color>
-    <color name="lightSteelBlue">#778AC6</color>
+
+    <!-- floating button -->
+    <color name="steelBlue">#798CC5</color>
+    <color name="lightSteelBlue">#A7BDFF</color>
 
     <!-- bottom navigation item, text -->
     <color name="gray">#AAAAAA</color>
