@@ -31,8 +31,17 @@
             android:layout_height="60dp"
             android:background="@drawable/background_tool_button"
             app:layout_constraintTop_toTopOf="@+id/backButton"
-            app:layout_constraintEnd_toStartOf="@id/colorButton"
+            app:layout_constraintEnd_toStartOf="@id/pinButton"
             app:srcCompat="@drawable/ic_baseline_check_24" />
+
+        <ImageButton
+            android:id="@+id/pinButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/background_tool_button"
+            app:layout_constraintTop_toTopOf="@id/backButton"
+            app:layout_constraintEnd_toStartOf="@id/colorButton"
+            android:src="@drawable/ic_outline_push_pin_24" />
 
         <ImageButton
             android:id="@+id/colorButton"

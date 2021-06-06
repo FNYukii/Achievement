@@ -18,12 +18,14 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
 
     private var achievementId: Int = 0
     private var colorId: Int = 0
+    private var isPinned: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_achievement)
 
+        //backButtonが押されたら、コンテンツがある場合のみデータを保存
         backButton.setOnClickListener {
             if(titleEdit.text.isNullOrEmpty() && descriptionEdit.text.isNullOrEmpty()){
                 finish()
@@ -32,26 +34,54 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             }
         }
 
+        //checkButtonが押されたら、アチーブメントを達成とする
         checkButton.setOnClickListener {
-            checkAchievement()
+            realm.executeTransaction {
+                val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
+                achievement?.isAchieved = achievement?.isAchieved == false
+            }
+            finish()
         }
 
+        //pinButtonが押されたら、isPinnedの真偽を切り替える
+        pinButton.setOnClickListener {
+            if(isPinned){
+                isPinned = false
+                pinButton.setImageResource(R.drawable.ic_outline_push_pin_24)
+            }else{
+                isPinned = true
+                pinButton.setImageResource(R.drawable.ic_baseline_push_pin_24)
+            }
+        }
+
+        //colorButtonが押されたら、colorDialogを表示
         colorButton.setOnClickListener {
-            openColorDialog()
+            val dialogFragment = ColorDialogFragment()
+            dialogFragment.show(supportFragmentManager, "dialog")
         }
 
+        //deleteButtonが押されたら、アチーブメントを削除する
         deleteButton.setOnClickListener {
-            deleteAchievement()
+            if (achievementId != 0){
+                realm.executeTransaction {
+                    val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
+                    achievement?.deleteFromRealm()
+                }
+            }
+            finish()
         }
 
-        //get Realm instance
-        realm = Realm.getDefaultInstance()
 
         //もしAchievementFragmentからidが送られてきたなら、既存のアチーブメントを検索する
+        realm = Realm.getDefaultInstance()
         achievementId = intent.getIntExtra("achievementId", 0)
         if(achievementId != 0){
             val achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()
-            colorId = achievement?.colorId!!
+            isPinned = achievement?.isPinned!!
+            if(isPinned){
+                pinButton.setImageResource(R.drawable.ic_baseline_push_pin_24)
+            }
+            colorId = achievement.colorId
             setAchievementColor()
             titleEdit.setText(achievement.title)
             descriptionEdit.setText(achievement.description)
@@ -67,6 +97,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             0 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
+                pinButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.white))
@@ -75,6 +106,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             1 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
+                pinButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
                 deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.green))
@@ -83,6 +115,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             2 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
+                pinButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
                 deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.blue))
@@ -117,7 +150,6 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
 
 
     private fun saveAchievement() {
-
         //レコード追加
         if(achievementId == 0){
             realm.executeTransaction {
@@ -130,62 +162,29 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
                 //newIdを主キーとする新レコードを作成
                 val achievement = realm.createObject<Achievement>(newId)
                 //データ更新
+                achievement.isPinned = isPinned
                 achievement.colorId = colorId
                 achievement.title = titleEdit.text.toString()
                 achievement.description = descriptionEdit.text.toString()
             }
         }
-
         //レコード更新
         if(achievementId != 0){
             realm.executeTransaction {
-                val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
+                val achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()
+                achievement?.isPinned = isPinned
                 achievement?.colorId = colorId
                 achievement?.title = titleEdit.text.toString()
                 achievement?.description = descriptionEdit.text.toString()
             }
         }
-
         finish()
-    }
-
-
-    private fun checkAchievement() {
-        realm.executeTransaction {
-            val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
-            if(achievement?.isAchieved == false){
-                achievement?.isAchieved = true
-                Toast.makeText(applicationContext, "達成しました!",Toast.LENGTH_SHORT).show()
-            }else{
-                achievement?.isAchieved = false
-                Toast.makeText(applicationContext, "まだ未達成",Toast.LENGTH_SHORT).show()
-            }
-        }
-        finish()
-    }
-
-
-    private fun openColorDialog() {
-        //ColorDialogFragmentを表示
-        val dialogFragment = ColorDialogFragment()
-        dialogFragment.show(supportFragmentManager, "dialog")
     }
 
 
     override fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Int) {
         this.colorId = colorId
         setAchievementColor()
-    }
-
-
-    private fun deleteAchievement() {
-        if (achievementId != 0){
-            realm.executeTransaction {
-                val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
-                achievement?.deleteFromRealm()
-            }
-        }
-        finish()
     }
 
 
