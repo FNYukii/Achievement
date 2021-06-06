@@ -35,13 +35,12 @@ class CustomRecyclerViewAdapter(
 
     override fun getItemCount(): Int {
 
-        //isSearchedがfalseなら、ピン止めされたものから先に全レコードを取得
+        //isSearchedがfalseなら、全レコードを取得
         if(!isSearched){
             data = realm.where<Achievement>()
                 .equalTo("isAchieved", false)
                 .findAll()
                 .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
-
         }
 
         //isSearchedがtrueなら、queryStringであいまい検索
@@ -62,7 +61,6 @@ class CustomRecyclerViewAdapter(
     }
 
 
-    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         //contextを取得する
