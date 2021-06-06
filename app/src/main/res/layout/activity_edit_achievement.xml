@@ -80,7 +80,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
     <EditText
-        android:id="@+id/descriptionEdit"
+        android:id="@+id/detailEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

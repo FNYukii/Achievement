@@ -3,15 +3,19 @@ package com.example.y.bottomnav02
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
 import io.realm.kotlin.where
+import kotlin.coroutines.coroutineContext
+import kotlin.math.log
 
 class CustomRecyclerViewAdapter(
     private val isSearched: Boolean,
@@ -19,11 +23,12 @@ class CustomRecyclerViewAdapter(
     ) : RecyclerView.Adapter<ViewHolder>() {
 
 
-    //Realmのインスタンス作成
+    //Realmから、未達成の全アチーブメントを降順で取得
     private var realm = Realm.getDefaultInstance()
-
-    //未達成の全アチーブメントを降順で取得
     private lateinit var data: RealmResults<Achievement>
+
+    //ピン止めされたアチーブメント数
+    var numberOfPinnedData: Int = 0
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,6 +46,13 @@ class CustomRecyclerViewAdapter(
                 .equalTo("isAchieved", false)
                 .findAll()
                 .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
+
+            //ピン止めされたアチーブメントの数を取得
+            val pinnedData = realm.where<Achievement>()
+                .equalTo("isPinned", true)
+                .findAll()
+            numberOfPinnedData = pinnedData.size
+            Log.d("hello", "ピン止め数:${numberOfPinnedData}")
         }
 
         //isSearchedがtrueなら、queryStringであいまい検索

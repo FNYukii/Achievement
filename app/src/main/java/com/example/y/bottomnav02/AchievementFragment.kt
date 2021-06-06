@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import io.realm.Realm
 import io.realm.Sort
 import kotlinx.android.synthetic.main.fragment_achievement.*
@@ -53,6 +54,7 @@ class AchievementFragment : Fragment() {
 
         //mainRecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
+//        layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         mainRecyclerView.layoutManager = layoutManager
         adapter = CustomRecyclerViewAdapter(false, "")
         mainRecyclerView.adapter = this.adapter
