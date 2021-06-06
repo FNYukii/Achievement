@@ -6,10 +6,11 @@ import java.util.*
 
 open class Achievement : RealmObject() {
     @PrimaryKey
-    var id: Long = 0L
+    var id: Int = 0
     var datetime: Date = Date()
-    var isAchieved: Long = 0L
-    var colorId: Long = 0L
+    var isAchieved: Boolean = false
+    var isPinned: Boolean = false
+    var colorId: Int = 0
     var title: String = ""
     var description: String = ""
 }

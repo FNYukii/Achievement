@@ -20,7 +20,7 @@ class CustomRecyclerViewAdapter(private val isSearched: Boolean, private var que
 
     //未達成の全アチーブメントを降順で取得
     private var data: RealmResults<Achievement> = realm.where<Achievement>()
-        .equalTo("isAchieved", 0L)
+        .equalTo("isAchieved", false)
         .findAll()
         .sort("id", Sort.DESCENDING)
 
@@ -72,27 +72,27 @@ class CustomRecyclerViewAdapter(private val isSearched: Boolean, private var que
 
         //colorIdに応じて色を変更する。0:white, 1:green, 2:blue, 3:purple, 4:orange, 5:gold
         when (achievement?.colorId) {
-            1L -> {
+            1 -> {
                 holder.linearLayout?.setBackgroundResource(R.drawable.background_achievement_green)
                 holder.titleText?.setTextColor(ContextCompat.getColor(context, R.color.green))
                 holder.descriptionText?.setTextColor(ContextCompat.getColor(context, R.color.green))
             }
-            2L -> {
+            2 -> {
                 holder.linearLayout?.setBackgroundResource(R.drawable.background_achievement_blue)
                 holder.titleText?.setTextColor(ContextCompat.getColor(context, R.color.blue))
                 holder.descriptionText?.setTextColor(ContextCompat.getColor(context, R.color.blue))
             }
-            3L -> {
+            3 -> {
                 holder.linearLayout?.setBackgroundResource(R.drawable.background_achievement_purple)
                 holder.titleText?.setTextColor(ContextCompat.getColor(context, R.color.purple))
                 holder.descriptionText?.setTextColor(ContextCompat.getColor(context, R.color.purple))
             }
-            4L -> {
+            4 -> {
                 holder.linearLayout?.setBackgroundResource(R.drawable.background_achievement_orange)
                 holder.titleText?.setTextColor(ContextCompat.getColor(context, R.color.orange))
                 holder.descriptionText?.setTextColor(ContextCompat.getColor(context, R.color.orange))
             }
-            5L -> {
+            5 -> {
                 holder.linearLayout?.setBackgroundResource(R.drawable.background_achievement_gold)
                 holder.titleText?.setTextColor(ContextCompat.getColor(context, R.color.gold))
                 holder.descriptionText?.setTextColor(ContextCompat.getColor(context, R.color.gold))

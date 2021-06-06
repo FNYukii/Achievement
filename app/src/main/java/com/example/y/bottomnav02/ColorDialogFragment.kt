@@ -12,18 +12,13 @@ class ColorDialogFragment : DialogFragment() {
 
     //ActivityへcolorIdを渡すためのインターフェース
     interface DialogListener{
-        fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Long)
+        fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Int)
     }
     private var listener:DialogListener? = null
 
     //配列や変数を宣言
     private val colors = arrayOf("white", "green", "blue", "purple", "orange", "gold")
-    private var colorId: Long? = null
-
-
-
-
-
+    private var colorId: Int = 10
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -33,13 +28,13 @@ class ColorDialogFragment : DialogFragment() {
             val builder = AlertDialog.Builder(it, R.style.CustomDialog)
             builder.setTitle("色を選択")
                     .setSingleChoiceItems(colors, -1){ _, which ->
-                        colorId = which.toLong()
+                        colorId = which
                     }
                     .setPositiveButton("OK"
                     ) { _, _ ->
                         //ラジオボタンで色が選択されていたら、ホストActivityへcolorIdを渡す
-                        if (colorId != null) {
-                            listener?.onDialogColorIdReceive(this, colorId!!)
+                        if (colorId != 10) {
+                            listener?.onDialogColorIdReceive(this, colorId)
                         }
                     }
                 .setNegativeButton("キャンセル"

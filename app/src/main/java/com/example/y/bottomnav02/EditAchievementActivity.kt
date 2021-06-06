@@ -16,8 +16,8 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
 
     private lateinit var realm: Realm
 
-    private var achievementId: Long = 0L
-    private var colorId: Long = 0L
+    private var achievementId: Int = 0
+    private var colorId: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,8 +48,8 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
         realm = Realm.getDefaultInstance()
 
         //もしAchievementFragmentからidが送られてきたなら、既存のアチーブメントを検索する
-        achievementId = intent.getLongExtra("achievementId", 0L)
-        if(achievementId != 0L){
+        achievementId = intent.getIntExtra("achievementId", 0)
+        if(achievementId != 0){
             val achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()
             colorId = achievement?.colorId!!
             setAchievementColor()
@@ -64,7 +64,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
 
     private fun setAchievementColor(){
         when (colorId){
-            0L -> {
+            0 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
@@ -72,7 +72,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.white))
                 descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.white))
             }
-            1L -> {
+            1 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
@@ -80,7 +80,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.green))
                 descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.green))
             }
-            2L -> {
+            2 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
@@ -88,7 +88,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.blue))
                 descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.blue))
             }
-            3L -> {
+            3 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
@@ -96,7 +96,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.purple))
                 descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.purple))
             }
-            4L -> {
+            4 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
@@ -104,7 +104,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.orange))
                 descriptionEdit.setTextColor(ContextCompat.getColor(this, R.color.orange))
             }
-            5L -> {
+            5 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
@@ -119,14 +119,14 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
     private fun saveAchievement() {
 
         //レコード追加
-        if(achievementId == 0L){
+        if(achievementId == 0){
             realm.executeTransaction {
                 //新レコードのidを決める
-                var latestId = realm.where<Achievement>().max("id")?.toLong()
-                if(latestId == null){
-                    latestId = 0L
+                var maxId = realm.where<Achievement>().max("id")?.toInt()
+                if(maxId == null){
+                    maxId = 0
                 }
-                val newId = latestId + 1L
+                val newId = maxId + 1
                 //newIdを主キーとする新レコードを作成
                 val achievement = realm.createObject<Achievement>(newId)
                 //データ更新
@@ -137,7 +137,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
         }
 
         //レコード更新
-        if(achievementId != 0L){
+        if(achievementId != 0){
             realm.executeTransaction {
                 val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
                 achievement?.colorId = colorId
@@ -153,11 +153,11 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
     private fun checkAchievement() {
         realm.executeTransaction {
             val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
-            if(achievement?.isAchieved == 0L){
-                achievement?.isAchieved = 1L
+            if(achievement?.isAchieved == false){
+                achievement?.isAchieved = true
                 Toast.makeText(applicationContext, "達成しました!",Toast.LENGTH_SHORT).show()
             }else{
-                achievement?.isAchieved = 0L
+                achievement?.isAchieved = false
                 Toast.makeText(applicationContext, "まだ未達成",Toast.LENGTH_SHORT).show()
             }
         }
@@ -172,14 +172,14 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
     }
 
 
-    override fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Long) {
+    override fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Int) {
         this.colorId = colorId
         setAchievementColor()
     }
 
 
     private fun deleteAchievement() {
-        if (achievementId != 0L){
+        if (achievementId != 0){
             realm.executeTransaction {
                 val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
                 achievement?.deleteFromRealm()
