@@ -23,10 +23,11 @@
         <TextView
             android:id="@+id/cardTitleText"
             android:layout_width="0dp"
+            android:minHeight="0dp"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
-            android:text="XDマスター"
             android:textColor="@color/white"
+            android:text="XDマスター"
             android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/iconContainer"

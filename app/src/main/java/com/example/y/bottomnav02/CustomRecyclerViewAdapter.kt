@@ -35,8 +35,8 @@ class CustomRecyclerViewAdapter(
         //Type-1 ピン止めされた未達成アチーブメントを取得
         if(filterType == 1){
             data = realm.where<Achievement>()
-                .equalTo("isAchieved", false)
-                .and()
+//                .equalTo("isAchieved", false)
+//                .and()
                 .equalTo("isPinned", true)
                 .findAll()
                 .sort("id", Sort.DESCENDING)
@@ -45,8 +45,8 @@ class CustomRecyclerViewAdapter(
         //Type-2 ピン止めされていない未達成アチーブメントを取得
         if(filterType == 2){
             data = realm.where<Achievement>()
-                .equalTo("isAchieved", false)
-                .and()
+//                .equalTo("isAchieved", false)
+//                .and()
                 .equalTo("isPinned", false)
                 .findAll()
                 .sort("id", Sort.DESCENDING)
@@ -94,7 +94,7 @@ class CustomRecyclerViewAdapter(
 
         //もしtitleが空なら、titleTextは非表示。detailTextのmarginTopも0dpにする。
         if(holder.cardTitleText?.text.isNullOrBlank()){
-            holder.cardTitleText?.height = 0
+            holder.cardTitleText?.visibility = View.GONE
             val param = holder.cardDetailText?.layoutParams as ViewGroup.MarginLayoutParams
             param.setMargins(0,0,0,0)
             holder.cardDetailText?.layoutParams = param

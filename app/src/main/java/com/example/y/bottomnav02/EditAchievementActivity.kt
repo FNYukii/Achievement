@@ -24,9 +24,9 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_achievement)
 
-        //backButtonが押されたら、コンテンツがある場合のみデータを保存
+        //backButtonが押されたら、コンテンツがある場合のみデータを保存。空白文字のみの場合も保存する。
         backButton.setOnClickListener {
-            if(titleEdit.text.isNotEmpty() && titleEdit.text.isNotBlank() || detailEdit.text.isNotEmpty() && detailEdit.text.isNotBlank()){
+            if(titleEdit.text.isNotEmpty() || detailEdit.text.isNotEmpty()){
                 saveAchievement()
             }else{
                 deleteAchievement()
