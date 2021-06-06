@@ -18,7 +18,7 @@ class CustomRecyclerViewAdapter(
     ) : RecyclerView.Adapter<ViewHolder>() {
 
 
-    //Realmから、未達成の全アチーブメントを降順で取得
+    //Realmのインスタンスを取得。データを格納する変数を初期化
     private var realm = Realm.getDefaultInstance()
     private lateinit var data: RealmResults<Achievement>
 

@@ -13,8 +13,10 @@ import kotlinx.android.synthetic.main.activity_edit_achievement.*
 class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
 
 
-    private lateinit var realm: Realm
+    //Realmのインスタンスを取得
+    private var realm: Realm = Realm.getDefaultInstance()
 
+    //変数たち
     private var achievementId: Int = 0
     private var colorId: Int = 0
     private var isPinned: Boolean = false
@@ -36,7 +38,9 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
         //checkButtonが押されたら、アチーブメントを達成とする
         checkButton.setOnClickListener {
             realm.executeTransaction {
-                val achievement = realm.where<Achievement>().equalTo("id", achievementId)?.findFirst()
+                val achievement = realm.where<Achievement>()
+                    .equalTo("id", achievementId)
+                    .findFirst()
                 achievement?.isAchieved = achievement?.isAchieved == false
             }
             finish()
@@ -66,7 +70,6 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
 
 
         //もしAchievementFragmentからidが送られてきたなら、既存のアチーブメントを検索する
-        realm = Realm.getDefaultInstance()
         achievementId = intent.getIntExtra("achievementId", 0)
         if(achievementId != 0){
             val achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()
@@ -189,7 +192,6 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
     }
 
 
-
     override fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Int) {
         this.colorId = colorId
         setAchievementColor()
@@ -200,7 +202,6 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
         super.onDestroy()
         realm.close()
     }
-
 
 
 
