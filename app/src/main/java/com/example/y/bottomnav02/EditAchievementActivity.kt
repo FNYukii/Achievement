@@ -124,6 +124,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             3 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
+                pinButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
                 deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.purple))
@@ -132,6 +133,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             4 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
+                pinButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
                 deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.orange))
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.orange))
@@ -140,6 +142,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             5 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
                 checkButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
+                pinButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
                 deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
                 titleEdit.setTextColor(ContextCompat.getColor(this, R.color.gold))
