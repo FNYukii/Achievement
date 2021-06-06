@@ -12,17 +12,17 @@ import io.realm.RealmResults
 import io.realm.Sort
 import io.realm.kotlin.where
 
-class CustomRecyclerViewAdapter(private val isSearched: Boolean, private var queryString: String) : RecyclerView.Adapter<ViewHolder>() {
+class CustomRecyclerViewAdapter(
+    private val isSearched: Boolean,
+    private var queryString: String
+    ) : RecyclerView.Adapter<ViewHolder>() {
 
 
     //Realmのインスタンス作成
     private var realm = Realm.getDefaultInstance()
 
     //未達成の全アチーブメントを降順で取得
-    private var data: RealmResults<Achievement> = realm.where<Achievement>()
-        .equalTo("isAchieved", false)
-        .findAll()
-        .sort("id", Sort.DESCENDING)
+    private lateinit var data: RealmResults<Achievement>
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,7 +34,16 @@ class CustomRecyclerViewAdapter(private val isSearched: Boolean, private var que
 
     override fun getItemCount(): Int {
 
-        //検索されたらsearchTextであいまい検索。もしsearchTextがemptyだったら何も表示しない。
+        //isSearchedがfalseなら、全レコードを取得
+        if(!isSearched){
+            data = realm.where<Achievement>()
+                .equalTo("isAchieved", false)
+                .findAll()
+                .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
+
+        }
+
+        //isSearchedがtrueなら、queryStringであいまい検索
         if(isSearched){
             if(queryString.isEmpty()){
                 return 0
@@ -47,6 +56,7 @@ class CustomRecyclerViewAdapter(private val isSearched: Boolean, private var que
                 .sort("id", Sort.DESCENDING)
         }
 
+        //レコード数を返す
         return data.size
     }
 

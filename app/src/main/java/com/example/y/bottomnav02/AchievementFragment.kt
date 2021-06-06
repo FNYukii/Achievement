@@ -51,14 +51,11 @@ class AchievementFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        //Realmでレコードを検索
-        val realmResults = realm.where(Achievement::class.java).findAll().sort("id", Sort.DESCENDING)
-
-        //RecyclerViewを表示
+        //mainRecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
-        homeRecyclerView.layoutManager = layoutManager
+        mainRecyclerView.layoutManager = layoutManager
         adapter = CustomRecyclerViewAdapter(false, "")
-        homeRecyclerView.adapter = this.adapter
+        mainRecyclerView.adapter = this.adapter
     }
 
 
