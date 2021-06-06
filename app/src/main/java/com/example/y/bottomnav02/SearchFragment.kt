@@ -3,6 +3,7 @@ package com.example.y.bottomnav02
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +19,7 @@ class SearchFragment : Fragment() {
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
     //検索文字列
-    private var searchText: String = ""
+    private var queryString: String = ""
 
 
     override fun onCreateView(
@@ -36,30 +37,46 @@ class SearchFragment : Fragment() {
         //Realmのデフォルトインスタンスを取得
         realm = Realm.getDefaultInstance()
 
+        //searchViewがフォーカスされている時のみ、キャンセルボタンを表示する
+        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            if(hasFocus){
+                cancelButton.visibility = View.VISIBLE
+                cancelButton.text = "キャンセル"
+
+            }else{
+                cancelButton.visibility = View.GONE
+                cancelButton.text = ""
+            }
+        }
+
         //検索バーの操作イベントに応じて、検索を行う
-        searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
-                searchText = newText!!
+                queryString = newText!!
                 search()
                 return false
             }
             override fun onQueryTextSubmit(query: String?): Boolean {
-                searchText = query!!
+                queryString = query!!
                 search()
-                searchBar.clearFocus()
+                searchView.clearFocus()
                 return false
             }
         })
+
+        //キャンセルボタンで検索バーからフォーカスを外す
+        cancelButton.setOnClickListener {
+            searchView.clearFocus()
+        }
 
     }
 
 
     private fun search(){
-                //検索してRecyclerView表示
-                layoutManager = GridLayoutManager(this.context, 2)
-                searchRecyclerView.layoutManager = layoutManager
-                adapter = CustomRecyclerViewAdapter(true, searchText)
-                searchRecyclerView.adapter = this.adapter
+        layoutManager = GridLayoutManager(this.context, 2)
+        searchRecyclerView.layoutManager = layoutManager
+        adapter = CustomRecyclerViewAdapter(true, queryString)
+        searchRecyclerView.adapter = this.adapter
     }
 
 

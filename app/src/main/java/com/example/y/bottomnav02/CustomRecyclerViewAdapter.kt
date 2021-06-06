@@ -12,7 +12,7 @@ import io.realm.RealmResults
 import io.realm.Sort
 import io.realm.kotlin.where
 
-class CustomRecyclerViewAdapter(private val isSearched: Boolean, private var searchText: String) : RecyclerView.Adapter<ViewHolder>() {
+class CustomRecyclerViewAdapter(private val isSearched: Boolean, private var queryString: String) : RecyclerView.Adapter<ViewHolder>() {
 
 
     //Realmのインスタンス作成
@@ -36,13 +36,13 @@ class CustomRecyclerViewAdapter(private val isSearched: Boolean, private var sea
 
         //検索されたらsearchTextであいまい検索。もしsearchTextがemptyだったら何も表示しない。
         if(isSearched){
-            if(searchText.isEmpty()){
+            if(queryString.isEmpty()){
                 return 0
             }
             data = realm.where<Achievement>()
-                .contains("title", searchText)
+                .contains("title", queryString)
                 .or()
-                .contains("description", searchText)
+                .contains("description", queryString)
                 .findAll()
                 .sort("id", Sort.DESCENDING)
         }
