@@ -32,7 +32,7 @@ class AchievementFragment : Fragment() {
 
         //フローティングボタン
         floatingButton.setOnClickListener {
-            val intent = Intent(this.context, EditAchievementActivity::class.java)
+            val intent = Intent(this.context, EditActivity::class.java)
             startActivity(intent)
         }
 

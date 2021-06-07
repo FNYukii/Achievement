@@ -8,9 +8,9 @@ import androidx.fragment.app.DialogFragment
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
-import kotlinx.android.synthetic.main.activity_edit_achievement.*
+import kotlinx.android.synthetic.main.activity_edit.*
 
-class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
+class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
 
 
     //Realmのインスタンスを取得
@@ -24,7 +24,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_achievement)
+        setContentView(R.layout.activity_edit)
 
         //backButtonが押されたら、コンテンツがある場合のみデータを保存。空白文字のみの場合も保存する。
         backButton.setOnClickListener {

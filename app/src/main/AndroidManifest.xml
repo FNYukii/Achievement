@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BottomNav02">
-        <activity android:name="com.example.y.achievement.EditAchievementActivity"></activity>
+        <activity android:name="com.example.y.achievement.EditActivity"></activity>
         <activity
             android:name="com.example.y.achievement.MainActivity"
             android:label="@string/app_name">

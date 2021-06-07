@@ -134,7 +134,7 @@ class CustomRecyclerViewAdapter(
 
         //EditAchievementActivityへ遷移するクリックリスナーをセット
         holder.cardBackground?.setOnClickListener {
-            val intent = Intent(it.context, EditAchievementActivity::class.java)
+            val intent = Intent(it.context, EditActivity::class.java)
             intent.putExtra("achievementId", achievement?.id)
             it.context.startActivity(intent)
         }
