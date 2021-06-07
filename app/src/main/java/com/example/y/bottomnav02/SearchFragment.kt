@@ -1,6 +1,7 @@
 package com.example.y.bottomnav02
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import android.widget.Toast
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_search.*
+import java.time.LocalDate
 
 class SearchFragment : Fragment() {
 
@@ -64,10 +66,23 @@ class SearchFragment : Fragment() {
             }
         })
 
-        //キャンセルボタンで検索バーからフォーカスを外す
+        //キャンセルボタンで検索を終える
         cancelButton.setOnClickListener {
             searchView.clearFocus()
+            searchView.setQuery("", false)
+            queryString = ""
+            search()
         }
+
+
+        //Todo: 検索バー以外の領域をタップすると、検索バーからフォーカスを外す！
+        searchRecyclerView.isEnabled = false
+        searchRecyclerView.isClickable = false
+        layout.setOnClickListener {
+            Log.d("hello", "hi")
+        }
+
+
 
     }
 

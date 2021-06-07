@@ -40,12 +40,6 @@ class AchievementFragment : Fragment() {
             startActivity(intent)
         }
 
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-
         //pinRecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
         pinRecyclerView.layoutManager = layoutManager
