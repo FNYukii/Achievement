@@ -63,6 +63,12 @@ class SearchFragment : Fragment() {
     }
 
 
+    override fun onStart() {
+        super.onStart()
+        search()
+    }
+
+
     private fun search(){
         layoutManager = GridLayoutManager(this.context, 2)
         searchRecyclerView.layoutManager = layoutManager
