@@ -36,17 +36,6 @@ class AchievementFragment : Fragment() {
             startActivity(intent)
         }
 
-        //もしピン止めされたアチーブメントが無いなら、mainRecyclerViewのmarginTopを0にする
-        pinRecyclerView.post {
-            val param = mainRecyclerView.layoutParams as ViewGroup.MarginLayoutParams
-            if(pinRecyclerView.height == 0){
-                param.topMargin = 0
-            }else{
-                param.topMargin = 64
-            }
-            mainRecyclerView.layoutParams = param
-        }
-
     }
 
 
@@ -65,6 +54,18 @@ class AchievementFragment : Fragment() {
         mainRecyclerView.layoutManager = layoutManager
         adapter = CustomRecyclerViewAdapter(2, "")
         mainRecyclerView.adapter = this.adapter
+
+        //もしピン止めされたアチーブメントが無いなら、mainRecyclerViewのmarginTopを0にする
+        pinRecyclerView.post {
+            val param = mainRecyclerView.layoutParams as ViewGroup.MarginLayoutParams
+            if(pinRecyclerView.height == 0){
+                param.topMargin = 0
+            }else{
+                param.topMargin = 64
+            }
+            mainRecyclerView.layoutParams = param
+        }
+
     }
 
 
