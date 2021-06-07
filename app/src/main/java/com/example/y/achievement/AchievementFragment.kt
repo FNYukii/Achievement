@@ -2,12 +2,17 @@ package com.example.y.achievement
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenu
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_achievement.*
 
 class AchievementFragment : Fragment() {
@@ -35,6 +40,17 @@ class AchievementFragment : Fragment() {
             val intent = Intent(this.context, EditActivity::class.java)
             startActivity(intent)
         }
+
+        //Todo: もしAchieveFragmentにいる時に、BottomNavigationのAchievement項目がクリックされたら、スクロールアップする。
+//        val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+//            if(item.itemId == R.id.navigation_achievement){
+//                nestedScrollView.fullScroll(View.FOCUS_UP)
+//                Log.d("hello", "menu1 clicked")
+//                return@OnNavigationItemSelectedListener true
+//            }
+//            false
+//        }
+//        nav_view.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
     }
 
