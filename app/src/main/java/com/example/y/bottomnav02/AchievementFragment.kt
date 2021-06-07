@@ -10,10 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_achievement.*
 
-
-
-
-
 class AchievementFragment : Fragment() {
 
 
@@ -40,6 +36,23 @@ class AchievementFragment : Fragment() {
             startActivity(intent)
         }
 
+        //もしピン止めされたアチーブメントが無いなら、mainRecyclerViewのmarginTopを0にする
+        pinRecyclerView.post {
+            val param = mainRecyclerView.layoutParams as ViewGroup.MarginLayoutParams
+            if(pinRecyclerView.height == 0){
+                param.topMargin = 0
+            }else{
+                param.topMargin = 64
+            }
+            mainRecyclerView.layoutParams = param
+        }
+
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+
         //pinRecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
         pinRecyclerView.layoutManager = layoutManager
@@ -52,18 +65,6 @@ class AchievementFragment : Fragment() {
         mainRecyclerView.layoutManager = layoutManager
         adapter = CustomRecyclerViewAdapter(2, "")
         mainRecyclerView.adapter = this.adapter
-
-        //もしピン止めされたアチーブメントが無いなら、mainRecyclerViewのmarginTopを0にする
-        pinRecyclerView.post {
-            val param = mainRecyclerView.layoutParams as ViewGroup.MarginLayoutParams
-            if(pinRecyclerView.height == 0){
-                param.topMargin = 0
-            }else{
-                param.topMargin = 64
-            }
-            mainRecyclerView.layoutParams = param
-        }
-
     }
 
 
