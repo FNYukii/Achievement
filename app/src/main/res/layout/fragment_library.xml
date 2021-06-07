@@ -174,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="今週"
+            android:text="今日"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
