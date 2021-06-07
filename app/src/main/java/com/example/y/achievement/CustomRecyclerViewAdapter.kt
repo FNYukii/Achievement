@@ -60,7 +60,7 @@ class CustomRecyclerViewAdapter(
             data = realm.where<Achievement>()
                 .contains("title", queryString)
                 .or()
-                .contains("description", queryString)
+                .contains("detail", queryString)
                 .findAll()
                 .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
         }

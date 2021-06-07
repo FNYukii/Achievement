@@ -1,5 +1,6 @@
 package com.example.y.achievement
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -31,23 +32,12 @@ class SearchFragment : Fragment() {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //Realmのデフォルトインスタンスを取得
         realm = Realm.getDefaultInstance()
-
-        //searchViewがフォーカスされている時のみ、キャンセルボタンを表示する
-        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
-            if(hasFocus){
-                cancelButton.visibility = View.VISIBLE
-                cancelButton.text = "キャンセル"
-
-            }else{
-                cancelButton.visibility = View.GONE
-                cancelButton.text = ""
-            }
-        }
 
         //検索バーの操作イベントに応じて、検索を行う
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -64,23 +54,11 @@ class SearchFragment : Fragment() {
             }
         })
 
-        //キャンセルボタンで検索を終える
-        cancelButton.setOnClickListener {
+        //検索バー以外の領域をタップすると、検索バーからフォーカスを外す！
+        searchRecyclerViewCover.setOnTouchListener { _, _ ->
             searchView.clearFocus()
-            searchView.setQuery("", false)
-            queryString = ""
-            search()
+            false
         }
-
-
-        //Todo: 検索バー以外の領域をタップすると、検索バーからフォーカスを外す！
-        searchRecyclerView.isEnabled = false
-        searchRecyclerView.isClickable = false
-        layout.setOnClickListener {
-            Log.d("hello", "hi")
-        }
-
-
 
     }
 
