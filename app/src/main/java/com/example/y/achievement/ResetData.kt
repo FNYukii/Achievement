@@ -38,7 +38,7 @@ class ResetData {
                 if (maxId == null) maxId = 0
                 val achievement = realm.createObject<Achievement>(maxId + 1)
                 achievement.title = contents[i]
-                achievement.description = contents[i + 1]
+                achievement.detail = contents[i + 1]
             }
         }
     }

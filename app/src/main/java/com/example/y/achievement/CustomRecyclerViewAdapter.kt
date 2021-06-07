@@ -90,7 +90,7 @@ class CustomRecyclerViewAdapter(
 
         //タイトルと説明をセット
         holder.cardTitleText?.text = achievement?.title.toString()
-        holder.cardDetailText?.text = achievement?.description.toString()
+        holder.cardDetailText?.text = achievement?.detail.toString()
 
         //もしtitleが空なら、titleTextは非表示。detailTextのmarginTopも0dpにする。
         if(holder.cardTitleText?.text.isNullOrBlank()){

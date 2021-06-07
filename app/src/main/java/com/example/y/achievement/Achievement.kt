@@ -12,5 +12,5 @@ open class Achievement : RealmObject() {
     var isPinned: Boolean = false
     var colorId: Int = 0
     var title: String = ""
-    var description: String = ""
+    var detail: String = ""
 }

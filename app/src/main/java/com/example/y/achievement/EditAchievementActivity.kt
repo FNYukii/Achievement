@@ -80,7 +80,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
             colorId = achievement.colorId
             setAchievementColor()
             titleEdit.setText(achievement.title)
-            detailEdit.setText(achievement.description)
+            detailEdit.setText(achievement.detail)
         }else{
             checkButton.visibility = View.INVISIBLE
         }
@@ -151,7 +151,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
                 achievement.isPinned = isPinned
                 achievement.colorId = colorId
                 achievement.title = titleEdit.text.toString()
-                achievement.description = detailEdit.text.toString()
+                achievement.detail = detailEdit.text.toString()
             }
         }
         //レコード更新
@@ -161,7 +161,7 @@ class EditAchievementActivity : AppCompatActivity(), ColorDialogFragment.DialogL
                 achievement?.isPinned = isPinned
                 achievement?.colorId = colorId
                 achievement?.title = titleEdit.text.toString()
-                achievement?.description = detailEdit.text.toString()
+                achievement?.detail = detailEdit.text.toString()
             }
         }
         finish()
