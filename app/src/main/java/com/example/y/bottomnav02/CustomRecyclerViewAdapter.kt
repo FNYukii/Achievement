@@ -124,13 +124,6 @@ class CustomRecyclerViewAdapter(
                 holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.purple))
             }
             4 -> {
-                holder.cardBackground?.setBackgroundResource(R.drawable.background_card_orange)
-                holder.cardPinImage?.setColorFilter(ContextCompat.getColor(context, R.color.orange))
-                holder.cardCheckImage?.setColorFilter(ContextCompat.getColor(context, R.color.orange))
-                holder.cardTitleText?.setTextColor(ContextCompat.getColor(context, R.color.orange))
-                holder.cardDetailText?.setTextColor(ContextCompat.getColor(context, R.color.orange))
-            }
-            5 -> {
                 holder.cardBackground?.setBackgroundResource(R.drawable.background_card_gold)
                 holder.cardPinImage?.setColorFilter(ContextCompat.getColor(context, R.color.gold))
                 holder.cardCheckImage?.setColorFilter(ContextCompat.getColor(context, R.color.gold))
