@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_achievement"
-        android:name="com.example.y.bottomnav02.AchievementFragment"
+        android:name="com.example.y.achievement.AchievementFragment"
         android:label="@string/title_calendar"
         tools:layout="@layout/fragment_achievement" />
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.y.bottomnav02.SearchFragment"
+        android:name="com.example.y.achievement.SearchFragment"
         android:label="@string/title_fusen"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_library"
-        android:name="com.example.y.bottomnav02.LibraryFragment"
+        android:name="com.example.y.achievement.LibraryFragment"
         android:label="@string/title_setting"
         tools:layout="@layout/fragment_library" />
 </navigation>

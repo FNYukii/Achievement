@@ -16,7 +16,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.y.bottomnav02"
+        applicationId "com.example.y.achievement"
         minSdkVersion 29
         targetSdkVersion 30
         versionCode 1

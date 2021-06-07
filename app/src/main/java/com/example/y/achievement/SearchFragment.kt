@@ -1,16 +1,14 @@
-package com.example.y.bottomnav02
+package com.example.y.achievement
 
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_search.*
-import java.time.LocalDate
 
 class SearchFragment : Fragment() {
 

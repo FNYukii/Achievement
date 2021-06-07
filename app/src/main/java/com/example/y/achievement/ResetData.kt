@@ -1,4 +1,4 @@
-package com.example.y.bottomnav02
+package com.example.y.achievement
 
 import io.realm.Realm
 import io.realm.kotlin.createObject

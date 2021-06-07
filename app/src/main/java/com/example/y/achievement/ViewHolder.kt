@@ -1,6 +1,5 @@
-package com.example.y.bottomnav02
+package com.example.y.achievement
 
-import android.media.Image
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView

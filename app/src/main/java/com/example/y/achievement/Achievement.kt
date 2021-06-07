@@ -1,4 +1,4 @@
-package com.example.y.bottomnav02
+package com.example.y.achievement
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
