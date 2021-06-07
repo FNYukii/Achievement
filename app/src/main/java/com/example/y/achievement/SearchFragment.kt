@@ -1,7 +1,10 @@
 package com.example.y.achievement
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
@@ -14,8 +17,7 @@ import kotlinx.android.synthetic.main.fragment_search.*
 class SearchFragment : Fragment() {
 
 
-    //RealmとかRecyclerViewとか宣言
-    private lateinit var realm: Realm
+    //RecyclerViewのインスタンス宣言
     private lateinit var adapter: CustomRecyclerViewAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
@@ -36,18 +38,24 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Realmのデフォルトインスタンスを取得
-        realm = Realm.getDefaultInstance()
+        //SharedPreferencesオブジェクトを取得
+        val sharedPref: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context)
 
-        //検索バーの操作イベントに応じて、検索を行う
+        //SharedPreferencesに保存されていたqueryStringを、searchViewのqueryにセット
+        queryString = sharedPref.getString("queryString","").toString()
+        searchView.setQuery(queryString, false)
+
+        //検索バーの操作イベントに応じて、検索を行う。queryStringは逐次SharedPreferencesに保存！
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
                 queryString = newText!!
+                sharedPref.edit().putString("queryString", queryString).apply()
                 search()
                 return false
             }
             override fun onQueryTextSubmit(query: String?): Boolean {
                 queryString = query!!
+                sharedPref.edit().putString("queryString", queryString).apply()
                 search()
                 searchView.clearFocus()
                 return false
@@ -80,12 +88,6 @@ class SearchFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         searchView.clearFocus()
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        realm.close()
     }
 
 
