@@ -26,6 +26,22 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
+        //もしAchievementFragmentからidが送られてきたなら、既存のアチーブメントを検索する
+        achievementId = intent.getIntExtra("achievementId", 0)
+        if(achievementId != 0){
+            val achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()
+            isPinned = achievement?.isPinned!!
+            if(isPinned){
+                pinButton.setImageResource(R.drawable.ic_baseline_push_pin_24)
+            }
+            colorId = achievement.colorId
+            setAchievementColor()
+            titleEdit.setText(achievement.title)
+            detailEdit.setText(achievement.detail)
+        }else{
+            checkButton.visibility = View.INVISIBLE
+        }
+
         //backButtonが押されたら、コンテンツがある場合のみデータを保存。空白文字のみの場合も保存する。
         backButton.setOnClickListener {
             if(titleEdit.text.isNotEmpty() || detailEdit.text.isNotEmpty()){
@@ -66,23 +82,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
         //deleteButtonが押されたら、アチーブメントを削除する
         deleteButton.setOnClickListener {
             deleteAchievement()
-        }
-
-
-        //もしAchievementFragmentからidが送られてきたなら、既存のアチーブメントを検索する
-        achievementId = intent.getIntExtra("achievementId", 0)
-        if(achievementId != 0){
-            val achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()
-            isPinned = achievement?.isPinned!!
-            if(isPinned){
-                pinButton.setImageResource(R.drawable.ic_baseline_push_pin_24)
-            }
-            colorId = achievement.colorId
-            setAchievementColor()
-            titleEdit.setText(achievement.title)
-            detailEdit.setText(achievement.detail)
-        }else{
-            checkButton.visibility = View.INVISIBLE
         }
 
     }
