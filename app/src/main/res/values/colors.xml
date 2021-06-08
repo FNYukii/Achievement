@@ -7,31 +7,40 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
 
-    <!-- achievement -->
+    <!-- primary -->
+    <color name="transparent">#00FFFFFF</color>
+
+    <!-- card -->
     <color name="white">#FFFFFF</color>
     <color name="green">#95FF91</color>
     <color name="blue">#5FB8FF</color>
     <color name="purple">#ED83FF</color>
     <color name="gold">#FFD24B</color>
 
-    <!-- achievement card icon background -->
+    <!-- card background when pressed -->
+    <color name="lightWhite">#55FFFFFF</color>
+    <color name="lightGreen">#5595FF91</color>
+    <color name="lightBlue">#555FB8FF</color>
+    <color name="lightPurple">#55ED83FF</color>
+    <color name="lightGold">#55FFD24B</color>
+
+    <!-- card icon background -->
     <color name="translucentNavy">#AA26394C</color>
 
-    <!-- background -->
+    <!-- app background -->
     <color name="navy">#26394C</color>
 
-    <!-- tool button, border-top, border-bottom -->
-    <color name="transparent">#00FFFFFF</color>
+    <!-- border-top, border-bottom -->
     <color name="lightNavy">#406181</color>
 
-    <!-- floating button -->
+    <!-- floatingButton, toolButton -->
     <color name="steelBlue">#798CC5</color>
     <color name="lightSteelBlue">#A7BDFF</color>
 
     <!-- bottom navigation item, text -->
     <color name="gray">#AAAAAA</color>
 
-    <!-- search bar -->
+    <!-- searchViewWrapper -->
     <color name="darkNavy">#1A2633</color>
 
 
