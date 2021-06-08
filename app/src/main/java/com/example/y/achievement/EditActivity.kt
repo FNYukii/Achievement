@@ -51,6 +51,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             }else{
                 deleteAchievement()
             }
+            finish()
         }
 
         //achieveButtonが押されたら、アチーブメントを達成とする
@@ -61,6 +62,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
                     .findFirst()
                 achievement?.isAchieved = achievement?.isAchieved == false
             }
+            saveAchievement()
             finish()
         }
 
@@ -84,6 +86,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
         //deleteButtonが押されたら、アチーブメントを削除する
         deleteButton.setOnClickListener {
             deleteAchievement()
+            finish()
         }
 
         //キーボードが閉じられたら、EditTextからフォーカスを外す
@@ -177,7 +180,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
                 achievement?.detail = detailEdit.text.toString()
             }
         }
-        finish()
     }
 
 
@@ -188,7 +190,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
                 achievement?.deleteFromRealm()
             }
         }
-        finish()
     }
 
 
