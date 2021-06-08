@@ -18,11 +18,11 @@
     <color name="gold">#FFD24B</color>
 
     <!-- card background when pressed -->
-    <color name="lightWhite">#55FFFFFF</color>
-    <color name="lightGreen">#5595FF91</color>
-    <color name="lightBlue">#555FB8FF</color>
-    <color name="lightPurple">#55ED83FF</color>
-    <color name="lightGold">#55FFD24B</color>
+    <color name="translucentWhite">#55FFFFFF</color>
+    <color name="translucentGreen">#5595FF91</color>
+    <color name="translucentBlue">#555FB8FF</color>
+    <color name="translucentPurple">#55ED83FF</color>
+    <color name="translucentGold">#55FFD24B</color>
 
     <!-- card icon background -->
     <color name="translucentNavy">#AA26394C</color>
