@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.one_card.view.*
 
 class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var cardBackground: ConstraintLayout? =null
-    var cardPinImage: ImageView? = null
-    var cardCheckImage: ImageView? = null
-    var cardTitleText: TextView? = null
-    var cardDetailText: TextView? = null
+    var frameBackground: ConstraintLayout? =null
+    var framePinImage: ImageView? = null
+    var frameCheckImage: ImageView? = null
+    var frameTitleText: TextView? = null
+    var frameDetailText: TextView? = null
     init {
-        cardBackground = itemView.cardBackground
-        cardPinImage = itemView.cardPinImage
-        cardCheckImage = itemView.cardCheckImage
-        cardTitleText = itemView.cardTitleText
-        cardDetailText = itemView.cardDetailText
+        frameBackground = itemView.frameBackground
+        framePinImage = itemView.framePinImage
+        frameCheckImage = itemView.frameCheckImage
+        frameTitleText = itemView.frameTitleText
+        frameDetailText = itemView.frameDetailText
     }
 }

@@ -8,13 +8,13 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/totalCard"
+        android:id="@+id/totalFrame"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/background_card_white"
+        android:background="@drawable/background_frame_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -83,16 +83,16 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/weekCard"
+        android:id="@+id/weekFrame"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/background_card_white"
+        android:background="@drawable/background_frame_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/totalCard">
+        app:layout_constraintTop_toBottomOf="@id/totalFrame">
 
         <TextView
             android:id="@+id/textView21"
@@ -158,16 +158,16 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/dayCard"
+        android:id="@+id/dayFrame"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/background_card_white"
+        android:background="@drawable/background_frame_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weekCard">
+        app:layout_constraintTop_toBottomOf="@id/weekFrame">
 
         <TextView
             android:id="@+id/textView31"
