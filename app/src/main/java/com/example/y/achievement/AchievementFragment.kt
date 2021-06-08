@@ -41,17 +41,6 @@ class AchievementFragment : Fragment() {
             startActivity(intent)
         }
 
-        //Todo: もしAchieveFragmentにいる時に、BottomNavigationのAchievement項目がクリックされたら、スクロールアップする。
-//        val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-//            if(item.itemId == R.id.navigation_achievement){
-//                nestedScrollView.fullScroll(View.FOCUS_UP)
-//                Log.d("hello", "menu1 clicked")
-//                return@OnNavigationItemSelectedListener true
-//            }
-//            false
-//        }
-//        nav_view.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
     }
 
 
