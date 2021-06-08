@@ -92,8 +92,8 @@ class CustomRecyclerViewAdapter(
         holder.frameTitleText?.text = achievement?.title.toString()
         holder.frameDetailText?.text = achievement?.detail.toString()
 
-        //もしtitleが空なら、titleTextは非表示。detailTextのmarginTopも0dpにする。
-        if(holder.frameTitleText?.text.isNullOrBlank()){
+        //もしtitleがemptyなら、titleTextは非表示。detailTextのmarginTopも0dpにする。
+        if(achievement?.title.isNullOrEmpty()){
             holder.frameTitleText?.visibility = View.GONE
             val param = holder.frameDetailText?.layoutParams as ViewGroup.MarginLayoutParams
             param.setMargins(0,0,0,0)
