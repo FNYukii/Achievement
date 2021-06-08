@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_achievement">
+    app:startDestination="@+id/navigation_first">
 
     <fragment
-        android:id="@+id/navigation_achievement"
+        android:id="@+id/navigation_first"
         android:name="com.example.y.achievement.AchievementFragment"
         android:label="@string/title_achievement"
         tools:layout="@layout/fragment_achievement" />
 
     <fragment
-        android:id="@+id/navigation_search"
+        android:id="@+id/navigation_second"
         android:name="com.example.y.achievement.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/navigation_library"
+        android:id="@+id/navigation_third"
         android:name="com.example.y.achievement.LibraryFragment"
         android:label="@string/title_library"
         tools:layout="@layout/fragment_library" />

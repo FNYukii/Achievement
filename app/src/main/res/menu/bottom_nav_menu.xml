@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_achievement"
+        android:id="@+id/navigation_first"
         android:icon="@drawable/ic_baseline_bookmark_24"
         android:title="@string/title_achievement" />
 
     <item
-        android:id="@+id/navigation_search"
+        android:id="@+id/navigation_second"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="@string/title_search" />
 
     <item
-        android:id="@+id/navigation_library"
+        android:id="@+id/navigation_third"
         android:icon="@drawable/ic_baseline_auto_stories_24"
         android:title="@string/title_library" />
 
