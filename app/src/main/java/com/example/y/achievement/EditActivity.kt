@@ -3,6 +3,10 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
@@ -46,13 +50,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             detailEdit.setText(achievement.detail)
         }
 
-        //backButtonが押されたら、コンテンツがある場合のみデータを保存。空白文字のみの場合も保存する。
+        //backButtonが押されたら、編集を終了
         backButton.setOnClickListener {
-            if(titleEdit.text.isNotEmpty() || detailEdit.text.isNotEmpty()){
-                saveAchievement()
-            }else{
-                deleteAchievement()
-            }
             finish()
         }
 
@@ -61,7 +60,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             realm.executeTransaction {
                 achievement.isAchieved = !achievement.isAchieved
             }
-            saveAchievement()
             finish()
         }
 
@@ -85,6 +83,36 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             finish()
         }
 
+        //titleEditが編集されたら、データを更新
+        titleEdit.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //do nothing
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //do nothing
+            }
+            override fun afterTextChanged(s: Editable?) {
+                realm.executeTransaction {
+                    achievement.title = s.toString()
+                }
+            }
+        })
+
+        //detailEditが編集されたら、データを更新
+        detailEdit.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //do nothing
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //do nothing
+            }
+            override fun afterTextChanged(s: Editable?) {
+                realm.executeTransaction {
+                    achievement.detail = s.toString()
+                }
+            }
+        })
+
         //キーボードが閉じられたら、EditTextからフォーカスを外す
         constraintLayout.viewTreeObserver.addOnGlobalLayoutListener {
             val rec = Rect()
@@ -97,15 +125,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             }
         }
 
-    }
-
-
-    //レコードのデータを更新
-    private fun saveAchievement() {
-        realm.executeTransaction {
-            achievement.title = titleEdit.text.toString()
-            achievement.detail = detailEdit.text.toString()
-        }
     }
 
 
