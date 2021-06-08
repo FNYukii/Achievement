@@ -19,18 +19,13 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
     //Realmのレコードを宣言
     private lateinit var achievement: Achievement
 
-    //変数たち
-    private var achievementId: Int = 0
-    private var isPinned: Boolean = false
-    private var colorId: Int = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
         //Intentから渡されてきたidを取得
-        achievementId = intent.getIntExtra("achievementId", 0)
+        var achievementId = intent.getIntExtra("achievementId", 0)
 
         //もしidが渡されていないなら、新規レコード追加
         if(achievementId == 0){
@@ -45,10 +40,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
         //もしidが渡されてきていたら、既存のレコードを検索して取得
         if(achievementId != 0){
             achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()!!
-            isPinned = achievement.isPinned
             setPinIcon()
-            colorId = achievement.colorId
-            setAchievementColor()
+            setColor()
             titleEdit.setText(achievement.title)
             detailEdit.setText(achievement.detail)
         }
@@ -74,9 +67,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
 
         //pinButtonが押されたら、isPinnedの真偽を切り替える
         pinButton.setOnClickListener {
-            isPinned = !isPinned
             realm.executeTransaction {
-                achievement.isPinned = isPinned
+                achievement.isPinned = !achievement.isPinned
             }
             setPinIcon()
         }
@@ -108,8 +100,26 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
     }
 
 
+    //レコードのデータを更新
+    private fun saveAchievement() {
+        realm.executeTransaction {
+            achievement.title = titleEdit.text.toString()
+            achievement.detail = detailEdit.text.toString()
+        }
+    }
+
+
+    //レコードを削除
+    private fun deleteAchievement(){
+        realm.executeTransaction {
+            achievement.deleteFromRealm()
+        }
+    }
+
+
+    //pinButtonのアイコンを切り替える
     private fun setPinIcon(){
-        if(isPinned){
+        if(achievement.isPinned){
             pinButton.setImageResource(R.drawable.ic_baseline_push_pin_24)
         }else{
             pinButton.setImageResource(R.drawable.ic_outline_push_pin_24)
@@ -117,8 +127,18 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
     }
 
 
-    private fun setAchievementColor(){
-        when (colorId){
+    //colorIdをRealmに保存し、各Viewへ色をセット
+    override fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Int) {
+        realm.executeTransaction {
+            achievement.colorId = colorId
+        }
+        setColor()
+    }
+
+
+    //各Viewへ色をセット
+    private fun setColor(){
+        when (achievement.colorId){
             0 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 achieveButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
@@ -165,35 +185,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
                 detailEdit.setTextColor(ContextCompat.getColor(this, R.color.gold))
             }
         }
-    }
-
-
-    private fun saveAchievement() {
-
-        //レコード更新
-        realm.executeTransaction {
-            achievement.isPinned = isPinned
-            achievement.colorId = colorId
-            achievement.title = titleEdit.text.toString()
-            achievement.detail = detailEdit.text.toString()
-        }
-    }
-
-
-    private fun deleteAchievement(){
-        realm.executeTransaction {
-            achievement.deleteFromRealm()
-        }
-    }
-
-
-    //colorIdをRealmに保存し、各Viewへ色をセット
-    override fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Int) {
-        this.colorId = colorId
-        realm.executeTransaction {
-            achievement.colorId = this.colorId
-        }
-        setAchievementColor()
     }
 
 
