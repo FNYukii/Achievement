@@ -53,7 +53,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             }
         }
 
-        //checkButtonが押されたら、アチーブメントを達成とする
+        //achieveButtonが押されたら、アチーブメントを達成とする
         achieveButton.setOnClickListener {
             realm.executeTransaction {
                 val achievement = realm.where<Achievement>()
