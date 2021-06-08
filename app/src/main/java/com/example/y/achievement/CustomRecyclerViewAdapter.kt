@@ -83,9 +83,9 @@ class CustomRecyclerViewAdapter(
             holder.framePinImage?.visibility = View.GONE
         }
 
-        //もし、未達成のアチーブメントなら、チェックアイコンを非表示
+        //もし、未達成のアチーブメントなら、達成アイコンを非表示
         if(achievement?.isAchieved == false){
-            holder.frameCheckImage?.visibility = View.GONE
+            holder.frameAchieveImage?.visibility = View.GONE
         }
 
         //タイトルと説明をセット
@@ -105,28 +105,28 @@ class CustomRecyclerViewAdapter(
             1 -> {
                 holder.frameBackground?.setBackgroundResource(R.drawable.background_frame_green)
                 holder.framePinImage?.setColorFilter(ContextCompat.getColor(context, R.color.green))
-                holder.frameCheckImage?.setColorFilter(ContextCompat.getColor(context, R.color.green))
+                holder.frameAchieveImage?.setColorFilter(ContextCompat.getColor(context, R.color.green))
                 holder.frameTitleText?.setTextColor(ContextCompat.getColor(context, R.color.green))
                 holder.frameDetailText?.setTextColor(ContextCompat.getColor(context, R.color.green))
             }
             2 -> {
                 holder.frameBackground?.setBackgroundResource(R.drawable.background_frame_blue)
                 holder.framePinImage?.setColorFilter(ContextCompat.getColor(context, R.color.blue))
-                holder.frameCheckImage?.setColorFilter(ContextCompat.getColor(context, R.color.blue))
+                holder.frameAchieveImage?.setColorFilter(ContextCompat.getColor(context, R.color.blue))
                 holder.frameTitleText?.setTextColor(ContextCompat.getColor(context, R.color.blue))
                 holder.frameDetailText?.setTextColor(ContextCompat.getColor(context, R.color.blue))
             }
             3 -> {
                 holder.frameBackground?.setBackgroundResource(R.drawable.background_frame_purple)
                 holder.framePinImage?.setColorFilter(ContextCompat.getColor(context, R.color.purple))
-                holder.frameCheckImage?.setColorFilter(ContextCompat.getColor(context, R.color.purple))
+                holder.frameAchieveImage?.setColorFilter(ContextCompat.getColor(context, R.color.purple))
                 holder.frameTitleText?.setTextColor(ContextCompat.getColor(context, R.color.purple))
                 holder.frameDetailText?.setTextColor(ContextCompat.getColor(context, R.color.purple))
             }
             4 -> {
                 holder.frameBackground?.setBackgroundResource(R.drawable.background_frame_gold)
                 holder.framePinImage?.setColorFilter(ContextCompat.getColor(context, R.color.gold))
-                holder.frameCheckImage?.setColorFilter(ContextCompat.getColor(context, R.color.gold))
+                holder.frameAchieveImage?.setColorFilter(ContextCompat.getColor(context, R.color.gold))
                 holder.frameTitleText?.setTextColor(ContextCompat.getColor(context, R.color.gold))
                 holder.frameDetailText?.setTextColor(ContextCompat.getColor(context, R.color.gold))
             }

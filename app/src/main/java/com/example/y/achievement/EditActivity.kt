@@ -3,7 +3,6 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
@@ -20,8 +19,9 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
 
     //変数たち
     private var achievementId: Int = 0
-    private var colorId: Int = 0
+    private var isAchieved: Boolean = false
     private var isPinned: Boolean = false
+    private var colorId: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +41,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             titleEdit.setText(achievement.title)
             detailEdit.setText(achievement.detail)
         }else{
-            checkButton.visibility = View.INVISIBLE
+            achieveButton.visibility = View.INVISIBLE
         }
 
         //backButtonが押されたら、コンテンツがある場合のみデータを保存。空白文字のみの場合も保存する。
@@ -54,7 +54,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
         }
 
         //checkButtonが押されたら、アチーブメントを達成とする
-        checkButton.setOnClickListener {
+        achieveButton.setOnClickListener {
             realm.executeTransaction {
                 val achievement = realm.where<Achievement>()
                     .equalTo("id", achievementId)
@@ -105,7 +105,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
         when (colorId){
             0 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
-                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
+                achieveButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 pinButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
@@ -114,7 +114,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             }
             1 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
-                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
+                achieveButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
                 pinButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
                 deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.green))
@@ -123,7 +123,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             }
             2 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
-                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
+                achieveButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
                 pinButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
                 deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.blue))
@@ -132,7 +132,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             }
             3 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
-                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
+                achieveButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
                 pinButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
                 deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.purple))
@@ -141,7 +141,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             }
             4 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
-                checkButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
+                achieveButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
                 pinButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
                 colorButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))
                 deleteButton.setColorFilter(ContextCompat.getColor(this, R.color.gold))

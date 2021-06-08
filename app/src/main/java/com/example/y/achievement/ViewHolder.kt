@@ -10,13 +10,13 @@ import kotlinx.android.synthetic.main.one_card.view.*
 class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var frameBackground: ConstraintLayout? =null
     var framePinImage: ImageView? = null
-    var frameCheckImage: ImageView? = null
+    var frameAchieveImage: ImageView? = null
     var frameTitleText: TextView? = null
     var frameDetailText: TextView? = null
     init {
         frameBackground = itemView.frameBackground
         framePinImage = itemView.framePinImage
-        frameCheckImage = itemView.frameCheckImage
+        frameAchieveImage = itemView.frameAchieveImage
         frameTitleText = itemView.frameTitleText
         frameDetailText = itemView.frameDetailText
     }

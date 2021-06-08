@@ -27,7 +27,7 @@
             app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
 
         <ImageButton
-            android:id="@+id/checkButton"
+            android:id="@+id/achieveButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/background_tool_button"
