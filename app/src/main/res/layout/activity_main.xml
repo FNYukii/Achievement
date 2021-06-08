@@ -9,7 +9,7 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@drawable/background_bottom_navigation"
+        app:itemBackground="@drawable/background_border_top"
         app:itemIconTint="@drawable/bottom_navigation_item_state"
         app:itemTextColor="@drawable/bottom_navigation_item_state"
         app:layout_constraintBottom_toBottomOf="parent"

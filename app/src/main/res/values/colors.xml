@@ -20,7 +20,7 @@
     <!-- background -->
     <color name="navy">#26394C</color>
 
-    <!-- tool button -->
+    <!-- tool button, border-top, border-bottom -->
     <color name="transparent">#00FFFFFF</color>
     <color name="lightNavy">#406181</color>
 

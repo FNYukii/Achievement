@@ -8,9 +8,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
+        android:background="@drawable/background_border_bottom"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,8 +30,8 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/background_tool_button"
-            app:layout_constraintTop_toTopOf="@+id/backButton"
             app:layout_constraintEnd_toStartOf="@id/pinButton"
+            app:layout_constraintTop_toTopOf="@+id/backButton"
             app:srcCompat="@drawable/ic_baseline_check_24" />
 
         <ImageButton
@@ -39,17 +39,17 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/background_tool_button"
-            app:layout_constraintTop_toTopOf="@id/backButton"
+            android:src="@drawable/ic_outline_push_pin_24"
             app:layout_constraintEnd_toStartOf="@id/colorButton"
-            android:src="@drawable/ic_outline_push_pin_24" />
+            app:layout_constraintTop_toTopOf="@id/backButton" />
 
         <ImageButton
             android:id="@+id/colorButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/background_tool_button"
-            app:layout_constraintTop_toTopOf="@+id/backButton"
             app:layout_constraintEnd_toStartOf="@id/deleteButton"
+            app:layout_constraintTop_toTopOf="@+id/backButton"
             app:srcCompat="@drawable/ic_baseline_color_lens_24"
             tools:layout_editor_absoluteX="351dp" />
 
@@ -58,46 +58,57 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/background_tool_button"
-            app:layout_constraintTop_toTopOf="@id/backButton"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/backButton"
             app:srcCompat="@drawable/ic_baseline_delete_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <EditText
-        android:id="@+id/titleEdit"
-        android:theme="@style/CustomEditText"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/transparent"
-        android:textColor="@color/white"
-        android:textColorHint="@color/gray"
-        android:hint="タイトル"
-        android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
 
-    <EditText
-        android:id="@+id/detailEdit"
-        android:theme="@style/CustomEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/transparent"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="説明"
-        android:inputType="textMultiLine"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/white"
-        android:textColorHint="@color/gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleEdit" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/titleEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/transparent"
+                android:hint="タイトル"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gray"
+                android:textStyle="bold"
+                android:theme="@style/CustomEditText" />
+
+            <EditText
+                android:id="@+id/detailEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/transparent"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="説明"
+                android:inputType="textMultiLine"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gray"
+                android:theme="@style/CustomEditText" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
