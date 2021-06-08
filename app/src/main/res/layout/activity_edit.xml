@@ -101,6 +101,7 @@
                 android:layout_marginEnd="16dp"
                 android:background="@color/transparent"
                 android:ems="10"
+                android:layout_marginBottom="32dp"
                 android:gravity="start|top"
                 android:hint="説明"
                 android:inputType="textMultiLine"
