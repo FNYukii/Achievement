@@ -1,7 +1,9 @@
 package com.example.y.achievement
 
+import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
@@ -82,6 +84,18 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
         //deleteButtonが押されたら、アチーブメントを削除する
         deleteButton.setOnClickListener {
             deleteAchievement()
+        }
+
+        //キーボードが閉じられたら、EditTextからフォーカスを外す
+        constraintLayout.viewTreeObserver.addOnGlobalLayoutListener {
+            val rec = Rect()
+            constraintLayout.getWindowVisibleDisplayFrame(rec)
+            val screenHeight = constraintLayout.rootView.height
+            val keyboardHeight = screenHeight - rec.bottom
+            if(keyboardHeight <= screenHeight * 0.15){
+                titleEdit.clearFocus()
+                detailEdit.clearFocus()
+            }
         }
 
     }
