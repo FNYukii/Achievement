@@ -2,17 +2,15 @@ package com.example.y.achievement
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.BottomNavigationMenu
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
+import io.realm.Realm
+import io.realm.Sort
+import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_achievement.*
 
 class AchievementFragment : Fragment() {
@@ -21,6 +19,9 @@ class AchievementFragment : Fragment() {
     //RecyclerViewのインスタンスを宣言
     private lateinit var adapter: CustomRecyclerViewAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
+
+    //Realmのインスタンスを取得
+    var realm: Realm = Realm.getDefaultInstance()
 
 
     override fun onCreateView(
@@ -41,24 +42,36 @@ class AchievementFragment : Fragment() {
             startActivity(intent)
         }
 
+        //pinRecyclerViewを表示
+        val realmResults1 = realm.where<Achievement>()
+            .equalTo("isAchieved", false)
+            .and()
+            .equalTo("isPinned", true)
+            .findAll()
+            .sort("id", Sort.DESCENDING)
+        layoutManager = GridLayoutManager(this.context, 2)
+        pinRecyclerView.layoutManager = layoutManager
+        adapter = CustomRecyclerViewAdapter(realmResults1)
+        pinRecyclerView.adapter = this.adapter
+
+        //mainRecyclerViewを表示
+        val realmResults2 = realm.where<Achievement>()
+            .equalTo("isAchieved", false)
+            .and()
+            .equalTo("isPinned", false)
+            .findAll()
+            .sort("id", Sort.DESCENDING)
+        layoutManager = GridLayoutManager(this.context, 2)
+        mainRecyclerView.layoutManager = layoutManager
+        adapter = CustomRecyclerViewAdapter(realmResults2)
+        mainRecyclerView.adapter = this.adapter
+
     }
 
 
     override fun onStart() {
         super.onStart()
 
-        //pinRecyclerViewを表示
-        layoutManager = GridLayoutManager(this.context, 2)
-        pinRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(1, "")
-        pinRecyclerView.adapter = this.adapter
-
-        //mainRecyclerViewを表示
-        layoutManager = GridLayoutManager(this.context, 2)
-//        layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL) //今後使うかも
-        mainRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(2, "")
-        mainRecyclerView.adapter = this.adapter
 
         //もしピン止めされたアチーブメントが無いなら、mainRecyclerViewのmarginTopを0にする
         pinRecyclerView.post {

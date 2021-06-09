@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
+import io.realm.Sort
+import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : Fragment() {
@@ -45,6 +47,9 @@ class SearchFragment : Fragment() {
         queryString = sharedPref.getString("queryString","").toString()
         searchView.setQuery(queryString, false)
 
+        //検索してRecyclerViewを表示
+        search()
+
         //検索バーの操作イベントに応じて、検索を行う。queryStringは逐次SharedPreferencesに保存！
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -73,17 +78,20 @@ class SearchFragment : Fragment() {
     }
 
 
-    override fun onStart() {
-        super.onStart()
-        search()
-    }
-
-
     private fun search(){
-        layoutManager = GridLayoutManager(this.context, 2)
-        searchRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(3,  queryString)
-        searchRecyclerView.adapter = this.adapter
+        if(queryString.isNotEmpty()){
+            val realm: Realm = Realm.getDefaultInstance()
+            val realmResults = realm.where<Achievement>()
+                .contains("title", queryString)
+                .or()
+                .contains("detail", queryString)
+                .findAll()
+                .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
+            layoutManager = GridLayoutManager(this.context, 2)
+            searchRecyclerView.layoutManager = layoutManager
+            adapter = CustomRecyclerViewAdapter(realmResults)
+            searchRecyclerView.adapter = this.adapter
+        }
     }
 
 

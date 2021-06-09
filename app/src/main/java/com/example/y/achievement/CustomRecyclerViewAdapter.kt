@@ -6,77 +6,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
-import io.realm.Realm
-import io.realm.RealmResults
-import io.realm.Sort
+import io.realm.*
 import io.realm.kotlin.where
 
 class CustomRecyclerViewAdapter(
-    private val filterType: Int, //1:ピン止めのみ, 2:ピン止め以外, 3:文字列で曖昧検索
-    private val queryString: String
-    ) : RecyclerView.Adapter<ViewHolder>() {
+    private val collection: OrderedRealmCollection<Achievement>?
+    ) : RealmRecyclerViewAdapter<Achievement, CustomViewHolder>(collection, true) {
 
 
-    //Realmのインスタンスを取得。データを格納する変数を初期化
-    private var realm = Realm.getDefaultInstance()
-    private lateinit var data: RealmResults<Achievement>
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.one_frame, parent, false)
-        return ViewHolder(view)
+        return CustomViewHolder(view)
     }
 
 
     override fun getItemCount(): Int {
-
-        //Type-1 ピン止めされた未達成アチーブメントを取得
-        if(filterType == 1){
-            data = realm.where<Achievement>()
-//                .equalTo("isAchieved", false)
-//                .and()
-                .equalTo("isPinned", true)
-                .findAll()
-                .sort("id", Sort.DESCENDING)
-        }
-
-        //Type-2 ピン止めされていない未達成アチーブメントを取得
-        if(filterType == 2){
-            data = realm.where<Achievement>()
-//                .equalTo("isAchieved", false)
-//                .and()
-                .equalTo("isPinned", false)
-                .findAll()
-                .sort("id", Sort.DESCENDING)
-        }
-
-        //Type-3 queryStringで曖昧検索
-        if(filterType == 3){
-            if(queryString.isEmpty()){
-                return 0
-            }
-            data = realm.where<Achievement>()
-                .contains("title", queryString)
-                .or()
-                .contains("detail", queryString)
-                .findAll()
-                .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
-        }
-
-        //レコード数を返す
-        return data.size
+        return collection?.size ?: 0
     }
 
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
 
         //contextを取得する
         val context: Context = holder.itemView.context
 
         //レコードを取得
-        val achievement = data[position]
+        val achievement = collection?.get(position)
 
         //もしピン止めされたアチーブメントでないなら、ピンアイコンを非表示
         if(achievement?.isPinned == false){
