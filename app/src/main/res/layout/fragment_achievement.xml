@@ -20,8 +20,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:text="Achievement"
+                android:fontFamily="cursive"
+                android:textColor="@color/white" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/pinRecyclerView"
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false" />
@@ -31,10 +42,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:nestedScrollingEnabled="false" />
+                android:nestedScrollingEnabled="false" >
+
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+
 
     <ImageButton
         android:id="@+id/floatingButton"
