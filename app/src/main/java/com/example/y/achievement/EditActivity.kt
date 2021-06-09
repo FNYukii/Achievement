@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
@@ -14,7 +12,7 @@ import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit.*
 
-class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
+class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
 
 
     //Realmのインスタンスを取得
@@ -77,12 +75,10 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
             dialogFragment.show(supportFragmentManager, "dialog")
         }
 
-        //deleteButtonが押されたら、アチーブメントを削除する
+        //deleteButtonが押されたら、deleteDialogを表示する
         deleteButton.setOnClickListener {
             val dialogFragment = DeleteDialogFragment()
             dialogFragment.show(supportFragmentManager, "dialog")
-//            deleteAchievement()
-//            finish()
         }
 
         //titleEditが編集されたら、データを更新
@@ -130,14 +126,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
     }
 
 
-    //レコードを削除
-    private fun deleteAchievement(){
-        realm.executeTransaction {
-            achievement.deleteFromRealm()
-        }
-    }
-
-
     //pinButtonのアイコンを切り替える
     private fun setPinIcon(){
         if(achievement.isPinned){
@@ -148,12 +136,21 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
     }
 
 
-    //colorIdをRealmに保存し、各Viewへ色をセット
+    //colorDialogからcolorIDを受け取ったら、データを更新&各Viewへ色をセット
     override fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Int) {
         realm.executeTransaction {
             achievement.colorId = colorId
         }
         setColor()
+    }
+
+
+    //deleteDialogから削除命令を受け取ったら、レコードを削除
+    override fun onDialogIsDeleteReceive(dialog: DialogFragment) {
+        realm.executeTransaction {
+            achievement.deleteFromRealm()
+        }
+        finish()
     }
 
 

@@ -10,7 +10,7 @@ import java.lang.Exception
 
 class ColorDialogFragment : DialogFragment() {
 
-    //ActivityへcolorIdを渡すためのインターフェース
+    //EditActivityへcolorIdを渡すためのインターフェース
     interface DialogListener{
         fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Int)
     }
@@ -41,7 +41,6 @@ class ColorDialogFragment : DialogFragment() {
                 ) { _, _ ->
                     //do nothing
                 }
-            // Create the AlertDialog object and return it
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }
