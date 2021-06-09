@@ -79,8 +79,10 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
 
         //deleteButtonが押されたら、アチーブメントを削除する
         deleteButton.setOnClickListener {
-            deleteAchievement()
-            finish()
+            val dialogFragment = DeleteDialogFragment()
+            dialogFragment.show(supportFragmentManager, "dialog")
+//            deleteAchievement()
+//            finish()
         }
 
         //titleEditが編集されたら、データを更新

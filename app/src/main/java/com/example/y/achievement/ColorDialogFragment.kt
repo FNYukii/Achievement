@@ -39,7 +39,7 @@ class ColorDialogFragment : DialogFragment() {
                     }
                 .setNegativeButton("キャンセル"
                 ) { _, _ ->
-
+                    //do nothing
                 }
             // Create the AlertDialog object and return it
             builder.create()

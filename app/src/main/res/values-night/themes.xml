@@ -44,6 +44,9 @@
         <!-- title text -->
         <item name="android:textColor">@color/white</item>
 
+        <!-- message -->
+        <item name="android:textColorPrimary">@color/gray</item>
+
         <!-- single choice items text -->
         <item name="android:textColorAlertDialogListItem">@color/gray</item>
 
