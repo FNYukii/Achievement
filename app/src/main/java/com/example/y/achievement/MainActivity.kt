@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         //キーボードがレイアウトを押し上げないようにする
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
     }
 
