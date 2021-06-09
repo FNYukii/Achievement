@@ -5,6 +5,8 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 
 class CustomApplication : Application() {
+
+
     override fun onCreate() {
         super.onCreate()
 
@@ -14,8 +16,8 @@ class CustomApplication : Application() {
                 .deleteRealmIfMigrationNeeded()
                 .build()
         Realm.setDefaultConfiguration(config)
-
 //        InsertData()
-
     }
+
+
 }

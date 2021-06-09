@@ -63,8 +63,4 @@ class ColorDialogFragment : DialogFragment() {
     }
 
 
-
-
-
-
 }

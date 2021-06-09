@@ -213,5 +213,4 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener {
     }
 
 
-
 }
