@@ -17,7 +17,7 @@ class ColorDialogFragment : DialogFragment() {
     private var listener:DialogListener? = null
 
     //配列や変数を宣言
-    private val colors = arrayOf("white", "green", "blue", "purple", "gold")
+    private val colors = arrayOf("白", "緑", "青", "紫", "ゴールド")
     private var colorId: Int = 10
 
 
