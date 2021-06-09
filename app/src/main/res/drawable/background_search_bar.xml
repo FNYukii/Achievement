@@ -8,9 +8,7 @@
                 android:bottomLeftRadius="30dp"
                 android:topLeftRadius="30dp"
                 />
-            <solid
-                android:color="@color/darkNavy"
-                />
+            <solid android:color="@color/darkNavy" />
         </shape>
     </item>
 </selector>
