@@ -63,10 +63,12 @@ class SearchFragment : Fragment() {
         })
 
         //検索バー以外の領域をタップすると、検索バーからフォーカスを外す！
-        searchRecyclerViewCover.setOnTouchListener { _, _ ->
+        screenCover.setOnTouchListener { _, _ ->
+            Log.d("hello", "screen touched")
             searchView.clearFocus()
             false
         }
+
 
     }
 
