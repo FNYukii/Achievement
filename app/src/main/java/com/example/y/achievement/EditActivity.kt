@@ -210,7 +210,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
         super.onDestroy()
 
         //もし、編集終了時にtitleもdetailもemptyなら、そのアチーブメントは削除する
-        if(achievement.title.isEmpty() && achievement.title.isEmpty()){
+        if(achievement.title.isEmpty() && achievement.detail.isEmpty()){
             realm.executeTransaction {
                 achievement.deleteFromRealm()
             }
