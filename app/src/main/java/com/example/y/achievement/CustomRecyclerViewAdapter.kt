@@ -18,6 +18,15 @@ class CustomRecyclerViewAdapter(
     ) : RealmRecyclerViewAdapter<Achievement, CustomRecyclerViewAdapter.CustomViewHolder>(collection, true) {
 
 
+    class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val frameBackground: ConstraintLayout = itemView.frameBackground
+        val framePinImage: ImageView = itemView.framePinImage
+        val frameAchieveImage: ImageView = itemView.frameAchieveImage
+        val frameTitleText: TextView = itemView.frameTitleText
+        val frameDetailText: TextView = itemView.frameDetailText
+    }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.one_frame, parent, false)
@@ -27,15 +36,6 @@ class CustomRecyclerViewAdapter(
 
     override fun getItemCount(): Int {
         return collection?.size ?: 0
-    }
-
-
-    class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val frameBackground: ConstraintLayout = itemView.frameBackground
-        val framePinImage: ImageView = itemView.framePinImage
-        val frameAchieveImage: ImageView = itemView.frameAchieveImage
-        val frameTitleText: TextView = itemView.frameTitleText
-        val frameDetailText: TextView = itemView.frameDetailText
     }
 
 

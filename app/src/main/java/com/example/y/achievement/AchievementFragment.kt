@@ -72,7 +72,6 @@ class AchievementFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-
         //もしピン止めされたアチーブメントが無いなら、mainRecyclerViewのmarginTopを0にする
         pinRecyclerView.post {
             val param = mainRecyclerView.layoutParams as ViewGroup.MarginLayoutParams

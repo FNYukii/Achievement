@@ -74,7 +74,6 @@ class SearchFragment : Fragment() {
             false
         }
 
-
     }
 
 
