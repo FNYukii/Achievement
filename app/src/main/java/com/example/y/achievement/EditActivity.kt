@@ -12,6 +12,11 @@ import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit.*
 
+//Todo: レコード追加のタイミングを見直す
+//Todo: レコード削除のタイミングを見直す
+//Todo: 空のアチーブメントが削除される瞬間、アチーブメントに想定外の色が反映されているバグを修正する
+//Todo: レコード削除をユーザーに知らせるToastを実装する
+
 class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
 
 
