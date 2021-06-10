@@ -14,6 +14,7 @@ import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_achievement.*
 
 //Todo: floatingButtonの背景色を見直す
+//Todo: アチーブメントに想定外の色が反映されるバグを解決する
 
 class AchievementFragment : Fragment() {
 

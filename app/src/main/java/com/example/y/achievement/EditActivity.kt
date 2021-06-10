@@ -3,7 +3,7 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
@@ -48,6 +48,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             setPinIcon()
             setColor()
         }
+
+        Log.d("hello", "onCreate $colorId")
 
         //backButtonが押されたら、Activityを終了
         backButton.setOnClickListener {
@@ -119,6 +121,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
     //各Viewへ色をセット
     private fun setColor(){
+        Log.d("hello", "setColor $colorId")
+
         when (colorId){
             0 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
@@ -171,6 +175,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
     override fun onDestroy() {
         super.onDestroy()
+        Log.d("hello", "onDestroy $colorId")
+
 
         //タイトルか説明のどちらかが埋められているなら、レコードを追加、もしくは更新
         if(!isGarbage && (titleEdit.text.isNotEmpty() || detailEdit.text.isNotEmpty())){
@@ -190,6 +196,9 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
         //Realmの後片付け
         realm.close()
+
+        Log.d("hello", "death $colorId")
+
     }
 
 
@@ -212,6 +221,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
     //既存レコード更新
     private fun updateRecord(){
+        Log.d("hello", "updateRecord $colorId")
+
         realm.executeTransaction {
             val achievement = realm.where<Achievement>()
                 .equalTo("id", achievementId)
