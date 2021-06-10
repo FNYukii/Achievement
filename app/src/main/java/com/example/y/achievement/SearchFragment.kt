@@ -11,13 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
+import io.realm.RealmObject
+import io.realm.RealmResults
 import io.realm.Sort
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_search.*
 
 //Todo: アチーブメントの色やピン止めの有無で検索できるようにする
 //Todo: 非推奨のメソッドの使用を避ける
-//Todo: 検索バーをscreenCoverより前面に配置する
 
 class SearchFragment : Fragment() {
 
@@ -84,26 +85,31 @@ class SearchFragment : Fragment() {
         //Realmのインスタンス取得
         val realm: Realm = Realm.getDefaultInstance()
 
-        //検索内容に一致するデータを取得
-        val realmResults = realm.where<Achievement>()
+        //Achievementレコードを格納する変数realmResultsを宣言
+        var realmResults: RealmResults<Achievement>
+
+        //検索バーのクエリに一致するレコードを取得
+        realmResults = realm.where<Achievement>()
             .contains("title", queryString)
             .or()
             .contains("detail", queryString)
             .findAll()
             .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
 
+        //検索バーのクエリがemptyなら、取得するレコードは0件にする
+        if (queryString.isEmpty()) {
+            realmResults = realm.where<Achievement>()
+                .equalTo("isPinned", true)
+                .and()
+                .equalTo("isPinned", false)
+                .findAll()
+        }
+
         //RecyclerViewを更新
         layoutManager = GridLayoutManager(this.context, 2)
         searchRecyclerView.layoutManager = layoutManager
         adapter = CustomRecyclerViewAdapter(realmResults)
         searchRecyclerView.adapter = this.adapter
-
-        //もしqueryがemptyなら、RecyclerViewを表示しない
-        if(queryString.isEmpty()){
-            searchRecyclerView.visibility = View.GONE
-        }else{
-            searchRecyclerView.visibility = View.VISIBLE
-        }
     }
 
 
