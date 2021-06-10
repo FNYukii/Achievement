@@ -3,6 +3,8 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
@@ -171,7 +173,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
         super.onDestroy()
 
         //タイトルか説明のどちらかが埋められているなら、レコードを追加、もしくは更新
-        if(titleEdit.text.isNotEmpty() || detailEdit.text.isNotEmpty()){
+        if(!isGarbage && (titleEdit.text.isNotEmpty() || detailEdit.text.isNotEmpty())){
             if(achievementId == 0){
                 insertRecord()
             }else{
@@ -180,7 +182,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
         }
 
         //タイトルと説明どちらもempty、またはdeleteDialogから削除命令を受け取っているなら、既存のレコードを削除
-        if(titleEdit.text.isEmpty() && detailEdit.text.isEmpty() || isGarbage){
+        if(isGarbage || titleEdit.text.isEmpty() && detailEdit.text.isEmpty()){
             if(achievementId != 0){
                 deleteRecord()
             }
@@ -204,6 +206,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             achievement.title = titleEdit.text.toString()
             achievement.detail = detailEdit.text.toString()
         }
+        Toast.makeText(applicationContext, "アチーブメントを追加しました", Toast.LENGTH_SHORT).show()
     }
 
 
@@ -219,6 +222,10 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             achievement?.title = titleEdit.text.toString()
             achievement?.detail = detailEdit.text.toString()
         }
+        Toast.makeText(this, "アチーブメントを更新しました", Toast.LENGTH_SHORT).show()
+//        val toast = Toast.makeText(this, "アチーブメントを更新しました", Toast.LENGTH_SHORT)
+//        toast.setGravity(Gravity.TOP, 30, 30)
+//        toast.show()
     }
 
 
@@ -230,6 +237,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
                 .findFirst()
             achievement?.deleteFromRealm()
         }
+        Toast.makeText(applicationContext, "アチーブメントを削除しました", Toast.LENGTH_SHORT).show()
     }
 
 
