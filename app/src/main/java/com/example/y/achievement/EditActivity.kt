@@ -233,8 +233,18 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             .equalTo("id", achievementId)
             .findFirst()
 
-        //isPinnedが変更されたかどうか確認
+        //colorIdが変更されたなら、データを更新
+        if(achievement?.colorId != colorId){
+            realm.executeTransaction {
+                achievement?.colorId = colorId
+            }
+        }
+
+        //isPinnedが変更されたなら、データを更新
         if(achievement?.isPinned != isPinned){
+            realm.executeTransaction {
+                achievement?.isPinned = isPinned
+            }
             toastMessage = if(isPinned){
                 "アチーブメントをピン止めしました"
             }else{
@@ -242,18 +252,32 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             }
         }
 
-        //titleまたはdetailが変更されたかどうか確認
-        if(achievement?.title != titleEdit.text.toString() || achievement.detail != detailEdit.text.toString()){
+        //titleが変更されたなら、データを更新
+        if(achievement?.title != titleEdit.text.toString()){
+            realm.executeTransaction {
+                achievement?.title = titleEdit.text.toString()
+            }
             toastMessage = "アチーブメントを更新しました"
         }
 
-        //該当のレコードのデータを更新
-        realm.executeTransaction {
-            achievement?.isAchieved = isAchieved
-            achievement?.isPinned = isPinned
-            achievement?.colorId = colorId
-            achievement?.title = titleEdit.text.toString()
-            achievement?.detail = detailEdit.text.toString()
+        //detailが変更されたなら、データを更新
+        if(achievement?.detail != detailEdit.text.toString()){
+            realm.executeTransaction {
+                achievement?.detail = detailEdit.text.toString()
+            }
+            toastMessage = "アチーブメントを更新しました"
+        }
+
+        //isAchievedが変更されたなら、データを更新
+        if(achievement?.isAchieved != isAchieved){
+            realm.executeTransaction {
+                achievement?.isAchieved = isAchieved
+            }
+            if(isAchieved){
+                toastMessage = "アチーブメントを達成しました"
+            }else{
+                toastMessage = "アチーブメントを未達成にしました"
+            }
         }
 
     }
