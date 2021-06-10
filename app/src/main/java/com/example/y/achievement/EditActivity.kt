@@ -3,7 +3,6 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
@@ -21,11 +20,14 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     private var realm: Realm = Realm.getDefaultInstance()
 
     //変数たち
-    private var achievementId: Int = 0
-    private var isAchieved: Boolean = false
-    private var isPinned: Boolean = false
-    private var colorId: Int = 0
-    private var isGarbage: Boolean = false
+    private var achievementId = 0
+    private var isAchieved = false
+    private var isPinned = false
+    private var colorId = 0
+    private var isGarbage = false
+    private var toastMessage = ""
+    private var isPinChanged = false
+    private var isTextChanged = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +51,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             setColor()
         }
 
-        Log.d("hello", "onCreate $colorId")
 
         //backButtonが押されたら、Activityを終了
         backButton.setOnClickListener {
@@ -121,7 +122,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
     //各Viewへ色をセット
     private fun setColor(){
-        Log.d("hello", "setColor $colorId")
 
         when (colorId){
             0 -> {
@@ -175,7 +175,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("hello", "onDestroy $colorId")
 
 
         //タイトルか説明のどちらかが埋められているなら、レコードを追加、もしくは更新
@@ -187,6 +186,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             }
         }
 
+
         //タイトルと説明どちらもempty、またはdeleteDialogから削除命令を受け取っているなら、既存のレコードを削除
         if(isGarbage || titleEdit.text.isEmpty() && detailEdit.text.isEmpty()){
             if(achievementId != 0){
@@ -194,20 +194,26 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             }
         }
 
+        //Toastでユーザーに処理内容を報告
+        if(toastMessage.isNotEmpty()){
+            Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
+        }
+
         //Realmの後片付け
         realm.close()
-
-        Log.d("hello", "death $colorId")
-
     }
 
 
     //新規レコード追加
     private fun insertRecord(){
+
+        //新たな主キーを作成する
+        var maxId = realm.where<Achievement>().max("id")?.toInt()
+        if (maxId == null) maxId = 0
+        val newId = maxId + 1
+
+        //新規レコードを追加
         realm.executeTransaction {
-            var maxId = realm.where<Achievement>().max("id")?.toInt()
-            if (maxId == null) maxId = 0
-            val newId = maxId + 1
             val achievement = realm.createObject<Achievement>(newId)
             achievement.isAchieved = isAchieved
             achievement.isPinned = isPinned
@@ -215,40 +221,57 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             achievement.title = titleEdit.text.toString()
             achievement.detail = detailEdit.text.toString()
         }
-        Toast.makeText(applicationContext, "アチーブメントを追加しました", Toast.LENGTH_SHORT).show()
+        toastMessage = "アチーブメントを追加しました"
     }
 
 
     //既存レコード更新
     private fun updateRecord(){
-        Log.d("hello", "updateRecord $colorId")
 
+        //該当のレコードを取得
+        val achievement = realm.where<Achievement>()
+            .equalTo("id", achievementId)
+            .findFirst()
+
+        //isPinnedが変更されたかどうか確認
+        if(achievement?.isPinned != isPinned){
+            toastMessage = if(isPinned){
+                "アチーブメントをピン止めしました"
+            }else{
+                "アチーブメントのピン止めを解除しました"
+            }
+        }
+
+        //titleまたはdetailが変更されたかどうか確認
+        if(achievement?.title != titleEdit.text.toString() || achievement.detail != detailEdit.text.toString()){
+            toastMessage = "アチーブメントを更新しました"
+        }
+
+        //該当のレコードのデータを更新
         realm.executeTransaction {
-            val achievement = realm.where<Achievement>()
-                .equalTo("id", achievementId)
-                .findFirst()
             achievement?.isAchieved = isAchieved
             achievement?.isPinned = isPinned
             achievement?.colorId = colorId
             achievement?.title = titleEdit.text.toString()
             achievement?.detail = detailEdit.text.toString()
         }
-        Toast.makeText(this, "アチーブメントを更新しました", Toast.LENGTH_SHORT).show()
-//        val toast = Toast.makeText(this, "アチーブメントを更新しました", Toast.LENGTH_SHORT)
-//        toast.setGravity(Gravity.TOP, 30, 30)
-//        toast.show()
+
     }
 
 
     //既存レコード削除
     private fun deleteRecord(){
+
+        //該当のレコードを取得
+        val achievement = realm.where<Achievement>()
+            .equalTo("id", achievementId)
+            .findFirst()
+
+        //レコード削除
         realm.executeTransaction {
-            val achievement = realm.where<Achievement>()
-                .equalTo("id", achievementId)
-                .findFirst()
             achievement?.deleteFromRealm()
         }
-        Toast.makeText(applicationContext, "アチーブメントを削除しました", Toast.LENGTH_SHORT).show()
+        toastMessage = "アチーブメントを削除しました"
     }
 
 
