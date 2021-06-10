@@ -55,6 +55,12 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
         //backButtonが押されたら、編集を終了
         backButton.setOnClickListener {
+            //もし、編集終了時にtitleもdetailもemptyなら、そのアチーブメントは削除する
+            if(achievement.title.isEmpty() && achievement.detail.isEmpty()){
+                realm.executeTransaction {
+                    achievement.deleteFromRealm()
+                }
+            }
             finish()
         }
 
@@ -213,14 +219,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
     override fun onDestroy() {
         super.onDestroy()
-
-        //もし、編集終了時にtitleもdetailもemptyなら、そのアチーブメントは削除する
-        if(achievement.title.isEmpty() && achievement.detail.isEmpty()){
-            realm.executeTransaction {
-                achievement.deleteFromRealm()
-            }
-        }
-
         realm.close()
     }
 
