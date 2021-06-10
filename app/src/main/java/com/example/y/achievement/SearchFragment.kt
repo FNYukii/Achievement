@@ -16,7 +16,8 @@ import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_search.*
 
 //Todo: アチーブメントの色やピン止めの有無で検索できるようにする
-//Todo: 検索バーのクエリをemptyにした際、RecyclerViewを更新させる
+//Todo: 非推奨のメソッドの使用を避ける
+//Todo: 検索バーをscreenCoverより前面に配置する
 
 class SearchFragment : Fragment() {
 
@@ -52,7 +53,7 @@ class SearchFragment : Fragment() {
         //検索してRecyclerViewを表示
         search()
 
-        //検索バーの操作イベントに応じて、検索を行う。queryStringは逐次SharedPreferencesに保存！
+        //検索バーのqueryが変化するたびに、検索を行う。queryStringは逐次SharedPreferencesに保存！
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
                 queryString = newText!!
@@ -80,18 +81,28 @@ class SearchFragment : Fragment() {
 
 
     private fun search(){
-        if(queryString.isNotEmpty()){
-            val realm: Realm = Realm.getDefaultInstance()
-            val realmResults = realm.where<Achievement>()
-                .contains("title", queryString)
-                .or()
-                .contains("detail", queryString)
-                .findAll()
-                .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
-            layoutManager = GridLayoutManager(this.context, 2)
-            searchRecyclerView.layoutManager = layoutManager
-            adapter = CustomRecyclerViewAdapter(realmResults)
-            searchRecyclerView.adapter = this.adapter
+        //Realmのインスタンス取得
+        val realm: Realm = Realm.getDefaultInstance()
+
+        //検索内容に一致するデータを取得
+        val realmResults = realm.where<Achievement>()
+            .contains("title", queryString)
+            .or()
+            .contains("detail", queryString)
+            .findAll()
+            .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
+
+        //RecyclerViewを更新
+        layoutManager = GridLayoutManager(this.context, 2)
+        searchRecyclerView.layoutManager = layoutManager
+        adapter = CustomRecyclerViewAdapter(realmResults)
+        searchRecyclerView.adapter = this.adapter
+
+        //もしqueryがemptyなら、RecyclerViewを表示しない
+        if(queryString.isEmpty()){
+            searchRecyclerView.visibility = View.GONE
+        }else{
+            searchRecyclerView.visibility = View.VISIBLE
         }
     }
 
