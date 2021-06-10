@@ -12,7 +12,7 @@ import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit.*
 
-//Todo: レコード削除をユーザーに知らせるToastを実装する
+//Todo: Toastの位置を調整する
 
 class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
 
