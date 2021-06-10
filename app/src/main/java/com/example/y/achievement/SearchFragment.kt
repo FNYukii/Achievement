@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
-import io.realm.RealmObject
 import io.realm.RealmResults
 import io.realm.Sort
 import io.realm.kotlin.where
@@ -45,7 +44,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //SharedPreferencesオブジェクトを取得
-        val sharedPref: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context)
+        val sharedPref: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
         //SharedPreferencesに保存されていたqueryStringを、searchViewのqueryにセット
         queryString = sharedPref.getString("queryString","").toString()
