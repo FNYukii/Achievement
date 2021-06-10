@@ -3,7 +3,6 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
@@ -19,9 +18,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     //Realmのインスタンスを取得
     private var realm: Realm = Realm.getDefaultInstance()
 
-    //Realmのレコードを宣言
-//    private lateinit var achievement: Achievement
-
+    //変数たち
     private var achievementId: Int = 0
     private var isAchieved: Boolean = false
     private var isPinned: Boolean = false
