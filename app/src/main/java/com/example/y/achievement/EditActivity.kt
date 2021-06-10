@@ -3,8 +3,7 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
@@ -12,9 +11,6 @@ import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit.*
 
-//Todo: レコード追加のタイミングを見直す
-//Todo: レコード削除のタイミングを見直す
-//Todo: 空のアチーブメントが削除される瞬間、アチーブメントに想定外の色が反映されているバグを修正する
 //Todo: レコード削除をユーザーに知らせるToastを実装する
 
 class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
@@ -24,7 +20,13 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     private var realm: Realm = Realm.getDefaultInstance()
 
     //Realmのレコードを宣言
-    private lateinit var achievement: Achievement
+//    private lateinit var achievement: Achievement
+
+    private var achievementId: Int = 0
+    private var isAchieved: Boolean = false
+    private var isPinned: Boolean = false
+    private var colorId: Int = 0
+    private var isGarbage: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,51 +34,36 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
         setContentView(R.layout.activity_edit)
 
         //Intentから渡されてきたidを取得
-        var achievementId = intent.getIntExtra("achievementId", 0)
+        achievementId = intent.getIntExtra("achievementId", 0)
 
-        //もしidが渡されていないなら、新規レコード追加
-        if(achievementId == 0){
-            realm.executeTransaction {
-                var maxId = realm.where<Achievement>().max("id")?.toInt()
-                if (maxId == null) maxId = 0
-                achievementId = maxId + 1
-                achievement = realm.createObject(achievementId)
-            }
-        }
-
-        //もしidが渡されてきていたら、既存のレコードを検索して取得
+        //もしIntentからアチーブメントのidを受け取ったら、そのアチーブメントを編集モードとする
         if(achievementId != 0){
-            achievement = realm.where<Achievement>().equalTo("id", achievementId).findFirst()!!
+            val achievement = realm.where<Achievement>()
+                .equalTo("id", achievementId)
+                .findFirst()
+            titleEdit.setText(achievement?.title)
+            detailEdit.setText(achievement?.detail)
+            isAchieved = achievement?.isAchieved!!
+            isPinned = achievement.isPinned
+            colorId = achievement.colorId
             setPinIcon()
             setColor()
-            titleEdit.setText(achievement.title)
-            detailEdit.setText(achievement.detail)
         }
 
-        //backButtonが押されたら、編集を終了
+        //backButtonが押されたら、Activityを終了
         backButton.setOnClickListener {
-            //もし、編集終了時にtitleもdetailもemptyなら、そのアチーブメントは削除する
-            if(achievement.title.isEmpty() && achievement.detail.isEmpty()){
-                realm.executeTransaction {
-                    achievement.deleteFromRealm()
-                }
-            }
             finish()
         }
 
-        //achieveButtonが押されたら、アチーブメントを達成とする
+        //achieveButtonが押されたら、isAchievedを切り替えて、Activityを終了
         achieveButton.setOnClickListener {
-            realm.executeTransaction {
-                achievement.isAchieved = !achievement.isAchieved
-            }
+            isAchieved = !isAchieved
             finish()
         }
 
         //pinButtonが押されたら、isPinnedの真偽を切り替える
         pinButton.setOnClickListener {
-            realm.executeTransaction {
-                achievement.isPinned = !achievement.isPinned
-            }
+            isPinned = !isPinned
             setPinIcon()
         }
 
@@ -91,36 +78,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             val dialogFragment = DeleteDialogFragment()
             dialogFragment.show(supportFragmentManager, "dialog")
         }
-
-        //titleEditが編集されたら、データを更新
-        titleEdit.addTextChangedListener(object : TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                //do nothing
-            }
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                //do nothing
-            }
-            override fun afterTextChanged(s: Editable?) {
-                realm.executeTransaction {
-                    achievement.title = s.toString()
-                }
-            }
-        })
-
-        //detailEditが編集されたら、データを更新
-        detailEdit.addTextChangedListener(object : TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                //do nothing
-            }
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                //do nothing
-            }
-            override fun afterTextChanged(s: Editable?) {
-                realm.executeTransaction {
-                    achievement.detail = s.toString()
-                }
-            }
-        })
 
         //キーボードが閉じられたら、EditTextからフォーカスを外す
         constraintLayout.viewTreeObserver.addOnGlobalLayoutListener {
@@ -139,7 +96,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
     //pinButtonのアイコンを切り替える
     private fun setPinIcon(){
-        if(achievement.isPinned){
+        if(isPinned){
             pinButton.setImageResource(R.drawable.ic_baseline_push_pin_24)
         }else{
             pinButton.setImageResource(R.drawable.ic_outline_push_pin_24)
@@ -149,25 +106,21 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
     //colorDialogからcolorIDを受け取ったら、データを更新&各Viewへ色をセット
     override fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Int) {
-        realm.executeTransaction {
-            achievement.colorId = colorId
-        }
+        this.colorId = colorId
         setColor()
     }
 
 
     //deleteDialogから削除命令を受け取ったら、レコードを削除
     override fun onDialogIsDeleteReceive(dialog: DialogFragment) {
-        realm.executeTransaction {
-            achievement.deleteFromRealm()
-        }
+        isGarbage = true
         finish()
     }
 
 
     //各Viewへ色をセット
     private fun setColor(){
-        when (achievement.colorId){
+        when (colorId){
             0 -> {
                 backButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
                 achieveButton.setColorFilter(ContextCompat.getColor(this, R.color.gray))
@@ -219,7 +172,67 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
     override fun onDestroy() {
         super.onDestroy()
+
+        //タイトルか説明のどちらかが埋められているなら、レコードを追加、もしくは更新
+        if(titleEdit.text.isNotEmpty() || detailEdit.text.isNotEmpty()){
+            if(achievementId == 0){
+                insertRecord()
+            }else{
+                updateRecord()
+            }
+        }
+
+        //タイトルと説明どちらもempty、またはdeleteDialogから削除命令を受け取っているなら、既存のレコードを削除
+        if(titleEdit.text.isEmpty() && detailEdit.text.isEmpty() || isGarbage){
+            if(achievementId != 0){
+                deleteRecord()
+            }
+        }
+
+        //Realmの後片付け
         realm.close()
+    }
+
+
+    //新規レコード追加
+    private fun insertRecord(){
+        realm.executeTransaction {
+            var maxId = realm.where<Achievement>().max("id")?.toInt()
+            if (maxId == null) maxId = 0
+            val newId = maxId + 1
+            val achievement = realm.createObject<Achievement>(newId)
+            achievement.isAchieved = isAchieved
+            achievement.isPinned = isPinned
+            achievement.colorId = colorId
+            achievement.title = titleEdit.text.toString()
+            achievement.detail = detailEdit.text.toString()
+        }
+    }
+
+
+    //既存レコード更新
+    private fun updateRecord(){
+        realm.executeTransaction {
+            val achievement = realm.where<Achievement>()
+                .equalTo("id", achievementId)
+                .findFirst()
+            achievement?.isAchieved = isAchieved
+            achievement?.isPinned = isPinned
+            achievement?.colorId = colorId
+            achievement?.title = titleEdit.text.toString()
+            achievement?.detail = detailEdit.text.toString()
+        }
+    }
+
+
+    //既存レコード削除
+    private fun deleteRecord(){
+        realm.executeTransaction {
+            val achievement = realm.where<Achievement>()
+                .equalTo("id", achievementId)
+                .findFirst()
+            achievement?.deleteFromRealm()
+        }
     }
 
 
