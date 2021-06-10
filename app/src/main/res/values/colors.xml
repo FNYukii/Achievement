@@ -27,12 +27,12 @@
     <!-- app background -->
     <color name="navy">#26394C</color>
 
-    <!-- border-top, border-bottom -->
+    <!-- border-top, border-bottom, toolButton -->
     <color name="lightNavy">#406181</color>
 
-    <!-- floatingButton, toolButton -->
-    <color name="steelBlue">#798CC5</color>
-    <color name="lightSteelBlue">#A7BDFF</color>
+    <!-- floatingButton -->
+    <color name="skyBlue">#2EC4FF</color>
+    <color name="lightSkyBlue">#7EDBFF</color>
 
     <!-- bottom navigation item, text -->
     <color name="gray">#AAAAAA</color>
