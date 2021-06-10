@@ -41,11 +41,13 @@ class CustomRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
 
+
         //contextを取得する
         val context: Context = holder.itemView.context
 
         //レコードを取得
         val achievement = collection?.get(position)
+
 
         //もしピン止めされたアチーブメントでないなら、ピンアイコンを非表示
         if(achievement?.isPinned == false){
@@ -71,6 +73,13 @@ class CustomRecyclerViewAdapter(
 
         //colorIdに応じて色を変更する。0:white, 1:green, 2:blue, 3:purple, 4:orange, 5:gold
         when (achievement?.colorId) {
+            0 -> {
+                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_white)
+                holder.framePinImage.setColorFilter(ContextCompat.getColor(context, R.color.white))
+                holder.frameAchieveImage.setColorFilter(ContextCompat.getColor(context, R.color.white))
+                holder.frameTitleText.setTextColor(ContextCompat.getColor(context, R.color.white))
+                holder.frameDetailText.setTextColor(ContextCompat.getColor(context, R.color.white))
+            }
             1 -> {
                 holder.frameBackground.setBackgroundResource(R.drawable.background_frame_green)
                 holder.framePinImage.setColorFilter(ContextCompat.getColor(context, R.color.green))
@@ -107,6 +116,7 @@ class CustomRecyclerViewAdapter(
             intent.putExtra("achievementId", achievement?.id)
             it.context.startActivity(intent)
         }
+
 
     }
 
