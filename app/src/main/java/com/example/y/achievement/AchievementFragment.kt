@@ -112,6 +112,12 @@ class AchievementFragment : Fragment() {
     }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()
+    }
+
+
 }
 
 

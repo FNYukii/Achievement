@@ -20,6 +20,8 @@ import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : Fragment() {
 
+    //Realmのインスタンス取得
+    val realm: Realm = Realm.getDefaultInstance()
 
     //RecyclerViewのインスタンス宣言
     private lateinit var adapter: CustomRecyclerViewAdapter
@@ -80,8 +82,6 @@ class SearchFragment : Fragment() {
 
 
     private fun search(){
-        //Realmのインスタンス取得
-        val realm: Realm = Realm.getDefaultInstance()
 
         //Achievementレコードを格納する変数realmResultsを宣言
         var realmResults: RealmResults<Achievement>
@@ -114,6 +114,12 @@ class SearchFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         searchView.clearFocus()
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()
     }
 
 
