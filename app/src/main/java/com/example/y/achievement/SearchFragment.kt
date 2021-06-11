@@ -3,7 +3,7 @@ package com.example.y.achievement
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
@@ -17,7 +17,6 @@ import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_search.*
 
 //Todo: アチーブメントの色やピン止めの有無で検索できるようにする
-//Todo: 非推奨のメソッドの使用を避ける
 
 class SearchFragment : Fragment() {
 
