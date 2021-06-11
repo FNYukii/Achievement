@@ -2,6 +2,7 @@ package com.example.y.achievement
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
 import io.realm.Realm
+import io.realm.RealmResults
 import io.realm.Sort
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_achievement.*
+
+//Todo: アチーブメントが0件の時は、画面にメッセージを表示する
+//Todo: mainRecyclerViewのmarginTop調整処理のタイミングを修正する
 
 class AchievementFragment : Fragment() {
 
@@ -43,9 +48,9 @@ class AchievementFragment : Fragment() {
         }
 
         //pinRecyclerViewを表示
-        val realmResults1 = realm.where<Achievement>()
-            .equalTo("isAchieved", false)
-            .and()
+        val realmResults1 = this.realm.where<Achievement>()
+//            .equalTo("isAchieved", false)
+//            .and()
             .equalTo("isPinned", true)
             .findAll()
             .sort("id", Sort.DESCENDING)
@@ -56,8 +61,8 @@ class AchievementFragment : Fragment() {
 
         //mainRecyclerViewを表示
         val realmResults2 = realm.where<Achievement>()
-            .equalTo("isAchieved", false)
-            .and()
+//            .equalTo("isAchieved", false)
+//            .and()
             .equalTo("isPinned", false)
             .findAll()
             .sort("id", Sort.DESCENDING)
@@ -72,7 +77,10 @@ class AchievementFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        //もしピン止めされたアチーブメントが無いなら、mainRecyclerViewのmarginTopを0にする
+        Log.d("hello", "onStart")
+        Log.d("hello", "slept")
+
+        //もしピン止めされたアチーブメントの有無によって、mainRecyclerViewのmarginTopを調整する
         pinRecyclerView.post {
             val param = mainRecyclerView.layoutParams as ViewGroup.MarginLayoutParams
             if(pinRecyclerView.height == 0){
@@ -83,9 +91,21 @@ class AchievementFragment : Fragment() {
             mainRecyclerView.layoutParams = param
         }
 
+        //もしデータが1件も登録されていないなら、画面にメッセージを表示する
+        var realm = Realm.getDefaultInstance()
+        val realmResults = realm.where<Achievement>().findAll()
+        val dataSize = realmResults.size
+        Log.d("hello", "size : $dataSize")
+        if(dataSize == 0){
+            messageText.visibility = View.VISIBLE
+        }else{
+            messageText.visibility = View.GONE
+        }
+
     }
 
 
 }
+
 
 

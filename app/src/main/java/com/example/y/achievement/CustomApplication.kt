@@ -4,8 +4,6 @@ import android.app.Application
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
-//Todo: アプリ初起動時には、見本となるアチーブメントを追加する。
-
 class CustomApplication : Application() {
 
 
@@ -18,7 +16,10 @@ class CustomApplication : Application() {
                 .deleteRealmIfMigrationNeeded()
                 .build()
         Realm.setDefaultConfiguration(config)
+
+        //ダミーデータを挿入
 //        InsertData()
+
     }
 
 

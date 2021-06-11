@@ -42,13 +42,11 @@ class CustomRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
 
-
         //contextを取得する
         val context: Context = holder.itemView.context
 
         //レコードを取得
         val achievement = collection?.get(position)
-
 
         //もしピン止めされたアチーブメントでないなら、ピンアイコンを非表示
         if(achievement?.isPinned == false){
@@ -118,8 +116,6 @@ class CustomRecyclerViewAdapter(
             it.context.startActivity(intent)
         }
 
-
     }
-
 
 }
