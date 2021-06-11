@@ -3,15 +3,18 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.snackbar.Snackbar
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit.*
 
 //Todo: Toastの位置を調整する
+//Todo: SnackBar
 
 class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
 
@@ -141,6 +144,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
         //Toastでユーザーに処理内容を報告
         if(toastMessage.isNotEmpty()){
             Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
+//            Snackbar.make(view , toastMessage, Snackbar.LENGTH_LONG).show()
         }
     }
 
