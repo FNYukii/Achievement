@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
 import io.realm.Realm
+import io.realm.RealmChangeListener
 import io.realm.Sort
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_achievement.*
@@ -42,46 +43,46 @@ class AchievementFragment : Fragment() {
             startActivity(intent)
         }
 
-        //pinRecyclerViewを表示
-        val realmResults1 = realm.where<Achievement>()
+        //全てのアチーブメントを取得
+        val allResults = realm.where<Achievement>()
+            .findAll()
+
+        //ピン止めされたアチーブメントを取得
+        val pinnedResults = realm.where<Achievement>()
             .equalTo("isAchieved", false)
             .and()
             .equalTo("isPinned", true)
             .findAll()
             .sort("id", Sort.DESCENDING)
-        layoutManager = GridLayoutManager(this.context, 2)
-        pinRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(realmResults1)
-        pinRecyclerView.adapter = this.adapter
 
-        //mainRecyclerViewを表示
-        val realmResults2 = realm.where<Achievement>()
+        //ピン止めされていないアチーブメントを取得
+        val notPinnedResults = realm.where<Achievement>()
             .equalTo("isAchieved", false)
             .and()
             .equalTo("isPinned", false)
             .findAll()
             .sort("id", Sort.DESCENDING)
+
+        //pinRecyclerViewを表示
+        layoutManager = GridLayoutManager(this.context, 2)
+        pinRecyclerView.layoutManager = layoutManager
+        adapter = CustomRecyclerViewAdapter(pinnedResults)
+        pinRecyclerView.adapter = this.adapter
+
+        //mainRecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
         mainRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(realmResults2)
+        adapter = CustomRecyclerViewAdapter(notPinnedResults)
         mainRecyclerView.adapter = this.adapter
 
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-
         //もしピン止めされたアチーブメントが無いなら、mainRecyclerViewのmarginTopを0にする
-        pinRecyclerView.post {
-            val param = mainRecyclerView.layoutParams as ViewGroup.MarginLayoutParams
-            if(pinRecyclerView.height == 0){
-                param.topMargin = 0
+        pinnedResults.addChangeListener(RealmChangeListener {
+            if(pinnedResults.size == 0){
+                pinRecyclerView.visibility = View.GONE
             }else{
-                param.topMargin = 64
+                pinRecyclerView.visibility = View.VISIBLE
             }
-            mainRecyclerView.layoutParams = param
-        }
+        })
 
     }
 

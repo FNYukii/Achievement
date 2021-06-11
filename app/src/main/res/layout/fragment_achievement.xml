@@ -34,13 +34,13 @@
                 android:id="@+id/pinRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="32dp"
                 android:nestedScrollingEnabled="false" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mainRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:nestedScrollingEnabled="false" >
 
             </androidx.recyclerview.widget.RecyclerView>
