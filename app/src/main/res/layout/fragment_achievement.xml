@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".AchievementFragment">
 
+    <TextView
+        android:id="@+id/messageText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="まだアチーブメントが登録されていません"
+        android:textColor="@color/gray"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
@@ -29,6 +43,8 @@
                 android:text="Achievement"
                 android:fontFamily="cursive"
                 android:textColor="@color/white" />
+
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/pinRecyclerView"

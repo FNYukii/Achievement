@@ -12,6 +12,7 @@ import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit.*
 
 //Todo: Toastの位置を調整する
+//Todo: onDestroyメソッド内にデータ保存処理を書かないようにする
 
 class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
 
