@@ -16,6 +16,8 @@ import io.realm.Sort
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_achievement.*
 
+//Todo: SnackBarを使ってメッセージを表示する
+
 class AchievementFragment : Fragment() {
 
 

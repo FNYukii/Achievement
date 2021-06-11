@@ -3,18 +3,13 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
-import com.google.android.material.snackbar.Snackbar
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit.*
-
-//Todo: Toastの位置を調整する
-//Todo: SnackBar
 
 class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
 
@@ -28,7 +23,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     private var isPinned = false
     private var colorId = 0
     private var isGarbage = false
-    private var toastMessage = ""
+    private var message = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -142,9 +137,9 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
         }
 
         //Toastでユーザーに処理内容を報告
-        if(toastMessage.isNotEmpty()){
-            Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
-//            Snackbar.make(view , toastMessage, Snackbar.LENGTH_LONG).show()
+        if(message.isNotEmpty()){
+            val t = Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT)
+            t.show()
         }
     }
 
@@ -202,13 +197,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
-        //Realmの後片付け
-        realm.close()
-    }
-
-
     //新規レコード追加
     private fun insertRecord(){
 
@@ -226,7 +214,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             achievement.title = titleEdit.text.toString()
             achievement.detail = detailEdit.text.toString()
         }
-        toastMessage = "アチーブメントを追加しました"
+        message = "アチーブメントを追加しました"
     }
 
 
@@ -250,7 +238,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             realm.executeTransaction {
                 achievement?.isPinned = isPinned
             }
-            toastMessage = if(isPinned){
+            message = if(isPinned){
                 "アチーブメントをピン止めしました"
             }else{
                 "アチーブメントのピン止めを解除しました"
@@ -262,7 +250,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             realm.executeTransaction {
                 achievement?.title = titleEdit.text.toString()
             }
-            toastMessage = "アチーブメントを更新しました"
+            message = "アチーブメントを更新しました"
         }
 
         //detailが変更されたなら、データを更新
@@ -270,7 +258,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             realm.executeTransaction {
                 achievement?.detail = detailEdit.text.toString()
             }
-            toastMessage = "アチーブメントを更新しました"
+            message = "アチーブメントを更新しました"
         }
 
         //isAchievedが変更されたなら、データを更新
@@ -278,7 +266,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             realm.executeTransaction {
                 achievement?.isAchieved = isAchieved
             }
-            toastMessage = if(isAchieved){
+            message = if(isAchieved){
                 "アチーブメントを達成しました"
             }else{
                 "アチーブメントを未達成にしました"
@@ -300,7 +288,14 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
         realm.executeTransaction {
             achievement?.deleteFromRealm()
         }
-        toastMessage = "アチーブメントを削除しました"
+        message = "アチーブメントを削除しました"
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //Realmの後片付け
+        realm.close()
     }
 
 
