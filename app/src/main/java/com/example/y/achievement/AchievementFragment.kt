@@ -13,8 +13,6 @@ import io.realm.Sort
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_achievement.*
 
-//Todo: floatingButtonの背景色を見直す
-
 class AchievementFragment : Fragment() {
 
 
