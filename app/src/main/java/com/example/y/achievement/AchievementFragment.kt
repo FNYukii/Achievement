@@ -75,7 +75,12 @@ class AchievementFragment : Fragment() {
         adapter = CustomRecyclerViewAdapter(notPinnedResults)
         mainRecyclerView.adapter = this.adapter
 
-        //もしピン止めされたアチーブメントが無いなら、mainRecyclerViewのmarginTopを0にする
+        //もしピン止めされたアチーブメントが無いなら、pinRecyclerViewを表示しない
+        if(pinnedResults.size == 0){
+            pinRecyclerView.visibility = View.GONE
+        }else{
+            pinRecyclerView.visibility = View.VISIBLE
+        }
         pinnedResults.addChangeListener(RealmChangeListener {
             if(pinnedResults.size == 0){
                 pinRecyclerView.visibility = View.GONE
