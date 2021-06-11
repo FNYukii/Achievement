@@ -66,4 +66,7 @@ dependencies {
     //RecyclerView
     implementation "androidx.recyclerview:recyclerview:1.2.1"
 
+    //SharedPreference
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+
 }

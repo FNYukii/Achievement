@@ -10,13 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
 import io.realm.Realm
+import io.realm.RealmChangeListener
 import io.realm.RealmResults
 import io.realm.Sort
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_achievement.*
-
-//Todo: アチーブメントが0件の時は、画面にメッセージを表示する
-//Todo: mainRecyclerViewのmarginTop調整処理のタイミングを修正する
 
 class AchievementFragment : Fragment() {
 
@@ -27,6 +25,27 @@ class AchievementFragment : Fragment() {
 
     //Realmのインスタンスを取得
     var realm: Realm = Realm.getDefaultInstance()
+
+    //全てのアチーブメントを取得
+    private val allResults: RealmResults<Achievement> = realm.where<Achievement>()
+        .findAll()
+        .sort("id", Sort.DESCENDING)
+
+    //ピン止めされたアチーブメントを取得
+    private val pinnedResults: RealmResults<Achievement> = realm.where<Achievement>()
+        .equalTo("isAchieved", false)
+        .and()
+        .equalTo("isPinned", true)
+        .findAll()
+        .sort("id", Sort.DESCENDING)
+
+    //ピン止めされていないアチーブメントを取得
+    private val notPinnedResults: RealmResults<Achievement> = realm.where<Achievement>()
+        .equalTo("isAchieved", false)
+        .and()
+        .equalTo("isPinned", false)
+        .findAll()
+        .sort("id", Sort.DESCENDING)
 
 
     override fun onCreateView(
@@ -48,64 +67,49 @@ class AchievementFragment : Fragment() {
         }
 
         //pinRecyclerViewを表示
-        val realmResults1 = this.realm.where<Achievement>()
-//            .equalTo("isAchieved", false)
-//            .and()
-            .equalTo("isPinned", true)
-            .findAll()
-            .sort("id", Sort.DESCENDING)
         layoutManager = GridLayoutManager(this.context, 2)
         pinRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(realmResults1)
+        adapter = CustomRecyclerViewAdapter(pinnedResults)
         pinRecyclerView.adapter = this.adapter
 
         //mainRecyclerViewを表示
-        val realmResults2 = realm.where<Achievement>()
-//            .equalTo("isAchieved", false)
-//            .and()
-            .equalTo("isPinned", false)
-            .findAll()
-            .sort("id", Sort.DESCENDING)
         layoutManager = GridLayoutManager(this.context, 2)
         mainRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(realmResults2)
+        adapter = CustomRecyclerViewAdapter(notPinnedResults)
         mainRecyclerView.adapter = this.adapter
 
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-
-        Log.d("hello", "onStart")
-        Log.d("hello", "slept")
-
-        //もしピン止めされたアチーブメントの有無によって、mainRecyclerViewのmarginTopを調整する
-        pinRecyclerView.post {
-            val param = mainRecyclerView.layoutParams as ViewGroup.MarginLayoutParams
-            if(pinRecyclerView.height == 0){
-                param.topMargin = 0
-            }else{
-                param.topMargin = 64
-            }
-            mainRecyclerView.layoutParams = param
+        //もしピン止めされたアチーブメントが無いなら、pinRecyclerViewを表示しない
+        if(pinnedResults.size == 0){
+            pinRecyclerView.visibility = View.GONE
+        }else{
+            pinRecyclerView.visibility = View.VISIBLE
         }
+        pinnedResults.addChangeListener(RealmChangeListener {
+            if(pinnedResults.size == 0){
+                pinRecyclerView.visibility = View.GONE
+            }else{
+                pinRecyclerView.visibility = View.VISIBLE
+            }
+        })
 
-        //もしデータが1件も登録されていないなら、画面にメッセージを表示する
-        var realm = Realm.getDefaultInstance()
-        val realmResults = realm.where<Achievement>().findAll()
-        val dataSize = realmResults.size
-        Log.d("hello", "size : $dataSize")
-        if(dataSize == 0){
+        //もしアチーブメントが1件も登録されていないなら、メッセージを表示する
+        if(allResults.size == 0){
             messageText.visibility = View.VISIBLE
         }else{
             messageText.visibility = View.GONE
         }
+        allResults.addChangeListener(RealmChangeListener {
+            Log.d("hello", "allResults was changed")
+            if(allResults.size == 0){
+                messageText.visibility = View.VISIBLE
+            }else{
+                messageText.visibility = View.GONE
+            }
+        })
 
     }
 
 
 }
-
 
 

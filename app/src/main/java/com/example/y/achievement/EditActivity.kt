@@ -3,15 +3,18 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.snackbar.Snackbar
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit.*
 
 //Todo: Toastの位置を調整する
+//Todo: SnackBar
 
 class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
 
@@ -26,8 +29,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     private var colorId = 0
     private var isGarbage = false
     private var toastMessage = ""
-    private var isPinChanged = false
-    private var isTextChanged = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,15 +52,16 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             setColor()
         }
 
-
         //backButtonが押されたら、Activityを終了
         backButton.setOnClickListener {
+            saveRecord()
             finish()
         }
 
         //achieveButtonが押されたら、isAchievedを切り替えて、Activityを終了
         achieveButton.setOnClickListener {
             isAchieved = !isAchieved
+            saveRecord()
             finish()
         }
 
@@ -116,7 +118,34 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     //deleteDialogから削除命令を受け取ったら、レコードを削除
     override fun onDialogIsDeleteReceive(dialog: DialogFragment) {
         isGarbage = true
+        saveRecord()
         finish()
+    }
+
+
+    private fun saveRecord(){
+
+        //タイトルか説明のどちらかが埋められているなら、レコードを追加、もしくは更新
+        if(!isGarbage && (titleEdit.text.isNotEmpty() || detailEdit.text.isNotEmpty())){
+            if(achievementId == 0){
+                insertRecord()
+            }else{
+                updateRecord()
+            }
+        }
+
+        //タイトルと説明どちらもempty、またはdeleteDialogから削除命令を受け取っているなら、既存のレコードを削除
+        if(isGarbage || titleEdit.text.isEmpty() && detailEdit.text.isEmpty()){
+            if(achievementId != 0){
+                deleteRecord()
+            }
+        }
+
+        //Toastでユーザーに処理内容を報告
+        if(toastMessage.isNotEmpty()){
+            Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
+//            Snackbar.make(view , toastMessage, Snackbar.LENGTH_LONG).show()
+        }
     }
 
 
@@ -175,30 +204,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
     override fun onDestroy() {
         super.onDestroy()
-
-
-        //タイトルか説明のどちらかが埋められているなら、レコードを追加、もしくは更新
-        if(!isGarbage && (titleEdit.text.isNotEmpty() || detailEdit.text.isNotEmpty())){
-            if(achievementId == 0){
-                insertRecord()
-            }else{
-                updateRecord()
-            }
-        }
-
-
-        //タイトルと説明どちらもempty、またはdeleteDialogから削除命令を受け取っているなら、既存のレコードを削除
-        if(isGarbage || titleEdit.text.isEmpty() && detailEdit.text.isEmpty()){
-            if(achievementId != 0){
-                deleteRecord()
-            }
-        }
-
-        //Toastでユーザーに処理内容を報告
-        if(toastMessage.isNotEmpty()){
-            Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
-        }
-
         //Realmの後片付け
         realm.close()
     }
@@ -273,10 +278,10 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             realm.executeTransaction {
                 achievement?.isAchieved = isAchieved
             }
-            if(isAchieved){
-                toastMessage = "アチーブメントを達成しました"
+            toastMessage = if(isAchieved){
+                "アチーブメントを達成しました"
             }else{
-                toastMessage = "アチーブメントを未達成にしました"
+                "アチーブメントを未達成にしました"
             }
         }
 
