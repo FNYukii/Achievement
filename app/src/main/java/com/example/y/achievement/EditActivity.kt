@@ -93,6 +93,12 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     }
 
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        saveRecord()
+    }
+
+
     //pinButtonのアイコンを切り替える
     private fun setPinIcon(){
         if(isPinned){
@@ -138,8 +144,7 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
         //Toastでユーザーに処理内容を報告
         if(message.isNotEmpty()){
-            val t = Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT)
-            t.show()
+//            Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
         }
     }
 
