@@ -10,7 +10,7 @@ import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit.*
 
-//Todo: アプリ起動後に初めてデータを更新すると、処理がフリーズするバグを修正する
+//Todo: データを更新すると、たまにアプリがフリーズするバグを修正する
 
 class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
 
