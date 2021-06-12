@@ -94,16 +94,16 @@ class AchievementFragment : Fragment() {
 
         //もしアチーブメントが1件も登録されていないなら、メッセージを表示する
         if(allResults.size == 0){
-            messageText.visibility = View.VISIBLE
+            noResultText.visibility = View.VISIBLE
         }else{
-            messageText.visibility = View.GONE
+            noResultText.visibility = View.GONE
         }
         allResults.addChangeListener(RealmChangeListener {
             Log.d("hello", "allResults was changed")
             if(allResults.size == 0){
-                messageText.visibility = View.VISIBLE
+                noResultText.visibility = View.VISIBLE
             }else{
-                messageText.visibility = View.GONE
+                noResultText.visibility = View.GONE
             }
         })
 

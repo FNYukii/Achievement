@@ -94,6 +94,11 @@ class SearchFragment : Fragment() {
                 .contains("detail", queryString)
                 .findAll()
                 .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
+            if(realmResults.size == 0){
+                visibilityControl(1)
+            }else{
+                visibilityControl(2)
+            }
         }
 
         //検索バーのクエリがemptyなら、取得するレコードは0件にする
@@ -103,6 +108,7 @@ class SearchFragment : Fragment() {
                 .and()
                 .equalTo("isPinned", false)
                 .findAll()
+            visibilityControl(0)
         }
 
         //RecyclerViewを再表示
@@ -111,6 +117,29 @@ class SearchFragment : Fragment() {
 
     }
 
+
+    private fun visibilityControl(type: Int){
+        when(type){
+            0 -> {
+                //0: 検索していない時。searchOptionを表示
+                searchOption.visibility = View.VISIBLE
+                noResultText.visibility = View.GONE
+                searchRecyclerView.visibility = View.INVISIBLE
+            }
+            1 -> {
+                //1: 検索結果0件。メッセージを表示
+                searchOption.visibility = View.GONE
+                noResultText.visibility = View.VISIBLE
+                searchRecyclerView.visibility = View.INVISIBLE
+            }
+            2 -> {
+                //2: 検索結果あり。RecyclerViewを表示
+                searchOption.visibility = View.GONE
+                noResultText.visibility = View.GONE
+                searchRecyclerView.visibility = View.VISIBLE
+            }
+        }
+    }
 
 
 

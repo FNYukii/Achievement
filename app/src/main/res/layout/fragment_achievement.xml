@@ -7,7 +7,7 @@
     tools:context=".AchievementFragment">
 
     <TextView
-        android:id="@+id/messageText"
+        android:id="@+id/noResultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="まだアチーブメントが登録されていません"
