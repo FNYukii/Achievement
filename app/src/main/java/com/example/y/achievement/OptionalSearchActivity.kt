@@ -148,4 +148,10 @@ class OptionalSearchActivity : AppCompatActivity() {
     }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()
+    }
+
+
 }
