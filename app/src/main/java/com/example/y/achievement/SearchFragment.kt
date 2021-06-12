@@ -1,6 +1,7 @@
 package com.example.y.achievement
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -25,11 +26,11 @@ class SearchFragment : Fragment() {
     private lateinit var adapter: CustomRecyclerViewAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
-    //検索文字列
-    private var queryString: String = ""
-
     //検索して取得するレコードを格納する変数realmResultsを宣言
     private lateinit var realmResults: RealmResults<Achievement>
+
+    //検索文字列
+    private var queryString: String = ""
 
 
     override fun onCreateView(
@@ -81,40 +82,67 @@ class SearchFragment : Fragment() {
             false
         }
 
+        //ピン止めされていないアチーブメント
         searchNotPinnedOption.setOnClickListener {
-            Log.d("hello", "I will search achievement not pinned")
+            val intent = Intent(this.context, OptionalSearchActivity::class.java)
+            intent.putExtra("optionId", 1)
+            startActivity(intent)
         }
 
+        //ピン止めされたアチーブメント
         searchPinnedOption.setOnClickListener {
-
+            val intent = Intent(this.context, OptionalSearchActivity::class.java)
+            intent.putExtra("optionId", 2)
+            startActivity(intent)
         }
 
+        //未達成のアチーブメント
         searchNotAchievedOption.setOnClickListener {
-
+            val intent = Intent(this.context, OptionalSearchActivity::class.java)
+            intent.putExtra("optionId", 3)
+            startActivity(intent)
         }
 
+        //達成済みアチーブメント
         searchAchievedOption.setOnClickListener {
-
+            val intent = Intent(this.context, OptionalSearchActivity::class.java)
+            intent.putExtra("optionId", 4)
+            startActivity(intent)
         }
 
+        //白色アチーブメント
         searchWhiteOption.setOnClickListener {
-
+            val intent = Intent(this.context, OptionalSearchActivity::class.java)
+            intent.putExtra("optionId", 10)
+            startActivity(intent)
         }
 
+        //緑色アチーブメント
         searchGreenOption.setOnClickListener {
-
+            val intent = Intent(this.context, OptionalSearchActivity::class.java)
+            intent.putExtra("optionId", 11)
+            startActivity(intent)
         }
 
+        //青色アチーブメント
         searchBlueOption.setOnClickListener {
-
+            val intent = Intent(this.context, OptionalSearchActivity::class.java)
+            intent.putExtra("optionId", 12)
+            startActivity(intent)
         }
 
+        //紫色アチーブメント
         searchPurpleOption.setOnClickListener {
-
+            val intent = Intent(this.context, OptionalSearchActivity::class.java)
+            intent.putExtra("optionId", 13)
+            startActivity(intent)
         }
 
+        //金色アチーブメント
         searchGoldOption.setOnClickListener {
-
+            val intent = Intent(this.context, OptionalSearchActivity::class.java)
+            intent.putExtra("optionId", 14)
+            startActivity(intent)
         }
 
     }
@@ -159,19 +187,19 @@ class SearchFragment : Fragment() {
             0 -> {
                 //0: 検索していない時。searchOptionを表示
                 searchOptionContainer.visibility = View.VISIBLE
-                noResultText.visibility = View.GONE
+                noResultText2.visibility = View.GONE
                 searchRecyclerView.visibility = View.INVISIBLE
             }
             1 -> {
                 //1: 検索結果0件。メッセージを表示
                 searchOptionContainer.visibility = View.GONE
-                noResultText.visibility = View.VISIBLE
+                noResultText2.visibility = View.VISIBLE
                 searchRecyclerView.visibility = View.INVISIBLE
             }
             2 -> {
                 //2: 検索結果あり。RecyclerViewを表示
                 searchOptionContainer.visibility = View.GONE
-                noResultText.visibility = View.GONE
+                noResultText2.visibility = View.GONE
                 searchRecyclerView.visibility = View.VISIBLE
             }
         }
