@@ -64,10 +64,10 @@
                 app:layout_constraintTop_toBottomOf="@id/searchViewWrapper" />
 
             <LinearLayout
-                android:id="@+id/searchOption"
+                android:id="@+id/searchOptionContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:orientation="vertical"
@@ -79,13 +79,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="種類"
+                    android:layout_marginStart="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/gray" />
 
                 <LinearLayout
+                    android:id="@+id/searchNotPinnedOption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:paddingStart="8dp"
+                    android:paddingTop="16dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -97,17 +100,19 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background_border_bottom"
                         android:paddingBottom="16dp"
+                        android:background="@drawable/background_border_bottom"
                         android:text="ピン止め無し"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/gray" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/searchPinnedOption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingStart="8dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -127,9 +132,11 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/searchNotAchievedOption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingStart="8dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -149,9 +156,11 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/searchAchievedOption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingStart="8dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -175,6 +184,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:text="色"
+                    android:layout_marginStart="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/gray" />
 
@@ -182,9 +192,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginStart="8dp"
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:id="@+id/searchWhiteOption"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/transparent"
@@ -196,6 +208,7 @@
                         android:layout_weight="1" />
 
                     <ImageButton
+                        android:id="@+id/searchGreenOption"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/transparent"
@@ -207,6 +220,7 @@
                         android:layout_weight="1" />
 
                     <ImageButton
+                        android:id="@+id/searchBlueOption"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/transparent"
@@ -218,6 +232,7 @@
                         android:layout_weight="1" />
 
                     <ImageButton
+                        android:id="@+id/searchPurpleOption"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/transparent"
@@ -229,6 +244,7 @@
                         android:layout_weight="1" />
 
                     <ImageButton
+                        android:id="@+id/searchGoldOption"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/transparent"

@@ -3,8 +3,8 @@ package com.example.y.achievement
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.preference.PreferenceManager
 import android.util.Log
+import androidx.preference.PreferenceManager
 import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -81,6 +81,42 @@ class SearchFragment : Fragment() {
             false
         }
 
+        searchNotPinnedOption.setOnClickListener {
+            Log.d("hello", "I will search achievement not pinned")
+        }
+
+        searchPinnedOption.setOnClickListener {
+
+        }
+
+        searchNotAchievedOption.setOnClickListener {
+
+        }
+
+        searchAchievedOption.setOnClickListener {
+
+        }
+
+        searchWhiteOption.setOnClickListener {
+
+        }
+
+        searchGreenOption.setOnClickListener {
+
+        }
+
+        searchBlueOption.setOnClickListener {
+
+        }
+
+        searchPurpleOption.setOnClickListener {
+
+        }
+
+        searchGoldOption.setOnClickListener {
+
+        }
+
     }
 
 
@@ -122,19 +158,19 @@ class SearchFragment : Fragment() {
         when(type){
             0 -> {
                 //0: 検索していない時。searchOptionを表示
-                searchOption.visibility = View.VISIBLE
+                searchOptionContainer.visibility = View.VISIBLE
                 noResultText.visibility = View.GONE
                 searchRecyclerView.visibility = View.INVISIBLE
             }
             1 -> {
                 //1: 検索結果0件。メッセージを表示
-                searchOption.visibility = View.GONE
+                searchOptionContainer.visibility = View.GONE
                 noResultText.visibility = View.VISIBLE
                 searchRecyclerView.visibility = View.INVISIBLE
             }
             2 -> {
                 //2: 検索結果あり。RecyclerViewを表示
-                searchOption.visibility = View.GONE
+                searchOptionContainer.visibility = View.GONE
                 noResultText.visibility = View.GONE
                 searchRecyclerView.visibility = View.VISIBLE
             }
