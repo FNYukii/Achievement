@@ -16,7 +16,7 @@ import io.realm.Sort
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_search.*
 
-//Todo: アチーブメントの色やピン止めの有無で検索できるようにする
+//Todo: アチーブメントの色で検索できるようにする
 
 class SearchFragment : Fragment() {
 
