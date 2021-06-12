@@ -82,29 +82,29 @@ class SearchFragment : Fragment() {
             false
         }
 
-        //ピン止めされていないアチーブメント
-        searchNotPinnedOption.setOnClickListener {
+        //未達成のアチーブメント
+        searchNotAchievedOption.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 1)
             startActivity(intent)
         }
 
-        //ピン止めされたアチーブメント
-        searchPinnedOption.setOnClickListener {
+        //達成済みアチーブメント
+        searchAchievedOption.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 2)
             startActivity(intent)
         }
 
-        //未達成のアチーブメント
-        searchNotAchievedOption.setOnClickListener {
+        //ピン止めされていないアチーブメント
+        searchNotPinnedOption.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 3)
             startActivity(intent)
         }
 
-        //達成済みアチーブメント
-        searchAchievedOption.setOnClickListener {
+        //ピン止めされたアチーブメント
+        searchPinnedOption.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 4)
             startActivity(intent)
@@ -157,7 +157,7 @@ class SearchFragment : Fragment() {
                 .or()
                 .contains("detail", queryString)
                 .findAll()
-                .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
+                .sort("id", Sort.DESCENDING)
             if(realmResults.size == 0){
                 visibilityControl(1)
             }else{

@@ -33,24 +33,6 @@ class OptionalSearchActivity : AppCompatActivity() {
         //SearchFragmentから渡されたoptionIdに合ったレコードを取得&labelTextに文字列をセット
         when(intent.getIntExtra("optionId", 0)){
             1 -> {
-                //ピン止めされていないアチーブメントを取得
-                realmResults = realm.where<Achievement>()
-                    .equalTo("isPinned", false)
-                    .findAll()
-                    .sort("id", Sort.DESCENDING)
-                //タイトルをセット
-                labelText.text = "ピン止めなし"
-            }
-            2 -> {
-                //ピン止めされているアチーブメントを取得
-                realmResults = realm.where<Achievement>()
-                    .equalTo("isPinned", true)
-                    .findAll()
-                    .sort("id", Sort.DESCENDING)
-                //タイトルをセット
-                labelText.text = "ピン止めあり"
-            }
-            3 -> {
                 //未達成のアチーブメントを取得
                 realmResults = realm.where<Achievement>()
                     .equalTo("isAchieved", false)
@@ -59,7 +41,7 @@ class OptionalSearchActivity : AppCompatActivity() {
                 //タイトルをセット
                 labelText.text = "未達成"
             }
-            4 -> {
+            2 -> {
                 //達成済みアチーブメントを取得
                 realmResults = realm.where<Achievement>()
                     .equalTo("isAchieved", true)
@@ -67,6 +49,24 @@ class OptionalSearchActivity : AppCompatActivity() {
                     .sort("id", Sort.DESCENDING)
                 //タイトルをセット
                 labelText.text = "達成済み"
+            }
+            3 -> {
+                //ピン止めされていないアチーブメントを取得
+                realmResults = realm.where<Achievement>()
+                    .equalTo("isPinned", false)
+                    .findAll()
+                    .sort("id", Sort.DESCENDING)
+                //タイトルをセット
+                labelText.text = "ピン止めなし"
+            }
+            4 -> {
+                //ピン止めされているアチーブメントを取得
+                realmResults = realm.where<Achievement>()
+                    .equalTo("isPinned", true)
+                    .findAll()
+                    .sort("id", Sort.DESCENDING)
+                //タイトルをセット
+                labelText.text = "ピン止めあり"
             }
             10 -> {
                 //白色のアチーブメントを取得
