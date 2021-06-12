@@ -3,13 +3,14 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit.*
+
+//Todo: アプリ起動後に初めてデータを更新すると、処理がフリーズするバグを修正する
 
 class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
 
@@ -23,7 +24,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     private var isPinned = false
     private var colorId = 0
     private var isGarbage = false
-    private var message = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -142,10 +142,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             }
         }
 
-        //Toastでユーザーに処理内容を報告
-        if(message.isNotEmpty()){
-//            Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-        }
     }
 
 
@@ -219,7 +215,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             achievement.title = titleEdit.text.toString()
             achievement.detail = detailEdit.text.toString()
         }
-        message = "アチーブメントを追加しました"
     }
 
 
@@ -243,11 +238,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             realm.executeTransaction {
                 achievement?.isPinned = isPinned
             }
-            message = if(isPinned){
-                "アチーブメントをピン止めしました"
-            }else{
-                "アチーブメントのピン止めを解除しました"
-            }
         }
 
         //titleが変更されたなら、データを更新
@@ -255,7 +245,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             realm.executeTransaction {
                 achievement?.title = titleEdit.text.toString()
             }
-            message = "アチーブメントを更新しました"
         }
 
         //detailが変更されたなら、データを更新
@@ -263,18 +252,12 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             realm.executeTransaction {
                 achievement?.detail = detailEdit.text.toString()
             }
-            message = "アチーブメントを更新しました"
         }
 
         //isAchievedが変更されたなら、データを更新
         if(achievement?.isAchieved != isAchieved){
             realm.executeTransaction {
                 achievement?.isAchieved = isAchieved
-            }
-            message = if(isAchieved){
-                "アチーブメントを達成しました"
-            }else{
-                "アチーブメントを未達成にしました"
             }
         }
 
@@ -293,7 +276,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
         realm.executeTransaction {
             achievement?.deleteFromRealm()
         }
-        message = "アチーブメントを削除しました"
     }
 
 
