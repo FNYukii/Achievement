@@ -87,27 +87,6 @@ class SearchFragment : Fragment() {
             false
         }
 
-        whiteButton.setOnClickListener {
-            colorSearch(0)
-        }
-
-        greenButton.setOnClickListener {
-            colorSearch(1)
-        }
-
-        blueButton.setOnClickListener {
-            colorSearch(2)
-        }
-
-        purpleButton.setOnClickListener {
-            colorSearch(3)
-        }
-
-        goldButton.setOnClickListener {
-            colorSearch(4)
-        }
-
-
 
     }
 
@@ -122,19 +101,21 @@ class SearchFragment : Fragment() {
                 .contains("detail", queryString)
                 .findAll()
                 .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
-            //色検索ボタンを非表示
-            buttonContainer.visibility = View.GONE
         }
 
-        //検索バーのクエリがemptyなら、取得するレコードは0件にして、色検索ボタンを表示
+        //検索バーのクエリがemptyなら、取得するレコードは0件にして,messageTextを表示
         if (queryString.isEmpty()) {
             realmResults = realm.where<Achievement>()
                 .equalTo("isPinned", true)
                 .and()
                 .equalTo("isPinned", false)
                 .findAll()
-            //色検索ボタンを表示
-            buttonContainer.visibility = View.VISIBLE
+        }
+
+        if(realmResults.size == 0){
+            messageText.visibility = View.VISIBLE
+        }else{
+            messageText.visibility = View.INVISIBLE
         }
 
         //RecyclerViewを再表示
@@ -144,22 +125,6 @@ class SearchFragment : Fragment() {
     }
 
 
-    private fun colorSearch(colorId: Int){
-
-        //色が一致するレコードを取得
-        realmResults = realm.where<Achievement>()
-            .equalTo("colorId", colorId)
-            .findAll()
-
-        //色検索ボタンを非表示
-        buttonContainer.visibility = View.GONE
-
-        //RecyclerViewを再表示
-        adapter = CustomRecyclerViewAdapter(realmResults)
-        searchRecyclerView.adapter = this.adapter
-
-
-    }
 
 
     override fun onStop() {
