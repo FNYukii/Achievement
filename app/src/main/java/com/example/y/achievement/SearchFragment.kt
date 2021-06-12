@@ -30,6 +30,9 @@ class SearchFragment : Fragment() {
     //検索文字列
     private var queryString: String = ""
 
+    //検索して取得するレコードを格納する変数realmResultsを宣言
+    private lateinit var realmResults: RealmResults<Achievement>
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,8 +54,14 @@ class SearchFragment : Fragment() {
         queryString = sharedPref.getString("queryString","").toString()
         searchView.setQuery(queryString, false)
 
-        //検索してRecyclerViewを表示
+        //検索してrealmResultsを更新
         search()
+
+        //RecyclerViewを表示
+        layoutManager = GridLayoutManager(this.context, 2)
+        searchRecyclerView.layoutManager = layoutManager
+        adapter = CustomRecyclerViewAdapter(realmResults)
+        searchRecyclerView.adapter = this.adapter
 
         //検索バーのqueryが変化するたびに、検索を行う。queryStringは逐次SharedPreferencesに保存！
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -83,31 +92,33 @@ class SearchFragment : Fragment() {
 
     private fun search(){
 
-        //Achievementレコードを格納する変数realmResultsを宣言
-        var realmResults: RealmResults<Achievement>
-
         //検索バーのクエリに一致するレコードを取得
-        realmResults = realm.where<Achievement>()
-            .contains("title", queryString)
-            .or()
-            .contains("detail", queryString)
-            .findAll()
-            .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
+        if(queryString.isNotEmpty()){
+            realmResults = realm.where<Achievement>()
+                .contains("title", queryString)
+                .or()
+                .contains("detail", queryString)
+                .findAll()
+                .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
+            //色検索ボタンを非表示
+            buttonContainer.visibility = View.GONE
+        }
 
-        //検索バーのクエリがemptyなら、取得するレコードは0件にする
+        //検索バーのクエリがemptyなら、取得するレコードは0件にして、色検索ボタンを表示
         if (queryString.isEmpty()) {
             realmResults = realm.where<Achievement>()
                 .equalTo("isPinned", true)
                 .and()
                 .equalTo("isPinned", false)
                 .findAll()
+            //色検索ボタンを表示
+            buttonContainer.visibility = View.VISIBLE
         }
 
-        //RecyclerViewを更新
-        layoutManager = GridLayoutManager(this.context, 2)
-        searchRecyclerView.layoutManager = layoutManager
+        //RecyclerViewを再表示
         adapter = CustomRecyclerViewAdapter(realmResults)
         searchRecyclerView.adapter = this.adapter
+
     }
 
 
