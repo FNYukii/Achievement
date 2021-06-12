@@ -110,12 +110,6 @@ class SearchFragment : Fragment() {
                 .findAll()
         }
 
-        if(realmResults.size == 0){
-            messageText.visibility = View.VISIBLE
-        }else{
-            messageText.visibility = View.INVISIBLE
-        }
-
         //RecyclerViewを再表示
         adapter = CustomRecyclerViewAdapter(realmResults)
         searchRecyclerView.adapter = this.adapter
