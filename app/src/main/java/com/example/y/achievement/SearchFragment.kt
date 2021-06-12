@@ -70,9 +70,6 @@ class SearchFragment : Fragment() {
                 return false
             }
             override fun onQueryTextSubmit(query: String?): Boolean {
-                queryString = query!!
-                sharedPref.edit().putString("queryString", queryString).apply()
-                stringSearch()
                 searchView.clearFocus()
                 return false
             }
@@ -80,11 +77,9 @@ class SearchFragment : Fragment() {
 
         //検索バー以外の領域をタップすると、検索バーからフォーカスを外す！
         screenCover.setOnTouchListener { _, _ ->
-            Log.d("hello", "screen touched")
             searchView.clearFocus()
             false
         }
-
 
     }
 
@@ -101,7 +96,7 @@ class SearchFragment : Fragment() {
                 .sort("isPinned", Sort.DESCENDING, "id", Sort.DESCENDING)
         }
 
-        //検索バーのクエリがemptyなら、取得するレコードは0件にして,messageTextを表示
+        //検索バーのクエリがemptyなら、取得するレコードは0件にする
         if (queryString.isEmpty()) {
             realmResults = realm.where<Achievement>()
                 .equalTo("isPinned", true)
