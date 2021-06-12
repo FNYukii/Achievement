@@ -2,7 +2,6 @@ package com.example.y.achievement
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,9 +64,11 @@ class CustomRecyclerViewAdapter(
         //もしtitleがemptyなら、titleTextは非表示。detailTextのmarginTopも0dpにする。
         if(achievement?.title.isNullOrEmpty()){
             holder.frameTitleText.visibility = View.GONE
-            val param = holder.frameDetailText.layoutParams as ViewGroup.MarginLayoutParams
-            param.setMargins(0,0,0,0)
-            holder.frameDetailText.layoutParams = param
+//            val param = holder.frameDetailText.layoutParams as ViewGroup.MarginLayoutParams
+//            param.setMargins(0,0,0,0)
+//            holder.frameDetailText.layoutParams = param
+        }else{
+            holder.frameTitleText.visibility = View.VISIBLE
         }
 
         //colorIdに応じて色を変更する。0:white, 1:green, 2:blue, 3:purple, 4:orange, 5:gold
