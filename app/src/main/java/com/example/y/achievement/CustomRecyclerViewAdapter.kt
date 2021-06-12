@@ -74,7 +74,7 @@ class CustomRecyclerViewAdapter(
         //colorIdに応じて色を変更する。0:white, 1:green, 2:blue, 3:purple, 4:orange, 5:gold
         when (achievement?.colorId) {
             0 -> {
-                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_white)
+                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_gray)
                 holder.framePinImage.setColorFilter(ContextCompat.getColor(context, R.color.white))
                 holder.frameAchieveImage.setColorFilter(ContextCompat.getColor(context, R.color.white))
                 holder.frameTitleText.setTextColor(ContextCompat.getColor(context, R.color.white))
