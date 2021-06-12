@@ -55,7 +55,7 @@ class SearchFragment : Fragment() {
         searchView.setQuery(queryString, false)
 
         //検索してrealmResultsを更新
-        search()
+        stringSearch()
 
         //RecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
@@ -68,13 +68,13 @@ class SearchFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 queryString = newText!!
                 sharedPref.edit().putString("queryString", queryString).apply()
-                search()
+                stringSearch()
                 return false
             }
             override fun onQueryTextSubmit(query: String?): Boolean {
                 queryString = query!!
                 sharedPref.edit().putString("queryString", queryString).apply()
-                search()
+                stringSearch()
                 searchView.clearFocus()
                 return false
             }
@@ -87,10 +87,32 @@ class SearchFragment : Fragment() {
             false
         }
 
+        whiteButton.setOnClickListener {
+            colorSearch(0)
+        }
+
+        greenButton.setOnClickListener {
+            colorSearch(1)
+        }
+
+        blueButton.setOnClickListener {
+            colorSearch(2)
+        }
+
+        purpleButton.setOnClickListener {
+            colorSearch(3)
+        }
+
+        goldButton.setOnClickListener {
+            colorSearch(4)
+        }
+
+
+
     }
 
 
-    private fun search(){
+    private fun stringSearch(){
 
         //検索バーのクエリに一致するレコードを取得
         if(queryString.isNotEmpty()){
@@ -118,6 +140,24 @@ class SearchFragment : Fragment() {
         //RecyclerViewを再表示
         adapter = CustomRecyclerViewAdapter(realmResults)
         searchRecyclerView.adapter = this.adapter
+
+    }
+
+
+    private fun colorSearch(colorId: Int){
+
+        //色が一致するレコードを取得
+        realmResults = realm.where<Achievement>()
+            .equalTo("colorId", colorId)
+            .findAll()
+
+        //色検索ボタンを非表示
+        buttonContainer.visibility = View.GONE
+
+        //RecyclerViewを再表示
+        adapter = CustomRecyclerViewAdapter(realmResults)
+        searchRecyclerView.adapter = this.adapter
+
 
     }
 
