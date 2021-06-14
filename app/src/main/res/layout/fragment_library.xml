@@ -23,7 +23,7 @@
         android:id="@+id/dateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="YYYY年 M月"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white"
@@ -117,22 +117,20 @@
         android:id="@+id/prevButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/background_tool_button"
         android:src="@drawable/ic_baseline_arrow_back_ios_24"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dateLabel"
         app:layout_constraintTop_toBottomOf="@+id/logoText" />
 
     <ImageButton
         android:id="@+id/nextButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
         android:background="@drawable/background_tool_button"
         android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dateLabel"
         app:layout_constraintTop_toBottomOf="@+id/logoText" />
 
 
