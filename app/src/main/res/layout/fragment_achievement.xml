@@ -64,11 +64,10 @@
     </androidx.core.widget.NestedScrollView>
 
 
-
     <ImageButton
         android:id="@+id/floatingButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/background_floating_button"
