@@ -25,7 +25,7 @@ class CalendarRecyclerViewAdapter(
 
 
     override fun getItemCount(): Int {
-        return days.size //days.sizeは常に42
+        return days.size //days.sizeは35or42
     }
 
 

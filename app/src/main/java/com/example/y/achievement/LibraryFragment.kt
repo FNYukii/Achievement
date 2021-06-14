@@ -88,9 +88,16 @@ class LibraryFragment : Fragment() {
         }
 
         //余った領域は0で埋める
-        val filledSize = (42) - days.size
-        for (i in 0 until filledSize){
-            days.add(0)
+        if(days.size > 35){
+            val filledSize = (42) - days.size
+            for (i in 0 until filledSize){
+                days.add(0)
+            }
+        }else{
+            val filledSize = (35) - days.size
+            for (i in 0 until filledSize){
+                days.add(0)
+            }
         }
 
         //配列daysをreturn
