@@ -12,8 +12,6 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
-//Todo: 統計データ閲覧機能を実装する
-
 class HistoryFragment : Fragment() {
 
 
