@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.one_day.view.*
@@ -20,6 +21,7 @@ class DayRecyclerViewAdapter(
 
     class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val dayText: TextView = itemView.dayText
+        val frameContainer: ConstraintLayout = itemView.frameContainer
     }
 
 
@@ -48,6 +50,8 @@ class DayRecyclerViewAdapter(
         //もし本日なら、dayTextを白色で表示
         if(days[position] == LocalDate.now()){
             holder.dayText.setTextColor(Color.WHITE)
+        }else{
+            holder.frameContainer.visibility = View.INVISIBLE
         }
 
         //日付がnull以外のセルをタップすると、optionalSearchActivityへ遷移。
