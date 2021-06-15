@@ -26,9 +26,9 @@ class AchieveDialogFragment: DialogFragment() {
 
             //受け取ったisAchievedの真偽によって、メッセージを変える
             val message = if (isAchieved){
-                "アチーブメントを未達成に変更しますか?"
+                "アチーブメントの達成を取り消しますか?"
             }else{
-                "アチーブメントを達成済みに変更しますか?"
+                "アチーブメントを達成しますか?"
             }
 
             //Dialogのパーツを生成
