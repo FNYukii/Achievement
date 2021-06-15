@@ -74,35 +74,35 @@ class FrameRecyclerViewAdapter(
         //colorIdに応じて色を変更する。0:white, 1:green, 2:blue, 3:purple, 4:orange, 5:gold
         when (achievement?.colorId) {
             0 -> {
-                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_gray)
+                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_normal_gray)
                 holder.framePinImage.setColorFilter(ContextCompat.getColor(context, R.color.white))
                 holder.frameAchieveImage.setColorFilter(ContextCompat.getColor(context, R.color.white))
                 holder.frameTitleText.setTextColor(ContextCompat.getColor(context, R.color.white))
                 holder.frameDetailText.setTextColor(ContextCompat.getColor(context, R.color.white))
             }
             1 -> {
-                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_green)
+                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_normal_green)
                 holder.framePinImage.setColorFilter(ContextCompat.getColor(context, R.color.green))
                 holder.frameAchieveImage.setColorFilter(ContextCompat.getColor(context, R.color.green))
                 holder.frameTitleText.setTextColor(ContextCompat.getColor(context, R.color.green))
                 holder.frameDetailText.setTextColor(ContextCompat.getColor(context, R.color.green))
             }
             2 -> {
-                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_blue)
+                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_normal_blue)
                 holder.framePinImage.setColorFilter(ContextCompat.getColor(context, R.color.blue))
                 holder.frameAchieveImage.setColorFilter(ContextCompat.getColor(context, R.color.blue))
                 holder.frameTitleText.setTextColor(ContextCompat.getColor(context, R.color.blue))
                 holder.frameDetailText.setTextColor(ContextCompat.getColor(context, R.color.blue))
             }
             3 -> {
-                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_purple)
+                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_normal_purple)
                 holder.framePinImage.setColorFilter(ContextCompat.getColor(context, R.color.purple))
                 holder.frameAchieveImage.setColorFilter(ContextCompat.getColor(context, R.color.purple))
                 holder.frameTitleText.setTextColor(ContextCompat.getColor(context, R.color.purple))
                 holder.frameDetailText.setTextColor(ContextCompat.getColor(context, R.color.purple))
             }
             4 -> {
-                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_gold)
+                holder.frameBackground.setBackgroundResource(R.drawable.background_frame_normal_gold)
                 holder.framePinImage.setColorFilter(ContextCompat.getColor(context, R.color.gold))
                 holder.frameAchieveImage.setColorFilter(ContextCompat.getColor(context, R.color.gold))
                 holder.frameTitleText.setTextColor(ContextCompat.getColor(context, R.color.gold))

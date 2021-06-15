@@ -74,19 +74,19 @@ class DayRecyclerViewAdapter(
         if(realmResults.size >= 1){
             when(realmResults[0]?.colorId){
                 0 -> {
-                    holder.frame01.setBackgroundResource(R.drawable.background_frame_square_white)
+                    holder.frame01.setBackgroundResource(R.drawable.background_frame_mini_white)
                 }
                 1 -> {
-                    holder.frame01.setBackgroundResource(R.drawable.background_frame_square_green)
+                    holder.frame01.setBackgroundResource(R.drawable.background_frame_mini_green)
                 }
                 2 -> {
-                    holder.frame01.setBackgroundResource(R.drawable.background_frame_square_blue)
+                    holder.frame01.setBackgroundResource(R.drawable.background_frame_mini_blue)
                 }
                 3 -> {
-                    holder.frame01.setBackgroundResource(R.drawable.background_frame_square_purple)
+                    holder.frame01.setBackgroundResource(R.drawable.background_frame_mini_purple)
                 }
                 4 -> {
-                    holder.frame01.setBackgroundResource(R.drawable.background_frame_square_gold)
+                    holder.frame01.setBackgroundResource(R.drawable.background_frame_mini_gold)
                 }
             }
         }
@@ -95,19 +95,19 @@ class DayRecyclerViewAdapter(
         if(realmResults.size >= 2){
             when(realmResults[1]?.colorId){
                 0 -> {
-                    holder.frame02.setBackgroundResource(R.drawable.background_frame_square_white)
+                    holder.frame02.setBackgroundResource(R.drawable.background_frame_mini_white)
                 }
                 1 -> {
-                    holder.frame02.setBackgroundResource(R.drawable.background_frame_square_green)
+                    holder.frame02.setBackgroundResource(R.drawable.background_frame_mini_green)
                 }
                 2 -> {
-                    holder.frame02.setBackgroundResource(R.drawable.background_frame_square_blue)
+                    holder.frame02.setBackgroundResource(R.drawable.background_frame_mini_blue)
                 }
                 3 -> {
-                    holder.frame02.setBackgroundResource(R.drawable.background_frame_square_purple)
+                    holder.frame02.setBackgroundResource(R.drawable.background_frame_mini_purple)
                 }
                 4 -> {
-                    holder.frame02.setBackgroundResource(R.drawable.background_frame_square_gold)
+                    holder.frame02.setBackgroundResource(R.drawable.background_frame_mini_gold)
                 }
             }
         }
@@ -116,19 +116,19 @@ class DayRecyclerViewAdapter(
         if(realmResults.size >= 3){
             when(realmResults[2]?.colorId){
                 0 -> {
-                    holder.frame03.setBackgroundResource(R.drawable.background_frame_square_white)
+                    holder.frame03.setBackgroundResource(R.drawable.background_frame_mini_white)
                 }
                 1 -> {
-                    holder.frame03.setBackgroundResource(R.drawable.background_frame_square_green)
+                    holder.frame03.setBackgroundResource(R.drawable.background_frame_mini_green)
                 }
                 2 -> {
-                    holder.frame03.setBackgroundResource(R.drawable.background_frame_square_blue)
+                    holder.frame03.setBackgroundResource(R.drawable.background_frame_mini_blue)
                 }
                 3 -> {
-                    holder.frame03.setBackgroundResource(R.drawable.background_frame_square_purple)
+                    holder.frame03.setBackgroundResource(R.drawable.background_frame_mini_purple)
                 }
                 4 -> {
-                    holder.frame03.setBackgroundResource(R.drawable.background_frame_square_gold)
+                    holder.frame03.setBackgroundResource(R.drawable.background_frame_mini_gold)
                 }
             }
         }
@@ -137,19 +137,19 @@ class DayRecyclerViewAdapter(
         if(realmResults.size >= 4){
             when(realmResults[3]?.colorId){
                 0 -> {
-                    holder.frame04.setBackgroundResource(R.drawable.background_frame_square_white)
+                    holder.frame04.setBackgroundResource(R.drawable.background_frame_mini_white)
                 }
                 1 -> {
-                    holder.frame04.setBackgroundResource(R.drawable.background_frame_square_green)
+                    holder.frame04.setBackgroundResource(R.drawable.background_frame_mini_green)
                 }
                 2 -> {
-                    holder.frame04.setBackgroundResource(R.drawable.background_frame_square_blue)
+                    holder.frame04.setBackgroundResource(R.drawable.background_frame_mini_blue)
                 }
                 3 -> {
-                    holder.frame04.setBackgroundResource(R.drawable.background_frame_square_purple)
+                    holder.frame04.setBackgroundResource(R.drawable.background_frame_mini_purple)
                 }
                 4 -> {
-                    holder.frame04.setBackgroundResource(R.drawable.background_frame_square_gold)
+                    holder.frame04.setBackgroundResource(R.drawable.background_frame_mini_gold)
                 }
             }
         }

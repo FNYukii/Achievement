@@ -263,7 +263,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/transparent"
-                        android:src="@drawable/background_frame_white" />
+                        android:src="@drawable/background_frame_normal_white" />
 
                     <Space
                         android:layout_width="wrap_content"
@@ -275,7 +275,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/transparent"
-                        android:src="@drawable/background_frame_green" />
+                        android:src="@drawable/background_frame_normal_green" />
 
                     <Space
                         android:layout_width="wrap_content"
@@ -287,7 +287,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/transparent"
-                        android:src="@drawable/background_frame_blue" />
+                        android:src="@drawable/background_frame_normal_blue" />
 
                     <Space
                         android:layout_width="wrap_content"
@@ -299,7 +299,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/transparent"
-                        android:src="@drawable/background_frame_purple" />
+                        android:src="@drawable/background_frame_normal_purple" />
 
                     <Space
                         android:layout_width="wrap_content"
@@ -311,7 +311,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/transparent"
-                        android:src="@drawable/background_frame_gold" />
+                        android:src="@drawable/background_frame_normal_gold" />
 
                 </LinearLayout>
 
