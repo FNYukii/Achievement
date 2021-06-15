@@ -6,6 +6,15 @@
     android:background="@drawable/background_border_bottom"
     android:layout_height="70dp">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_day"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
         android:id="@+id/dayText"
         android:layout_width="wrap_content"
