@@ -3,6 +3,7 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
@@ -67,11 +68,13 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
                 isAchieved = true
                 achievedDate = LocalDate.now().format(dateFormatter).toInt() //例: 20210615
                 achievedTime = LocalTime.now().format(timeFormatter).toInt() //例: 091134
+                Toast.makeText(applicationContext, "アチーブメントを達成済みにしました", Toast.LENGTH_SHORT).show()
             }else{
                 //未達成にする
                 isAchieved = false
                 achievedDate = 0
                 achievedTime = 0
+                Toast.makeText(applicationContext, "アチーブメントを未達成にしました", Toast.LENGTH_SHORT).show()
             }
             saveRecord()
             finish()
@@ -297,6 +300,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
         realm.executeTransaction {
             achievement?.deleteFromRealm()
         }
+
+        Toast.makeText(applicationContext, "アチーブメントを削除しました", Toast.LENGTH_SHORT).show()
     }
 
 
