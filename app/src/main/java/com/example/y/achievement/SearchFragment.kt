@@ -21,10 +21,6 @@ class SearchFragment : Fragment() {
     //Realmのインスタンス取得
     val realm: Realm = Realm.getDefaultInstance()
 
-    //RecyclerViewのインスタンス宣言
-    private lateinit var adapter: FrameRecyclerViewAdapter
-    private lateinit var layoutManager: RecyclerView.LayoutManager
-
     //検索して取得するレコードを格納する変数realmResultsを宣言
     private lateinit var realmResults: RealmResults<Achievement>
 
@@ -56,10 +52,8 @@ class SearchFragment : Fragment() {
         stringSearch()
 
         //RecyclerViewを表示
-        layoutManager = GridLayoutManager(this.context, 2)
-        searchRecyclerView.layoutManager = layoutManager
-        adapter = FrameRecyclerViewAdapter(realmResults)
-        searchRecyclerView.adapter = this.adapter
+        searchRecyclerView.layoutManager = GridLayoutManager(this.context, 2)
+        searchRecyclerView.adapter = FrameRecyclerViewAdapter(realmResults)
 
         //検索バーのqueryが変化するたびに、検索を行う。queryStringは逐次SharedPreferencesに保存！
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -175,8 +169,7 @@ class SearchFragment : Fragment() {
         }
 
         //RecyclerViewを再表示
-        adapter = FrameRecyclerViewAdapter(realmResults)
-        searchRecyclerView.adapter = this.adapter
+        searchRecyclerView.adapter = FrameRecyclerViewAdapter(realmResults)
 
     }
 

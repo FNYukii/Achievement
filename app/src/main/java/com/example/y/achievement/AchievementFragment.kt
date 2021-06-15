@@ -19,10 +19,6 @@ import kotlinx.android.synthetic.main.fragment_achievement.*
 class AchievementFragment : Fragment() {
 
 
-    //RecyclerViewのインスタンスを宣言
-    private lateinit var adapter: FrameRecyclerViewAdapter
-    private lateinit var layoutManager: RecyclerView.LayoutManager
-
     //Realmのインスタンスを取得
     var realm: Realm = Realm.getDefaultInstance()
 
@@ -68,16 +64,12 @@ class AchievementFragment : Fragment() {
         }
 
         //pinRecyclerViewを表示
-        layoutManager = GridLayoutManager(this.context, 2)
-        pinRecyclerView.layoutManager = layoutManager
-        adapter = FrameRecyclerViewAdapter(pinnedResults)
-        pinRecyclerView.adapter = this.adapter
+        pinRecyclerView.layoutManager = GridLayoutManager(this.context, 2)
+        pinRecyclerView.adapter = FrameRecyclerViewAdapter(pinnedResults)
 
         //mainRecyclerViewを表示
-        layoutManager = GridLayoutManager(this.context, 2)
-        mainRecyclerView.layoutManager = layoutManager
-        adapter = FrameRecyclerViewAdapter(notPinnedResults)
-        mainRecyclerView.adapter = this.adapter
+        mainRecyclerView.layoutManager = GridLayoutManager(this.context, 2)
+        mainRecyclerView.adapter = FrameRecyclerViewAdapter(notPinnedResults)
 
         //もしピン止めされたアチーブメントが無いなら、pinRecyclerViewを表示しない
         if(pinnedResults.size == 0){

@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import io.realm.Realm
+import io.realm.RealmChangeListener
+import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_history.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -15,6 +18,7 @@ import java.util.*
 class HistoryFragment : Fragment() {
 
 
+    //現在カレンダーに表示している月と現在の月との差を表す変数
     private var offsetMonth = 0
 
 
@@ -30,28 +34,34 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //RecyclerView準備
-        var adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = GridLayoutManager(this.context, 7)
+        //RecyclerViewを表示
+        calendarRecyclerView.adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
+        calendarRecyclerView.layoutManager = GridLayoutManager(this.context, 7)
         updateDateLabel()
 
+        //prevButtonを押すと、前月のカレンダーを表示
         prevButton.setOnClickListener {
             offsetMonth--
-            adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
-            recyclerView.adapter = adapter
+            calendarRecyclerView.adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
             updateDateLabel()
         }
 
+        //nextButtonを押すと、次の月のカレンダーを表示
         nextButton.setOnClickListener {
             offsetMonth++
-            adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
-            recyclerView.adapter = adapter
+            calendarRecyclerView.adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
             updateDateLabel()
         }
 
-    }
+        //データに変更があったら、RecyclerViewを更新
+        val realm = Realm.getDefaultInstance()
+        val realmResults = realm.where<Achievement>()
+            .findAll()
+        realmResults.addChangeListener(RealmChangeListener {
+            calendarRecyclerView.adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
+        })
 
+    }
 
 
     @SuppressLint("SimpleDateFormat")

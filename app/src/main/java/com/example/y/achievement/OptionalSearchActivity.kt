@@ -2,7 +2,6 @@ package com.example.y.achievement
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,10 +34,6 @@ class OptionalSearchActivity : AppCompatActivity() {
         val optionId = intent.getIntExtra("optionId", 0)
         val achievedDateNumber = intent.getIntExtra("achievedDateNumber", 0)
         val achievedDateString = intent.getStringExtra("achievedDateString")
-
-        Log.d("hello", "achievedDateNumber: $achievedDateNumber")
-        Log.d("hello", "achievedDateString: $achievedDateString")
-
 
         //SearchFragmentから渡されたoptionIdに合ったレコードを取得&labelTextに文字列をセット
         when(optionId){
