@@ -1,6 +1,5 @@
 package com.example.y.achievement
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +13,8 @@ import kotlinx.android.synthetic.main.fragment_history.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
+
+//Todo: カレンダーの表示月を、スワイプで切り替えられるようにする
 
 class HistoryFragment : Fragment() {
 
@@ -64,9 +65,8 @@ class HistoryFragment : Fragment() {
     }
 
 
-    @SuppressLint("SimpleDateFormat")
     private fun updateDateLabel() {
-        dateLabel.text = SimpleDateFormat("yyyy年 M月").format(Date().apply { offset(month = offsetMonth) })
+        dateLabel.text = SimpleDateFormat("yyyy年 M月",Locale.JAPANESE).format(Date().apply { offset(month = offsetMonth) })
     }
 
 

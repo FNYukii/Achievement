@@ -57,7 +57,6 @@ class DayRecyclerViewAdapter(
             holder.dayText.setTextColor(Color.WHITE)
         }
 
-        //当日達成しているアチーブメントに応じて、セル内にframeを表示
         //days[position]:LocalDateをInt型に変換。例:20210615
         val numberFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
         val currentDay: Int = days[position]?.format(numberFormatter)?.toInt() ?: 0
@@ -160,7 +159,6 @@ class DayRecyclerViewAdapter(
                 intent.putExtra("optionId", 20)
 
                 //レコード検索に使用する、Int型の日付情報
-//                val numberFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
                 intent.putExtra("achievedDateNumber", days[position]?.format(numberFormatter)?.toInt())
 
                 //OptionalSearchActivityのlabelTextに使用する、String型の日付情報
