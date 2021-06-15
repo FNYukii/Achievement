@@ -38,7 +38,6 @@
             android:id="@+id/frame01"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:background="@drawable/background_frame_square_purple"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteY="19dp" />
@@ -47,7 +46,6 @@
             android:id="@+id/frame02"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:background="@drawable/background_frame_square_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="391dp"
@@ -57,7 +55,6 @@
             android:id="@+id/frame03"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:background="@drawable/background_frame_square_green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="47dp" />
@@ -66,7 +63,6 @@
             android:id="@+id/frame04"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:background="@drawable/background_frame_square_gold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:layout_editor_absoluteX="391dp"

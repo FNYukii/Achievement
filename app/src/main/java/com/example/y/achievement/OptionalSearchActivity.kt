@@ -135,7 +135,7 @@ class OptionalSearchActivity : AppCompatActivity() {
                     .and()
                     .equalTo("isAchieved", true)
                     .findAll()
-                    .sort("achievedTime", Sort.DESCENDING)
+                    .sort("achievedTime", Sort.ASCENDING)
                 //タイトルをセット
                 labelText.text = (achievedDateString + "に達成")
             }

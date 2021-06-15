@@ -17,7 +17,7 @@ class CustomApplication : Application() {
                 .build()
         Realm.setDefaultConfiguration(config)
 
-        //ダミーデータを挿入
+        //サンプルデータを挿入
 //        InsertData()
 
     }

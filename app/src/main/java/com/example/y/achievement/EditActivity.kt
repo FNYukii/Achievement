@@ -72,8 +72,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             }else{
                 //未達成にする
                 isAchieved = false
-                achievedDate = 0
-                achievedTime = 0
+                achievedDate = -1
+                achievedTime = -1
             }
             saveRecord()
             finish()

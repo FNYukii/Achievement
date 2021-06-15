@@ -30,7 +30,6 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         //RecyclerView準備
         var adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
         recyclerView.adapter = adapter
@@ -52,6 +51,7 @@ class HistoryFragment : Fragment() {
         }
 
     }
+
 
 
     @SuppressLint("SimpleDateFormat")
