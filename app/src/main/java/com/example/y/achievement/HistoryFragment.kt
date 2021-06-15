@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.fragment_library.*
+import kotlinx.android.synthetic.main.fragment_history.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
 //Todo: 統計データ閲覧機能を実装する
 
-class LibraryFragment : Fragment() {
+class HistoryFragment : Fragment() {
 
 
     private var offsetMonth = 0
@@ -25,7 +25,7 @@ class LibraryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_library, container, false)
+        return inflater.inflate(R.layout.fragment_history, container, false)
     }
 
 
