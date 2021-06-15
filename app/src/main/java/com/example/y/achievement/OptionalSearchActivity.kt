@@ -2,6 +2,7 @@ package com.example.y.achievement
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,8 +31,15 @@ class OptionalSearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_optional_search)
 
+        //putExtraを取得
+        val optionId = intent.getIntExtra("optionId", 0)
+        val achievedDate = intent.getIntExtra("achievedDate", 0)
+
+        Log.d("hello", "optionId: $optionId")
+        Log.d("hello", "achievedDate: $achievedDate")
+
         //SearchFragmentから渡されたoptionIdに合ったレコードを取得&labelTextに文字列をセット
-        when(intent.getIntExtra("optionId", 0)){
+        when(optionId){
             1 -> {
                 //未達成のアチーブメントを取得
                 realmResults = realm.where<Achievement>()
@@ -117,6 +125,15 @@ class OptionalSearchActivity : AppCompatActivity() {
                     .sort("id", Sort.DESCENDING)
                 //タイトルをセット
                 labelText.text = "ゴールド"
+            }
+            20 -> {
+                //HistoryFragmentのカレンダーでタップされた日に達成されたアチーブメントを取得
+                realmResults = realm.where<Achievement>()
+                    .equalTo("achievedDate", achievedDate)
+                    .findAll()
+                    .sort("achievedTime", Sort.DESCENDING)
+                //タイトルをセット
+                labelText.text = "yyyy年 MM月 dd日"
             }
         }
 

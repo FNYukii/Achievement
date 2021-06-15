@@ -119,9 +119,9 @@ class FrameRecyclerViewAdapter(
         }
 
         //達成日時情報を確認
-        Log.d("hello", "$position: isAchieved: ${achievement?.isAchieved}")
-        Log.d("hello", "$position: achievedDate: ${achievement?.achievedDate}")
-        Log.d("hello", "$position: achievedTime: ${achievement?.achievedTime}")
+//        Log.d("hello", "$position: isAchieved: ${achievement?.isAchieved}")
+//        Log.d("hello", "$position: achievedDate: ${achievement?.achievedDate}")
+//        Log.d("hello", "$position: achievedTime: ${achievement?.achievedTime}")
 
     }
 
