@@ -55,8 +55,15 @@ class DayRecyclerViewAdapter(
             if(days[position] != null){
                 val intent = Intent(it.context, OptionalSearchActivity::class.java)
                 intent.putExtra("optionId", 20)
-                val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-                intent.putExtra("achievedDate", days[position]?.format(formatter)?.toInt())
+
+                //レコード検索に使用する、Int型の日付情報
+                val numberFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
+                intent.putExtra("achievedDateNumber", days[position]?.format(numberFormatter)?.toInt())
+
+                //OptionalSearchActivityのlabelTextに使用する、String型の日付情報
+                val stringFormatter = DateTimeFormatter.ofPattern("yyyy年M月d日")
+                intent.putExtra("achievedDateString", days[position]?.format(stringFormatter))
+
                 it.context.startActivity(intent)
             }
         }

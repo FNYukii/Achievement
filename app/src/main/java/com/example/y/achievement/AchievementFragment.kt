@@ -28,6 +28,7 @@ class AchievementFragment : Fragment() {
 
     //全てのアチーブメントを取得
     private val allResults: RealmResults<Achievement> = realm.where<Achievement>()
+        .equalTo("isAchieved", false)
         .findAll()
         .sort("id", Sort.DESCENDING)
 

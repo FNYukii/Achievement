@@ -33,10 +33,12 @@ class OptionalSearchActivity : AppCompatActivity() {
 
         //putExtraを取得
         val optionId = intent.getIntExtra("optionId", 0)
-        val achievedDate = intent.getIntExtra("achievedDate", 0)
+        val achievedDateNumber = intent.getIntExtra("achievedDateNumber", 0)
+        val achievedDateString = intent.getStringExtra("achievedDateString")
 
-        Log.d("hello", "optionId: $optionId")
-        Log.d("hello", "achievedDate: $achievedDate")
+        Log.d("hello", "achievedDateNumber: $achievedDateNumber")
+        Log.d("hello", "achievedDateString: $achievedDateString")
+
 
         //SearchFragmentから渡されたoptionIdに合ったレコードを取得&labelTextに文字列をセット
         when(optionId){
@@ -129,11 +131,13 @@ class OptionalSearchActivity : AppCompatActivity() {
             20 -> {
                 //HistoryFragmentのカレンダーでタップされた日に達成されたアチーブメントを取得
                 realmResults = realm.where<Achievement>()
-                    .equalTo("achievedDate", achievedDate)
+                    .equalTo("achievedDate", achievedDateNumber)
+                    .and()
+                    .equalTo("isAchieved", true)
                     .findAll()
                     .sort("achievedTime", Sort.DESCENDING)
                 //タイトルをセット
-                labelText.text = "yyyy年 MM月 dd日"
+                labelText.text = (achievedDateString + "に達成")
             }
         }
 
