@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_library.*
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 //Todo: 統計データ閲覧機能を実装する
@@ -68,35 +69,40 @@ class LibraryFragment : Fragment() {
     }
 
 
-    private fun createDays(offsetMonth: Int):Array<Int>{
+    private fun createDays(offsetMonth: Int):Array<LocalDate?>{
 
-        val days: MutableList<Int> = arrayListOf()
+        //配列や変数
+        val days: MutableList<LocalDate?> = arrayListOf()
+        var day: LocalDate = LocalDate.now()
+        day = day.plusMonths(offsetMonth.toLong())
+
+        //当月の日数と、一日の曜日を取得
         val calendar = Calendar.getInstance()
         calendar.add(Calendar.MONTH, offsetMonth)
         val dayOfMonth = calendar.getActualMaximum(Calendar.DATE)
         calendar.set(Calendar.DATE, 1)
         val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
 
-        //当月の1日までを0で埋める
+        //当月の1日までをnullで埋める
         for (i in 1 until dayOfWeek){
-            days.add(0)
+            days.add(null)
         }
 
         //1日から月末日まで数字を埋める
         for (i in 1..dayOfMonth){
-            days.add(i)
+            days.add(LocalDate.of(day.year, day.month, i))
         }
 
-        //余った領域は0で埋める
+        //余った領域はnullで埋める
         if(days.size > 35){
             val filledSize = (42) - days.size
             for (i in 0 until filledSize){
-                days.add(0)
+                days.add(null)
             }
         }else{
             val filledSize = (35) - days.size
             for (i in 0 until filledSize){
-                days.add(0)
+                days.add(null)
             }
         }
 
