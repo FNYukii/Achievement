@@ -59,7 +59,7 @@ class DayRecyclerViewAdapter(
 
         //days[position]:LocalDateをInt型に変換。例:20210615
         val numberFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-        val currentDay: Int = days[position]?.format(numberFormatter)?.toInt() ?: 0
+        val currentDay: Int = days[position]?.format(numberFormatter)?.toInt() ?: -1
 
         //変数currentDayと達成日が一致するレコードを取得
         val realm = Realm.getDefaultInstance()
