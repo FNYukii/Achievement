@@ -9,7 +9,6 @@ import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
@@ -76,63 +75,63 @@ class SearchFragment : Fragment() {
         }
 
         //未達成のアチーブメント
-        searchNotAchievedOption.setOnClickListener {
+        searchNotAchievedButton.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 1)
             startActivity(intent)
         }
 
         //達成済みアチーブメント
-        searchAchievedOption.setOnClickListener {
+        searchAchievedButton.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 2)
             startActivity(intent)
         }
 
         //ピン止めされていないアチーブメント
-        searchNotPinnedOption.setOnClickListener {
+        searchNotPinnedButton.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 3)
             startActivity(intent)
         }
 
         //ピン止めされたアチーブメント
-        searchPinnedOption.setOnClickListener {
+        searchPinnedButton.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 4)
             startActivity(intent)
         }
 
         //白色アチーブメント
-        searchWhiteOption.setOnClickListener {
+        searchWhiteButton.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 10)
             startActivity(intent)
         }
 
         //緑色アチーブメント
-        searchGreenOption.setOnClickListener {
+        searchGreenButton.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 11)
             startActivity(intent)
         }
 
         //青色アチーブメント
-        searchBlueOption.setOnClickListener {
+        searchBlueButton.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 12)
             startActivity(intent)
         }
 
         //紫色アチーブメント
-        searchPurpleOption.setOnClickListener {
+        searchPurpleButton.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 13)
             startActivity(intent)
         }
 
         //金色アチーブメント
-        searchGoldOption.setOnClickListener {
+        searchGoldButton.setOnClickListener {
             val intent = Intent(this.context, OptionalSearchActivity::class.java)
             intent.putExtra("optionId", 14)
             startActivity(intent)
