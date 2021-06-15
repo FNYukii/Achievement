@@ -3,6 +3,7 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
@@ -68,7 +69,9 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
                 isAchieved = true
                 achievedDate = LocalDate.now().format(dateFormatter).toInt() //例: 20210615
                 achievedTime = LocalTime.now().format(timeFormatter).toInt() //例: 091134
-                Toast.makeText(applicationContext, "アチーブメントを達成済みにしました", Toast.LENGTH_SHORT).show()
+                val toast = Toast.makeText(applicationContext, "アチーブメントを達成済みにしました", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.CENTER, 300, 100) //setGravity()はAPIレベル30以降だと効果なし!
+                toast.show()
             }else{
                 //未達成にする
                 isAchieved = false
