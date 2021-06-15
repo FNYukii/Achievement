@@ -22,8 +22,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     //変数たち
     private var achievementId = 0
     private var isAchieved = false
-    private var achievedDate = 0
-    private var achievedTime = 0
+    private var achievedDate = -1
+    private var achievedTime = -1
     private var isPinned = false
     private var colorId = 0
     private var isGarbage = false

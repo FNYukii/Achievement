@@ -64,6 +64,8 @@ class DayRecyclerViewAdapter(
         //変数currentDayと達成日が一致するレコードを取得
         val realm = Realm.getDefaultInstance()
         val realmResults = realm.where<Achievement>()
+            .equalTo("isAchieved", true)
+            .and()
             .equalTo("achievedDate", currentDay)
             .findAll()
             .sort("achievedTime", Sort.ASCENDING)
