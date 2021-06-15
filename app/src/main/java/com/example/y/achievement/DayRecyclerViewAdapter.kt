@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
 import io.realm.Sort
 import io.realm.kotlin.where
-import kotlinx.android.synthetic.main.one_day.view.*
+import kotlinx.android.synthetic.main.cell_day.view.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -32,7 +32,7 @@ class DayRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.one_day, parent, false)
+            .inflate(R.layout.cell_day, parent, false)
         return CustomViewHolder(view)
     }
 

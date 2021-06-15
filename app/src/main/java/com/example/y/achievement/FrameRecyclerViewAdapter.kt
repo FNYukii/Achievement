@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.*
-import kotlinx.android.synthetic.main.one_frame.view.*
+import kotlinx.android.synthetic.main.cell_frame.view.*
 
 class FrameRecyclerViewAdapter(
     private val collection: OrderedRealmCollection<Achievement>?
@@ -29,7 +29,7 @@ class FrameRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.one_frame, parent, false)
+            .inflate(R.layout.cell_frame, parent, false)
         return CustomViewHolder(view)
     }
 
