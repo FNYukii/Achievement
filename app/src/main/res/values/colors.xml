@@ -25,10 +25,10 @@
     <color name="translucentGold">#55FFD24B</color>
 
     <!-- app background -->
-    <color name="navy">#26394C</color>
+    <color name="navy">#192632</color>
 
     <!-- border-top, border-bottom, tool button -->
-    <color name="lightNavy">#406181</color>
+    <color name="lightNavy">#293F53</color>
 
     <!-- floatingButton -->
     <color name="skyBlue">#3FC2FF</color>
