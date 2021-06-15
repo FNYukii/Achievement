@@ -71,7 +71,7 @@ class OptionalSearchActivity : AppCompatActivity() {
                     .findAll()
                     .sort("id", Sort.DESCENDING)
                 //タイトルをセット
-                labelText.text = "ピン止めあり"
+                labelText.text = "ピン止め済み"
             }
             10 -> {
                 //白色のアチーブメントを取得
@@ -81,7 +81,7 @@ class OptionalSearchActivity : AppCompatActivity() {
                     .findAll()
                     .sort("id", Sort.DESCENDING)
                 //タイトルをセット
-                labelText.text = "白色"
+                labelText.text = "白色のアチーブメント"
             }
             11 -> {
                 //緑色のアチーブメントを取得
@@ -91,7 +91,7 @@ class OptionalSearchActivity : AppCompatActivity() {
                     .findAll()
                     .sort("id", Sort.DESCENDING)
                 //タイトルをセット
-                labelText.text = "緑色"
+                labelText.text = "緑色のアチーブメント"
             }
             12 -> {
                 //青色のアチーブメントを取得
@@ -101,7 +101,7 @@ class OptionalSearchActivity : AppCompatActivity() {
                     .findAll()
                     .sort("id", Sort.DESCENDING)
                 //タイトルをセット
-                labelText.text = "青色"
+                labelText.text = "青色のアチーブメント"
             }
             13 -> {
                 //紫色のアチーブメントを取得
@@ -111,7 +111,7 @@ class OptionalSearchActivity : AppCompatActivity() {
                     .findAll()
                     .sort("id", Sort.DESCENDING)
                 //タイトルをセット
-                labelText.text = "紫色"
+                labelText.text = "紫色のアチーブメント"
             }
             14 -> {
                 //金色のアチーブメントを取得
@@ -121,7 +121,7 @@ class OptionalSearchActivity : AppCompatActivity() {
                     .findAll()
                     .sort("id", Sort.DESCENDING)
                 //タイトルをセット
-                labelText.text = "ゴールド"
+                labelText.text = "ゴールドアチーブメント"
             }
             20 -> {
                 //HistoryFragmentのカレンダーでタップされた日に達成されたアチーブメントを取得
