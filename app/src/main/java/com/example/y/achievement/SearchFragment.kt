@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.preference.PreferenceManager
 import android.view.*
 import android.widget.SearchView
@@ -23,7 +22,7 @@ class SearchFragment : Fragment() {
     val realm: Realm = Realm.getDefaultInstance()
 
     //RecyclerViewのインスタンス宣言
-    private lateinit var adapter: CustomRecyclerViewAdapter
+    private lateinit var adapter: FrameRecyclerViewAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
     //検索して取得するレコードを格納する変数realmResultsを宣言
@@ -59,7 +58,7 @@ class SearchFragment : Fragment() {
         //RecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
         searchRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(realmResults)
+        adapter = FrameRecyclerViewAdapter(realmResults)
         searchRecyclerView.adapter = this.adapter
 
         //検索バーのqueryが変化するたびに、検索を行う。queryStringは逐次SharedPreferencesに保存！
@@ -176,7 +175,7 @@ class SearchFragment : Fragment() {
         }
 
         //RecyclerViewを再表示
-        adapter = CustomRecyclerViewAdapter(realmResults)
+        adapter = FrameRecyclerViewAdapter(realmResults)
         searchRecyclerView.adapter = this.adapter
 
     }

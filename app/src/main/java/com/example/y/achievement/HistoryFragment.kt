@@ -34,21 +34,21 @@ class HistoryFragment : Fragment() {
 
 
         //RecyclerView準備
-        var adapter = CalendarRecyclerViewAdapter(createDays(offsetMonth))
+        var adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(this.context, 7)
         updateDateLabel()
 
         prevButton.setOnClickListener {
             offsetMonth--
-            adapter = CalendarRecyclerViewAdapter(createDays(offsetMonth))
+            adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
             recyclerView.adapter = adapter
             updateDateLabel()
         }
 
         nextButton.setOnClickListener {
             offsetMonth++
-            adapter = CalendarRecyclerViewAdapter(createDays(offsetMonth))
+            adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
             recyclerView.adapter = adapter
             updateDateLabel()
         }

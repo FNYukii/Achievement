@@ -19,7 +19,7 @@ class OptionalSearchActivity : AppCompatActivity() {
     val realm: Realm = Realm.getDefaultInstance()
 
     //RecyclerViewのインスタンス宣言
-    private lateinit var adapter: CustomRecyclerViewAdapter
+    private lateinit var adapter: FrameRecyclerViewAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
     //取得するレコードを格納する変数realmResults
@@ -123,7 +123,7 @@ class OptionalSearchActivity : AppCompatActivity() {
         //RecyclerViewを表示
         layoutManager = GridLayoutManager(this, 2)
         optionalSearchRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(realmResults)
+        adapter = FrameRecyclerViewAdapter(realmResults)
         optionalSearchRecyclerView.adapter = this.adapter
 
         //結果が0件なら、メッセージを表示

@@ -11,9 +11,9 @@ import kotlinx.android.synthetic.main.one_day.view.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class CalendarRecyclerViewAdapter(
+class DayRecyclerViewAdapter(
     private val days: Array<LocalDate?>
-): RecyclerView.Adapter<CalendarRecyclerViewAdapter.CustomViewHolder>() {
+): RecyclerView.Adapter<DayRecyclerViewAdapter.CustomViewHolder>() {
 
 
     class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

@@ -20,7 +20,7 @@ class AchievementFragment : Fragment() {
 
 
     //RecyclerViewのインスタンスを宣言
-    private lateinit var adapter: CustomRecyclerViewAdapter
+    private lateinit var adapter: FrameRecyclerViewAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
     //Realmのインスタンスを取得
@@ -69,13 +69,13 @@ class AchievementFragment : Fragment() {
         //pinRecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
         pinRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(pinnedResults)
+        adapter = FrameRecyclerViewAdapter(pinnedResults)
         pinRecyclerView.adapter = this.adapter
 
         //mainRecyclerViewを表示
         layoutManager = GridLayoutManager(this.context, 2)
         mainRecyclerView.layoutManager = layoutManager
-        adapter = CustomRecyclerViewAdapter(notPinnedResults)
+        adapter = FrameRecyclerViewAdapter(notPinnedResults)
         mainRecyclerView.adapter = this.adapter
 
         //もしピン止めされたアチーブメントが無いなら、pinRecyclerViewを表示しない

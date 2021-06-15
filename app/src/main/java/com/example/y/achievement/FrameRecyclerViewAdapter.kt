@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import io.realm.*
 import kotlinx.android.synthetic.main.one_frame.view.*
 
-class CustomRecyclerViewAdapter(
+class FrameRecyclerViewAdapter(
     private val collection: OrderedRealmCollection<Achievement>?
-    ) : RealmRecyclerViewAdapter<Achievement, CustomRecyclerViewAdapter.CustomViewHolder>(collection, true) {
+    ) : RealmRecyclerViewAdapter<Achievement, FrameRecyclerViewAdapter.CustomViewHolder>(collection, true) {
 
 
     class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
