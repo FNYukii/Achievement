@@ -71,19 +71,18 @@ class AchievementFragment : Fragment() {
         mainRecyclerView.layoutManager = GridLayoutManager(this.context, 2)
         mainRecyclerView.adapter = FrameRecyclerViewAdapter(notPinnedResults)
 
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+
         //もしピン止めされたアチーブメントが無いなら、pinRecyclerViewを表示しない
         if(pinnedResults.size == 0){
             pinRecyclerView.visibility = View.GONE
         }else{
             pinRecyclerView.visibility = View.VISIBLE
         }
-        pinnedResults.addChangeListener(RealmChangeListener {
-            if(pinnedResults.size == 0){
-                pinRecyclerView.visibility = View.GONE
-            }else{
-                pinRecyclerView.visibility = View.VISIBLE
-            }
-        })
 
         //もしアチーブメントが1件も登録されていないなら、メッセージを表示する
         if(allResults.size == 0){
@@ -91,14 +90,6 @@ class AchievementFragment : Fragment() {
         }else{
             noResultText.visibility = View.GONE
         }
-        allResults.addChangeListener(RealmChangeListener {
-            Log.d("hello", "allResults was changed")
-            if(allResults.size == 0){
-                noResultText.visibility = View.VISIBLE
-            }else{
-                noResultText.visibility = View.GONE
-            }
-        })
 
     }
 

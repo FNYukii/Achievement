@@ -10,14 +10,13 @@
         android:id="@+id/noResultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="まだアチーブメントが登録されていません"
-        android:textColor="@color/gray"
+        android:text="未達成のアチーブメントはありません"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"

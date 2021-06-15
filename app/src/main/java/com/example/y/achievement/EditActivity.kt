@@ -13,8 +13,6 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-//Todo: データを更新すると、たまにアプリがフリーズするバグを修正する
-
 class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
 
 

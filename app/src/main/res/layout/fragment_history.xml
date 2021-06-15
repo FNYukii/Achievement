@@ -20,7 +20,7 @@
 
 
     <TextView
-        android:id="@+id/dateLabel"
+        android:id="@+id/labelText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -42,7 +42,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dateLabel">
+        app:layout_constraintTop_toBottomOf="@id/labelText2">
 
         <TextView
             android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/background_tool_button"
         android:src="@drawable/ic_baseline_arrow_back_ios_24"
-        app:layout_constraintEnd_toStartOf="@+id/dateLabel"
+        app:layout_constraintEnd_toStartOf="@+id/labelText2"
         app:layout_constraintTop_toBottomOf="@+id/logoText" />
 
     <ImageButton
@@ -130,7 +130,7 @@
         android:layout_marginStart="32dp"
         android:background="@drawable/background_tool_button"
         android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-        app:layout_constraintStart_toEndOf="@+id/dateLabel"
+        app:layout_constraintStart_toEndOf="@+id/labelText2"
         app:layout_constraintTop_toBottomOf="@+id/logoText" />
 
 

@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import io.realm.Realm
-import io.realm.RealmChangeListener
-import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_history.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -35,9 +32,7 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //RecyclerViewを表示
-        calendarRecyclerView.adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
-        calendarRecyclerView.layoutManager = GridLayoutManager(this.context, 7)
+        //labelText2に表示月をセット
         updateDateLabel()
 
         //prevButtonを押すと、前月のカレンダーを表示
@@ -54,19 +49,19 @@ class HistoryFragment : Fragment() {
             updateDateLabel()
         }
 
-        //データに変更があったら、RecyclerViewを更新
-        val realm = Realm.getDefaultInstance()
-        val realmResults = realm.where<Achievement>()
-            .findAll()
-        realmResults.addChangeListener(RealmChangeListener {
-            calendarRecyclerView.adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
-        })
+    }
 
+
+    override fun onStart() {
+        super.onStart()
+        //RecyclerViewを表示
+        calendarRecyclerView.adapter = DayRecyclerViewAdapter(createDays(offsetMonth))
+        calendarRecyclerView.layoutManager = GridLayoutManager(this.context, 7)
     }
 
 
     private fun updateDateLabel() {
-        dateLabel.text = SimpleDateFormat("yyyy年 M月",Locale.JAPANESE).format(Date().apply { offset(month = offsetMonth) })
+        labelText2.text = SimpleDateFormat("yyyy年 M月",Locale.JAPANESE).format(Date().apply { offset(month = offsetMonth) })
     }
 
 
