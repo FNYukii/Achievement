@@ -3,8 +3,6 @@ package com.example.y.achievement
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import io.realm.Realm
@@ -15,7 +13,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
+class EditActivity : AppCompatActivity(), AchieveDialogFragment.DialogListener, ColorDialogFragment.DialogListener, DeleteDialogFragment.DialogListener {
 
 
     //Realmのインスタンスを取得
@@ -62,25 +60,30 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
 
         //achieveButtonが押されたら、isAchievedを切り替え&達成日時を編集して、Activityを終了
         achieveButton.setOnClickListener {
-            if(!isAchieved){
-                val dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-                val timeFormatter = DateTimeFormatter.ofPattern("HHmmss")
-                //達成済みにして、現在日時をInt型で保存
-                isAchieved = true
-                achievedDate = LocalDate.now().format(dateFormatter).toInt() //例: 20210615
-                achievedTime = LocalTime.now().format(timeFormatter).toInt() //例: 091134
-                val toast = Toast.makeText(applicationContext, "アチーブメントを達成済みにしました", Toast.LENGTH_SHORT)
-                toast.setGravity(Gravity.CENTER, 300, 100) //setGravity()はAPIレベル30以降だと効果なし!
-                toast.show()
-            }else{
-                //未達成にする
-                isAchieved = false
-                achievedDate = 0
-                achievedTime = 0
-                Toast.makeText(applicationContext, "アチーブメントを未達成にしました", Toast.LENGTH_SHORT).show()
-            }
-            saveRecord()
-            finish()
+//            if(!isAchieved){
+//                val dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
+//                val timeFormatter = DateTimeFormatter.ofPattern("HHmmss")
+//                //達成済みにして、現在日時をInt型で保存
+//                isAchieved = true
+//                achievedDate = LocalDate.now().format(dateFormatter).toInt() //例: 20210615
+//                achievedTime = LocalTime.now().format(timeFormatter).toInt() //例: 091134
+//                val toast = Toast.makeText(applicationContext, "アチーブメントを達成済みにしました", Toast.LENGTH_SHORT)
+//                toast.setGravity(Gravity.CENTER, 300, 100) //setGravity()はAPIレベル30以降だと効果なし!
+//                toast.show()
+//            }else{
+//                //未達成にする
+//                isAchieved = false
+//                achievedDate = 0
+//                achievedTime = 0
+//                Toast.makeText(applicationContext, "アチーブメントを未達成にしました", Toast.LENGTH_SHORT).show()
+//            }
+//            saveRecord()
+//            finish()
+            val dialogFragment = AchieveDialogFragment()
+            val args = Bundle()
+            args.putBoolean("isAchieved", isAchieved)
+            dialogFragment.arguments = args
+            dialogFragment.show(supportFragmentManager, "dialog")
         }
 
         //pinButtonが押されたら、isPinnedの真偽を切り替える
@@ -132,15 +135,34 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     }
 
 
-    //colorDialogからcolorIDを受け取ったら、データを更新&各Viewへ色をセット
+    override fun onDialogAchieveReceive(dialog: DialogFragment) {
+        if(!isAchieved){
+            val dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
+            val timeFormatter = DateTimeFormatter.ofPattern("HHmmss")
+            //達成済みにして、現在日時をInt型で保存
+            isAchieved = true
+            achievedDate = LocalDate.now().format(dateFormatter).toInt() //例: 20210615
+            achievedTime = LocalTime.now().format(timeFormatter).toInt() //例: 091134
+        }else{
+            //未達成にする
+            isAchieved = false
+            achievedDate = 0
+            achievedTime = 0
+        }
+        saveRecord()
+        finish()
+    }
+
+
+    //ColorDialogからcolorIDを受け取ったら、データを更新&各Viewへ色をセット
     override fun onDialogColorIdReceive(dialog: DialogFragment, colorId: Int) {
         this.colorId = colorId
         setColor()
     }
 
 
-    //deleteDialogから削除命令を受け取ったら、レコードを削除
-    override fun onDialogIsDeleteReceive(dialog: DialogFragment) {
+    //DeleteDialogから削除命令を受け取ったら、レコードを削除
+    override fun onDialogDeleteReceive(dialog: DialogFragment) {
         isGarbage = true
         saveRecord()
         finish()
@@ -304,7 +326,6 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             achievement?.deleteFromRealm()
         }
 
-        Toast.makeText(applicationContext, "アチーブメントを削除しました", Toast.LENGTH_SHORT).show()
     }
 
 

@@ -8,25 +8,37 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import java.lang.Exception
 
-class DeleteDialogFragment : DialogFragment() {
+class AchieveDialogFragment: DialogFragment() {
 
 
-    //EditActivityへ削除命令を渡すためのインターフェース
+    //EditActivityへ命令を渡すためのインターフェース
     interface DialogListener{
-        fun onDialogDeleteReceive(dialog: DialogFragment)
+        fun onDialogAchieveReceive(dialog: DialogFragment)
     }
     private var listener:DialogListener? = null
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
+
+            //EditActivityから渡されたisAchievedの値を受け取る
+            val isAchieved: Boolean = arguments?.getBoolean("isAchieved") ?: false
+
+            //受け取ったisAchievedの真偽によって、メッセージを変える
+            val message = if (isAchieved){
+                "アチーブメントを未達成に変更しますか?"
+            }else{
+                "アチーブメントを達成済みに変更しますか?"
+            }
+
+            //Dialogのパーツを生成
             val builder = AlertDialog.Builder(it, R.style.CustomDialog)
             builder.setTitle("確認")
-                .setMessage("アチーブメントを削除しますか?")
+                .setMessage(message)
                 .setPositiveButton("OK"
                 ) { _, _ ->
-                    //EditActivityへ削除命令を送る
-                    listener?.onDialogDeleteReceive(this)
+                    //EditActivityへ命令を送る
+                    listener?.onDialogAchieveReceive(this)
                 }
                 .setNegativeButton("キャンセル"
                 ) { _, _ ->
