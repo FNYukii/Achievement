@@ -9,6 +9,9 @@ import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_edit.*
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 //Todo: データを更新すると、たまにアプリがフリーズするバグを修正する
 
@@ -21,6 +24,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
     //変数たち
     private var achievementId = 0
     private var isAchieved = false
+    private var achievedDate = 0
+    private var achievedTime = 0
     private var isPinned = false
     private var colorId = 0
     private var isGarbage = false
@@ -38,11 +43,13 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             val achievement = realm.where<Achievement>()
                 .equalTo("id", achievementId)
                 .findFirst()
-            titleEdit.setText(achievement?.title)
-            detailEdit.setText(achievement?.detail)
             isAchieved = achievement?.isAchieved!!
+            achievedDate = achievement.achievedDate
+            achievedTime = achievement.achievedTime
             isPinned = achievement.isPinned
             colorId = achievement.colorId
+            titleEdit.setText(achievement.title)
+            detailEdit.setText(achievement.detail)
             setPinIcon()
             setColor()
         }
@@ -53,9 +60,21 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
             finish()
         }
 
-        //achieveButtonが押されたら、isAchievedを切り替えて、Activityを終了
+        //achieveButtonが押されたら、isAchievedを切り替え&達成日時を編集して、Activityを終了
         achieveButton.setOnClickListener {
-            isAchieved = !isAchieved
+            if(!isAchieved){
+                val dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
+                val timeFormatter = DateTimeFormatter.ofPattern("HHmmss")
+                //達成済みにして、現在日時をInt型で保存
+                isAchieved = true
+                achievedDate = LocalDate.now().format(dateFormatter).toInt() //例: 20210615
+                achievedTime = LocalTime.now().format(timeFormatter).toInt() //例: 091134
+            }else{
+                //未達成にする
+                isAchieved = false
+                achievedDate = 0
+                achievedTime = 0
+            }
             saveRecord()
             finish()
         }
@@ -210,6 +229,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
         realm.executeTransaction {
             val achievement = realm.createObject<Achievement>(newId)
             achievement.isAchieved = isAchieved
+            achievement.achievedDate = achievedDate
+            achievement.achievedTime = achievedTime
             achievement.isPinned = isPinned
             achievement.colorId = colorId
             achievement.title = titleEdit.text.toString()
@@ -258,6 +279,8 @@ class EditActivity : AppCompatActivity(), ColorDialogFragment.DialogListener, De
         if(achievement?.isAchieved != isAchieved){
             realm.executeTransaction {
                 achievement?.isAchieved = isAchieved
+                achievement?.achievedDate = achievedDate
+                achievement?.achievedTime = achievedTime
             }
         }
 

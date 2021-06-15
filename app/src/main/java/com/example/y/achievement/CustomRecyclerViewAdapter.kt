@@ -2,6 +2,7 @@ package com.example.y.achievement
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -116,6 +117,11 @@ class CustomRecyclerViewAdapter(
             intent.putExtra("achievementId", achievement?.id)
             it.context.startActivity(intent)
         }
+
+        //達成日時情報を確認
+        Log.d("hello", "$position: isAchieved: ${achievement?.isAchieved}")
+        Log.d("hello", "$position: achievedDate: ${achievement?.achievedDate}")
+        Log.d("hello", "$position: achievedTime: ${achievement?.achievedTime}")
 
     }
 
