@@ -51,7 +51,7 @@ class OptionalSearchActivity : AppCompatActivity() {
                 realmResults = realm.where<Achievement>()
                     .equalTo("isAchieved", true)
                     .findAll()
-                    .sort("id", Sort.DESCENDING)
+                    .sort("achievedDate", Sort.DESCENDING, "achievedTime", Sort.DESCENDING)
                 //タイトルをセット
                 labelText.text = "達成済み"
             }
