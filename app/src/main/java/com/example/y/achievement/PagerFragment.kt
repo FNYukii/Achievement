@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.fragment_calendar_page.*
+import kotlinx.android.synthetic.main.fragment_pager.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
-class CalendarPageFragment : Fragment() {
+class PagerFragment : Fragment() {
 
     //ページ数
     private val pageSize = 50
@@ -21,7 +21,7 @@ class CalendarPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_calendar_page, container, false)
+        return inflater.inflate(R.layout.fragment_pager, container, false)
     }
 
 
