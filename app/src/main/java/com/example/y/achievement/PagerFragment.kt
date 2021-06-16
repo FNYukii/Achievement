@@ -28,15 +28,14 @@ class PagerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //HistoryFragmentから変数offsetMonthを受け取る
+        //HistoryFragmentからページ番号を受け取って、当月との差を計算
         val position = arguments?.getInt("position") ?: 0
-
         val offsetMonth: Int = 0 - (pageSize / 2 - position)
 
         //RecyclerViewを表示
         val days = createDays(offsetMonth)
-        newCalendarRecyclerView.adapter = DayRecyclerViewAdapter(days)
-        newCalendarRecyclerView.layoutManager = GridLayoutManager(this.context, 7)
+        calendarRecyclerView.adapter = DayRecyclerViewAdapter(days)
+        calendarRecyclerView.layoutManager = GridLayoutManager(this.context, 7)
 
         //labelText2を更新
         labelText2.text = SimpleDateFormat("yyyy年 M月",Locale.JAPANESE).format(Date().apply { offset(month = offsetMonth) })
