@@ -1,6 +1,7 @@
 package com.example.y.achievement
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,9 @@ class PagerFragment : Fragment() {
 
     //ページ数
     private val pageSize = Int.MAX_VALUE
+
+    //一か月分の日付情報
+    private lateinit var days: Array<LocalDate?>
 
 
     override fun onCreateView(
@@ -32,13 +36,19 @@ class PagerFragment : Fragment() {
         val position = arguments?.getInt("position") ?: 0
         val offsetMonth: Int = 0 - (pageSize / 2 - position)
 
-        //RecyclerViewを表示
-        val days = createDays(offsetMonth)
+        //一ヵ月分の日付情報をDayRecyclerViewAdapterへ渡して、それをcalendarRecyclerViewのAdapterとする
+        days = createDays(offsetMonth)
         calendarRecyclerView.adapter = DayRecyclerViewAdapter(days)
         calendarRecyclerView.layoutManager = GridLayoutManager(this.context, 7)
 
         //labelText2を更新
         labelText2.text = SimpleDateFormat("yyyy年 M月",Locale.JAPANESE).format(Date().apply { offset(month = offsetMonth) })
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        calendarRecyclerView.adapter = DayRecyclerViewAdapter(days)
     }
 
 
