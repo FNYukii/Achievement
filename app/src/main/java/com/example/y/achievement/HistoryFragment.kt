@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_history.*
 class HistoryFragment : Fragment() {
 
     //カレンダーのページ数
-    private val pageSize = 50
+    private val pageSize = Int.MAX_VALUE
 
     override fun onCreateView(
         inflater: LayoutInflater,

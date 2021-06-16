@@ -14,7 +14,7 @@ import java.util.*
 class PagerFragment : Fragment() {
 
     //ページ数
-    private val pageSize = 50
+    private val pageSize = Int.MAX_VALUE
 
 
     override fun onCreateView(
