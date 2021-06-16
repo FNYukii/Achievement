@@ -22,11 +22,13 @@
         android:id="@+id/dayOfWeekContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/background_border_bottom"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/labelText2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" >
+        app:layout_constraintTop_toBottomOf="@id/labelText2">
 
         <TextView
             android:layout_width="wrap_content"
@@ -90,6 +92,8 @@
         android:id="@+id/newCalendarRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:overScrollMode="never"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

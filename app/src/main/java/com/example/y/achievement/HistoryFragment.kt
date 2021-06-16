@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_history.*
 class HistoryFragment : Fragment() {
 
     //ページ数
-    private val pageSize = 10
+    private val pageSize = 50
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +30,7 @@ class HistoryFragment : Fragment() {
         //CalendarPagerを表示
         calendarPager.adapter = CustomPagerAdapter(this.context as FragmentActivity)
         calendarPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        calendarPager.currentItem = pageSize / 2
+        calendarPager.setCurrentItem(pageSize / 2, false)
     }
 
 

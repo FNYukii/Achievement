@@ -14,7 +14,7 @@ import java.util.*
 class CalendarPageFragment : Fragment() {
 
     //ページ数
-    private val pageSize = 10
+    private val pageSize = 50
 
 
     override fun onCreateView(
