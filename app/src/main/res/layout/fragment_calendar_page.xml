@@ -6,13 +6,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CalendarPageFragment">
 
+    <TextView
+        android:id="@+id/labelText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YYYY年 M月"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <LinearLayout
         android:id="@+id/dayOfWeekContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_border_bottom"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelText2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" >
 

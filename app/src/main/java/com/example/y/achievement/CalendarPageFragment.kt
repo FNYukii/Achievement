@@ -1,17 +1,20 @@
 package com.example.y.achievement
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_calendar_page.*
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
 class CalendarPageFragment : Fragment() {
+
+    //ページ数
+    private val pageSize = 10
 
 
     override fun onCreateView(
@@ -26,17 +29,25 @@ class CalendarPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //HistoryFragmentから変数offsetMonthを受け取る
-        val offsetMonth = arguments?.getInt("offsetMonth") ?: 0
+        val position = arguments?.getInt("position") ?: 0
+
+        val offsetMonth: Int = 0 - (pageSize / 2 - position)
 
         //RecyclerViewを表示
         val days = createDays(offsetMonth)
         newCalendarRecyclerView.adapter = DayRecyclerViewAdapter(days)
         newCalendarRecyclerView.layoutManager = GridLayoutManager(this.context, 7)
-        Log.d("hello", "days6: ${days[6]}")
 
-
+        //labelText2を更新
+        labelText2.text = SimpleDateFormat("yyyy年 M月",Locale.JAPANESE).format(Date().apply { offset(month = offsetMonth) })
     }
 
+
+    private fun Date.offset(month: Int = 0) {
+        time = Calendar.getInstance().apply {
+            add(Calendar.MONTH, month)
+        }.timeInMillis
+    }
 
 
     private fun createDays(offsetMonth: Int):Array<LocalDate?>{
