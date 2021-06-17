@@ -7,8 +7,8 @@ open class Achievement : RealmObject() {
     @PrimaryKey
     var id: Int = 0
     var isAchieved: Boolean = false
-    var achievedDate: Int = 0
-    var achievedTime: Int = 0
+    var achievedDate: Int = 0 //例: 20210615
+    var achievedTime: Int = 0 //例: 091231
     var isPinned: Boolean = false
     var colorId: Int = 0
     var title: String = ""
