@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
 import io.realm.RealmChangeListener
 import io.realm.RealmResults
@@ -17,10 +16,6 @@ class OptionalSearchActivity : AppCompatActivity() {
 
     //Realmのインスタンス取得
     val realm: Realm = Realm.getDefaultInstance()
-
-    //RecyclerViewのインスタンス宣言
-    private lateinit var adapter: FrameRecyclerViewAdapter
-    private lateinit var layoutManager: RecyclerView.LayoutManager
 
     //取得するレコードを格納する変数realmResults
     private lateinit var realmResults: RealmResults<Achievement>
@@ -137,10 +132,8 @@ class OptionalSearchActivity : AppCompatActivity() {
         }
 
         //RecyclerViewを表示
-        layoutManager = GridLayoutManager(this, 2)
-        optionalSearchRecyclerView.layoutManager = layoutManager
-        adapter = FrameRecyclerViewAdapter(realmResults)
-        optionalSearchRecyclerView.adapter = this.adapter
+        optionalSearchRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        optionalSearchRecyclerView.adapter = FrameRecyclerViewAdapter(realmResults)
 
         //結果が0件なら、メッセージを表示
         if(realmResults.size == 0){
