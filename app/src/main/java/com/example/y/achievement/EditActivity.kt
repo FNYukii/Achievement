@@ -60,25 +60,6 @@ class EditActivity : AppCompatActivity(), AchieveDialogFragment.DialogListener, 
 
         //achieveButtonが押されたら、isAchievedを切り替え&達成日時を編集して、Activityを終了
         achieveButton.setOnClickListener {
-//            if(!isAchieved){
-//                val dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
-//                val timeFormatter = DateTimeFormatter.ofPattern("HHmmss")
-//                //達成済みにして、現在日時をInt型で保存
-//                isAchieved = true
-//                achievedDate = LocalDate.now().format(dateFormatter).toInt() //例: 20210615
-//                achievedTime = LocalTime.now().format(timeFormatter).toInt() //例: 091134
-//                val toast = Toast.makeText(applicationContext, "アチーブメントを達成済みにしました", Toast.LENGTH_SHORT)
-//                toast.setGravity(Gravity.CENTER, 300, 100) //setGravity()はAPIレベル30以降だと効果なし!
-//                toast.show()
-//            }else{
-//                //未達成にする
-//                isAchieved = false
-//                achievedDate = 0
-//                achievedTime = 0
-//                Toast.makeText(applicationContext, "アチーブメントを未達成にしました", Toast.LENGTH_SHORT).show()
-//            }
-//            saveRecord()
-//            finish()
             val dialogFragment = AchieveDialogFragment()
             val args = Bundle()
             args.putBoolean("isAchieved", isAchieved)
