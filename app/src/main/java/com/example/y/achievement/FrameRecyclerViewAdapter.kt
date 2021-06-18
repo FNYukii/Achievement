@@ -64,9 +64,6 @@ class FrameRecyclerViewAdapter(
         //もしtitleがemptyなら、titleTextは非表示。detailTextのmarginTopも0dpにする。
         if(achievement?.title.isNullOrEmpty()){
             holder.frameTitleText.visibility = View.GONE
-//            val param = holder.frameDetailText.layoutParams as ViewGroup.MarginLayoutParams
-//            param.setMargins(0,0,0,0)
-//            holder.frameDetailText.layoutParams = param
         }else{
             holder.frameTitleText.visibility = View.VISIBLE
         }
@@ -116,11 +113,6 @@ class FrameRecyclerViewAdapter(
             intent.putExtra("achievementId", achievement?.id)
             it.context.startActivity(intent)
         }
-
-        //達成日時情報を確認
-//        Log.d("hello", "$position: isAchieved: ${achievement?.isAchieved}")
-//        Log.d("hello", "$position: achievedDate: ${achievement?.achievedDate}")
-//        Log.d("hello", "$position: achievedTime: ${achievement?.achievedTime}")
 
     }
 
