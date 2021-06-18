@@ -49,7 +49,7 @@
                 android:id="@+id/pinRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="32dp"
+                android:paddingBottom="24dp"
                 android:nestedScrollingEnabled="false" />
 
             <androidx.recyclerview.widget.RecyclerView

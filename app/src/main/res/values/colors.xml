@@ -24,11 +24,14 @@
     <color name="translucentPurple">#55ED83FF</color>
     <color name="translucentGold">#55FFD24B</color>
 
-    <!-- app background -->
-    <color name="navy">#213242</color>
+    <!-- white frame mini -->
+    <color name="darkWhite">#DDDDDD</color>
 
-    <!-- border-top, border-bottom, tool button -->
-    <color name="lightNavy">#3A5875</color>
+    <!-- app background -->
+    <color name="navy">#15212C</color>
+
+    <!-- borderline, tool button -->
+    <color name="lightNavy">#2C4861</color>
 
     <!-- floatingButton -->
     <color name="skyBlue">#3FC2FF</color>
@@ -38,7 +41,7 @@
     <color name="gray">#AAAAAA</color>
 
     <!-- searchViewWrapper -->
-    <color name="darkNavy">#15202B</color>
+    <color name="darkNavy">#0F1820</color>
 
 
 
