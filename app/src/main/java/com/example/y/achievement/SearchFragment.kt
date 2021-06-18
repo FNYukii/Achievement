@@ -136,7 +136,6 @@ class SearchFragment : Fragment() {
             intent.putExtra("optionId", 14)
             startActivity(intent)
         }
-
     }
 
 
@@ -169,7 +168,6 @@ class SearchFragment : Fragment() {
 
         //RecyclerViewを再表示
         searchRecyclerView.adapter = FrameRecyclerViewAdapter(realmResults)
-
     }
 
 

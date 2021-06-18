@@ -96,7 +96,6 @@ class EditActivity : AppCompatActivity(), AchieveDialogFragment.DialogListener, 
                 detailEdit.clearFocus()
             }
         }
-
     }
 
 
@@ -167,7 +166,6 @@ class EditActivity : AppCompatActivity(), AchieveDialogFragment.DialogListener, 
                 deleteRecord()
             }
         }
-
     }
 
 
@@ -306,7 +304,6 @@ class EditActivity : AppCompatActivity(), AchieveDialogFragment.DialogListener, 
         realm.executeTransaction {
             achievement?.deleteFromRealm()
         }
-
     }
 
 

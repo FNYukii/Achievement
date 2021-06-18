@@ -113,7 +113,7 @@ class FrameRecyclerViewAdapter(
             intent.putExtra("achievementId", achievement?.id)
             it.context.startActivity(intent)
         }
-
     }
+
 
 }

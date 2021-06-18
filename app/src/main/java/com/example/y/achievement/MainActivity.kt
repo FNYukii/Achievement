@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         //キーボードがレイアウトを押し上げないようにする
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-
     }
 
 

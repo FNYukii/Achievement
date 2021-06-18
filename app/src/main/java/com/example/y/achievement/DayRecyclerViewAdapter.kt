@@ -26,7 +26,6 @@ class DayRecyclerViewAdapter(
         val frame02: ImageView = itemView.frame02
         val frame03: ImageView = itemView.frame03
         val frame04: ImageView = itemView.frame04
-
     }
 
 
@@ -170,7 +169,6 @@ class DayRecyclerViewAdapter(
                 it.context.startActivity(intent)
             }
         }
-
     }
 
 

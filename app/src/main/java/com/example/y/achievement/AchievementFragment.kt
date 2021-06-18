@@ -70,7 +70,6 @@ class AchievementFragment : Fragment() {
         //mainRecyclerViewを表示
         mainRecyclerView.layoutManager = GridLayoutManager(this.context, 2)
         mainRecyclerView.adapter = FrameRecyclerViewAdapter(notPinnedResults)
-
     }
 
 
@@ -90,7 +89,6 @@ class AchievementFragment : Fragment() {
         }else{
             noResultText.visibility = View.GONE
         }
-
     }
 
 

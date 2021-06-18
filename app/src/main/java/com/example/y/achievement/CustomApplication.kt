@@ -19,7 +19,6 @@ class CustomApplication : Application() {
 
         //サンプルデータを挿入
 //        InsertData()
-
     }
 
 

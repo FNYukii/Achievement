@@ -153,7 +153,6 @@ class OptionalSearchActivity : AppCompatActivity() {
         backButton2.setOnClickListener {
             finish()
         }
-
     }
 
 
