@@ -11,7 +11,7 @@
     <!-- focused -->
     <item android:state_pressed="true" android:state_focused="false" tools:ignore="StateListReachable">
         <shape android:shape="rectangle">
-            <solid android:color="@color/lightNavy" />
+            <solid android:color="@color/translucentWhite" />
         </shape>
     </item>
 

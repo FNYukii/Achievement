@@ -18,11 +18,11 @@
     <color name="gold">#FFD24B</color>
 
     <!-- frame background when pressed -->
-    <color name="translucentWhite">#55FFFFFF</color>
-    <color name="translucentGreen">#5595FF91</color>
-    <color name="translucentBlue">#555FB8FF</color>
-    <color name="translucentPurple">#55ED83FF</color>
-    <color name="translucentGold">#55FFD24B</color>
+    <color name="translucentWhite">#33FFFFFF</color>
+    <color name="translucentGreen">#3395FF91</color>
+    <color name="translucentBlue">#335FB8FF</color>
+    <color name="translucentPurple">#33ED83FF</color>
+    <color name="translucentGold">#33FFD24B</color>
 
     <!-- white frame mini -->
     <color name="darkWhite">#DDDDDD</color>
