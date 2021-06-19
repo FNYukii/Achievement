@@ -2,15 +2,12 @@ package com.example.y.achievement
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
 import io.realm.Realm
-import io.realm.RealmChangeListener
 import io.realm.RealmResults
 import io.realm.Sort
 import io.realm.kotlin.where

@@ -16,9 +16,6 @@ class CustomApplication : Application() {
                 .deleteRealmIfMigrationNeeded()
                 .build()
         Realm.setDefaultConfiguration(config)
-
-        //サンプルデータを挿入
-//        InsertData()
     }
 
 
